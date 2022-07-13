@@ -57,6 +57,10 @@ const { t } = useI18n()
 </template>
 
 <route lang="yaml">
+name: name-override
 meta:
   layout: home
+  requiresAuth: false
+  id: 1234
+  string: "1234"
 </route>
