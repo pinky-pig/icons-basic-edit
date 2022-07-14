@@ -1,32 +1,46 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
-export const useSvgenerateStore = defineStore('user', () => {
-  /**
-   * Current name of the user.
-   */
-  const savedName = ref('')
-  const previousNames = ref(new Set<string>())
+interface SvgenerateType {
+  /** 当前 svg */
+  name:string,
+  /** svg的属性 */
+  property:{
+    stokeColor:string,
+    stokeWidth:number,
+    fillColor:string
+  }
+}
+export const useSvgenerateStore = defineStore('svgenerate', () => {
 
-  const usedNames = computed(() => Array.from(previousNames.value))
-  const otherNames = computed(() => usedNames.value.filter(name => name !== savedName.value))
 
-  /**
-   * Changes the current name of the user and saves the one that was used
-   * before.
-   *
-   * @param name - new name to set
-   */
-  function setNewName(name: string) {
-    if (savedName.value)
-      previousNames.value.add(savedName.value)
+  const name = ref('')
+  let property = ref(
+    {
+      stokeColor:'',
+      stokeWidth:0,
+      fillColor:''
+    }
+  )
 
-    savedName.value = name
+  function setCurrentSvg(options:SvgenerateType) {
+    name.value = options.name
+    property.value = options.property
+  }
+
+  function resetSvgenerateStore() {
+    name.value = ''
+    property.value = {
+      stokeColor:'',
+      stokeWidth:0,
+      fillColor:''
+    }
   }
 
   return {
-    setNewName,
-    otherNames,
-    savedName,
+    name,
+    property,
+    setCurrentSvg,
+    resetSvgenerateStore,
   }
 })
 

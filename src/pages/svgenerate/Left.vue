@@ -23,7 +23,7 @@
 
 
     <div class="flex-1 py-4 overflow-auto flex flex-row flex-wrap justify-center ">
-      <div class=" w-30 h-30 flex-center cursor-pointer hover:bg-[#f7f7f7] " v-for="(item) in 18">
+      <div class=" w-30 h-30 flex-center cursor-pointer hover:bg-[#f7f7f7] " @click="handleClick(item)"  v-for="(item) in 18">
         <div  i-carbon-campsite inline-block />
         {{item}}
       </div>
@@ -31,11 +31,26 @@
   </div>
 </template>
 <script setup lang="ts">
+
 const { t } = useI18n()
 const keyWord = $ref('')
 const search = () => {
   if (keyWord)
     console.log("检索");
+}
+const store = useSvgenerateStore()
+const handleClick = (svgObj:any) => {
+  debugger
+  let obj = {
+    name:'i-carbon-campsite',
+    property:{
+      stokeColor:'',
+      stokeWidth:0,
+      fillColor:''
+    }
+  }
+  store.setCurrentSvg(obj)
+  console.log(store.name);
 }
 
 </script>

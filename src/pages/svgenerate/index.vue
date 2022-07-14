@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import Left from "./Left.vue";
+import Right from "./Right.vue";
+import Main from "./Main.vue";
+
+</script>
+
 <template>
   <div class=" flex flex-row w-screen h-screen dark:bg-red-100 ">
     <section class=" h-screen w-1/4 border-r-1 border-gray-300 dark:bg-[#222222] dark:border-[#DDDDDD]">
@@ -5,7 +12,8 @@
     </section>
     <main class=" h-screen flex-1 dark:bg-[#222222]">
 
-      <Footer />
+      <!-- <Footer /> -->
+      <Main></Main>
 
     </main>
 
@@ -15,11 +23,7 @@
 
   </div>
 </template>
-<script setup lang="ts">
-import Left from "./Left.vue";
-import Right from "./Right.vue";
 
-</script>
 <route lang="yaml">
 name: name-override
 # path: /rename-route
