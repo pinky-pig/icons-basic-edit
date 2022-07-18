@@ -40,7 +40,6 @@ const search = () => {
 }
 const store = useSvgenerateStore()
 const handleClick = (svgObj:any) => {
-  debugger
   let obj = {
     name:'i-carbon-campsite',
     property:{

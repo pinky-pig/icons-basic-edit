@@ -26,7 +26,7 @@ import Main from "./Main.vue";
 
 <route lang="yaml">
 name: name-override
-# path: /rename-route
+path: /rename-route
 meta:
   layout: home
   requiresAuth: false
