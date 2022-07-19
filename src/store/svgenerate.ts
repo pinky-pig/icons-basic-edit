@@ -3,6 +3,7 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 interface SvgenerateType {
   /** 当前 svg */
   name:string,
+  body:string,
   /** svg的属性 */
   property:{
     stokeColor:string,
@@ -12,24 +13,26 @@ interface SvgenerateType {
 }
 export const useSvgenerateStore = defineStore('svgenerate', () => {
 
-
-  const name = ref('')
-  let property = ref(
-    {
+  const svgObj : SvgenerateType= {
+    name:'',
+    body:'',
+    property:{
       stokeColor:'',
       stokeWidth:0,
       fillColor:''
     }
-  )
+  }
 
   function setCurrentSvg(options:SvgenerateType) {
-    name.value = options.name
-    property.value = options.property
+    svgObj.name = options.name
+    svgObj.body = options.body
+    svgObj.property = options.property
   }
 
   function resetSvgenerateStore() {
-    name.value = ''
-    property.value = {
+    svgObj.name = ''
+    svgObj.body = ''
+    svgObj.property = {
       stokeColor:'',
       stokeWidth:0,
       fillColor:''
@@ -37,8 +40,7 @@ export const useSvgenerateStore = defineStore('svgenerate', () => {
   }
 
   return {
-    name,
-    property,
+    svgObj,
     setCurrentSvg,
     resetSvgenerateStore,
   }

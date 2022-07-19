@@ -47,7 +47,8 @@ const search = () => {
 const store = useSvgenerateStore()
 const handleClick = (svgObj:any) => {
   let obj = {
-    name:'i-carbon-campsite',
+    name:svgObj.name,
+    body:svgObj.body,
     property:{
       stokeColor:'',
       stokeWidth:0,
@@ -55,7 +56,6 @@ const handleClick = (svgObj:any) => {
     }
   }
   store.setCurrentSvg(obj)
-  console.log(store.name);
 }
 onMounted(()=>{
   fetchData()
