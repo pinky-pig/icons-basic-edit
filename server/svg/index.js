@@ -22,9 +22,11 @@ async function getIcon(){
       .join('\n')
 
   // Get location of Taber Icons JSON file
-  const tabler = locate('tabler');
-  console.log('taler icon 所在的路径', tabler);
-  return tabler
+  // const tabler = locate('tabler');
+  // console.log('taler icon 所在的路径', tabler);
+  const carbon = locate('carbon');
+  console.log('taler icon 所在的路径', carbon);
+  return carbon
 }
 
 router.get('/fetchSvgFromIconify', async function (req, res) {

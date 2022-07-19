@@ -21,16 +21,22 @@
     </div>
 
 
-
     <div class="flex-1 py-4 overflow-auto flex flex-row flex-wrap justify-center ">
-      <div class=" w-30 h-30 flex-center cursor-pointer hover:bg-[#f7f7f7] " @click="handleClick(item)"  v-for="(item) in 18">
-        <div  i-carbon-campsite inline-block />
-        {{item}}
+      <div class=" w-30 h-30 flex flex-col justify-center items-center cursor-pointer hover:bg-[#f7f7f7] " @click="handleClick(item)"  v-for="(item) in iconList">
+
+        <div class=" w-[30px] h-[30px] flex flex-row items-center justify-center">
+          <svg width="50" height="50" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <g v-html="item.body"></g>
+          </svg>
+        </div>
+
+        <div style="font-size: 0.25rem;">{{item.name}}</div>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import axios from 'axios';
 
 const { t } = useI18n()
 const keyWord = $ref('')
@@ -50,6 +56,24 @@ const handleClick = (svgObj:any) => {
   }
   store.setCurrentSvg(obj)
   console.log(store.name);
+}
+onMounted(()=>{
+  fetchData()
+})
+const iconList = ref()
+const fetchData = () => {
+  axios.get('http://localhost:3200/form/fetchSvgFromIconify').then((res:any) => {
+    let { icons } = res.data
+    let keysArr = Object.keys(icons)
+    let result = keysArr.map((i:string) => {
+      return {
+        name:i,
+        body:icons[i].body
+      }
+    })
+    iconList.value = result.slice(0,10)
+    console.log(result);
+  })
 }
 
 </script>
