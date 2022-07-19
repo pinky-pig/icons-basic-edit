@@ -13,16 +13,17 @@ interface SvgenerateType {
 }
 export const useSvgenerateStore = defineStore('svgenerate', () => {
 
-  const svgObj : SvgenerateType= {
-    name:'',
-    body:'',
-    property:{
-      stokeColor:'',
-      stokeWidth:0,
-      fillColor:''
+  const svgObj : SvgenerateType = reactive(
+    {
+      name:'',
+      body:'',
+      property:{
+        stokeColor:'',
+        stokeWidth:0,
+        fillColor:''
+      }
     }
-  }
-
+  )
   function setCurrentSvg(options:SvgenerateType) {
     svgObj.name = options.name
     svgObj.body = options.body
