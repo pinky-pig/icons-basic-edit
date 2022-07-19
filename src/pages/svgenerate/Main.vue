@@ -1,8 +1,8 @@
 <template>
   <div class=" w-full h-full flex flex-col justify-center items-center dark:bg-[#222]">
     <div>
-      <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <g v-html="store.svgObj.body"></g>
+      <svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g transform="scale(5)" v-html="store.svgObj.body"></g>
       </svg>
     </div>
 

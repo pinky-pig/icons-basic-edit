@@ -7,7 +7,7 @@ import Main from "./Main.vue";
 
 <template>
   <div class=" flex flex-row w-screen h-screen dark:bg-red-100 ">
-    <section class=" h-screen w-[362px] border-r-1 border-gray-300 dark:bg-[#222222] dark:border-[#DDDDDD]">
+    <section class=" h-screen w-[370px] border-r-1 border-gray-300 dark:bg-[#222222] dark:border-[#DDDDDD]">
       <Left></Left>
     </section>
     <main class=" h-screen flex-1 dark:bg-[#222222]">
