@@ -21,6 +21,14 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 <br>
 
+## 开发要点
+- 🚑 虚拟列表
+- 🤡 dom 框选
+- 🛴 svg 基础
+- 🍔 贝塞尔曲线
+- 🚗 starport --antfu
+
+
 
 ## Features
 

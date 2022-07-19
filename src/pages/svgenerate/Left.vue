@@ -13,6 +13,7 @@
         h="60%"
         text="center"
         bg="#FFFFFF"
+        class=" dark:bg-[#282828]"
         border="~ rounded gray-200 dark:gray-700"
         outline="none active:none"
         @keydown.enter="search"
@@ -21,6 +22,18 @@
     </div>
 
 
+    <!-- <div class="flex-1 py-4 overflow-auto flex flex-wrap content-start " >
+      <div class=" w-30 h-30 text-center cursor-pointer hover:bg-[#f7f7f7]" @click="handleClick(item)"  v-for="(item) in iconList">
+
+        <div class=" w-[30px] h-[30px] mx-auto flex flex-row items-center justify-center mt-[25px] mb-[10px]">
+          <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <g v-html="item.body"></g>
+          </svg>
+        </div>
+
+        <div class="w-[90px] mx-auto" style="font-size: 0.25rem;">{{item.name}}</div>
+      </div>
+    </div> -->
     <div class="flex-1 py-4 overflow-auto flex flex-wrap content-start " >
       <div class=" w-30 h-30 text-center cursor-pointer hover:bg-[#f7f7f7]" @click="handleClick(item)"  v-for="(item) in iconList">
 
