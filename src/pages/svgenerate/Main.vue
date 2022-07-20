@@ -36,6 +36,7 @@ const viewBox = computed(() => {
   return `0 0 ${store.svgObj.width} ${store.svgObj.height}`
 })
 
+/** 监听当前 svg 是否改变，若改变，清空选择边控 */
 watch(() => store.svgObj.name,() => {
   svgBorderPath.value = ''
 })
@@ -50,10 +51,10 @@ const mouseInElement = (target?:MaybeElementRef) => {
   const targetRef = ref(target ?? window?.document.body)
   const el = unrefElement(targetRef)
   el?.addEventListener('mousedown',(e:any) => {
-    console.log(e.target.outerHTML);
-    // e.target.setAttribute("transform","scale(1.1)");
     svgBorderPath.value = e.target.outerHTML
   })
+
+  onClickOutside(el, (event) => svgBorderPath.value = '' )
 }
 
 
