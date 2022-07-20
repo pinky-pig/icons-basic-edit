@@ -21,25 +21,22 @@
 
     </div>
 
-
-    <!-- <div class="flex-1 py-4 overflow-auto flex flex-wrap content-start " >
-      <div class=" w-30 h-30 text-center cursor-pointer hover:bg-[#f7f7f7]" @click="handleClick(item)"  v-for="(item) in iconList">
-
-        <div class=" w-[30px] h-[30px] mx-auto flex flex-row items-center justify-center mt-[25px] mb-[10px]">
-          <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <g v-html="item.body"></g>
-          </svg>
-        </div>
-
-        <div class="w-[90px] mx-auto" style="font-size: 0.25rem;">{{item.name}}</div>
-      </div>
-    </div> -->
     <div class="flex-1 py-4 overflow-auto flex flex-wrap content-start " >
       <div class=" w-30 h-30 text-center cursor-pointer hover:bg-[#f7f7f7]" @click="handleClick(item)"  v-for="(item) in iconList">
 
-        <div class=" w-[30px] h-[30px] mx-auto flex flex-row items-center justify-center mt-[25px] mb-[10px]">
-          <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <g v-html="item.body"></g>
+        <div style="font-size:30px" class=" w-[30px] h-[30px] mx-auto flex flex-row items-center justify-center mt-[25px] mb-[10px]">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            aria-hidden="true"
+            role="img"
+            width="1em"
+            height="1em"
+            preserveAspectRatio="xMidYMid meet"
+            :viewBox=viewBox
+            >
+            <g v-html="item.body" >
+            </g>
           </svg>
         </div>
 
@@ -58,10 +55,15 @@ const search = () => {
     console.log("检索");
 }
 const store = useSvgenerateStore()
+
+/** icon 的尺寸 */
+const viewBox = ref('0 0 32 32')
 const handleClick = (svgObj:any) => {
   let obj = {
     name:svgObj.name,
     body:svgObj.body,
+    width:svgObj.width,
+    height:svgObj.height,
     property:{
       stokeColor:'',
       stokeWidth:0,
@@ -76,16 +78,20 @@ onMounted(()=>{
 const iconList = ref()
 const fetchData = () => {
   axios.get('http://localhost:3200/form/fetchSvgFromIconify').then((res:any) => {
-    let { icons } = res.data
+    let { icons,height,width } = res.data
+    viewBox.value = `0 0 ${width} ${height}`
+
     let keysArr = Object.keys(icons)
     let result = keysArr.map((i:string) => {
       return {
         name:i,
+        width,
+        height,
         body:icons[i].body
       }
     })
     iconList.value = result.slice(0,10)
-    console.log(result);
+    // console.log(result);
   })
 }
 

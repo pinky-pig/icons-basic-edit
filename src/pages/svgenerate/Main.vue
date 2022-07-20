@@ -3,19 +3,61 @@
     <!-- name -->
     <div class=" text-3xl text-[#374151] dark:text-[#e5e7eb]"> {{store.svgObj.name}} </div>
 
-    <div>
-      <svg width="150" height="150" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <g transform="scale(5)" v-html="store.svgObj.body"></g>
+    <div class="relative w-[192px] h-[192px]" style="font-size:192px">
+      <UseSvgBorder :path="svgBorderPath" :viewBox="viewBox"></UseSvgBorder>
+      <svg
+        class="absolute"
+        ref="box"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        aria-hidden="true"
+        role="img"
+        width="1em"
+        height="1em"
+        preserveAspectRatio="xMidYMid meet"
+        :viewBox=viewBox
+        >
+        <g fill="none" stroke="currentColor" v-html="store.svgObj.body" >
+        </g>
       </svg>
+
     </div>
     <Footer></Footer>
   </div>
 </template>
 <script setup lang="ts">
+import { MaybeElementRef } from '@vueuse/core';
+import { UseSvgBorder } from './Svg'
+
 const store = useSvgenerateStore()
 
-// document.body.addEventListener('mousemove', glide);
-// function glide(e:any) {
-//   e.target
-// }
+/** icon 的尺寸 */
+const viewBox = computed(() => {
+  return `0 0 ${store.svgObj.width} ${store.svgObj.height}`
+})
+
+watch(() => store.svgObj.name,() => {
+  svgBorderPath.value = ''
+})
+
+/**
+ * box 在这个 dom 上监听点击
+ * svgBorderPath 点击后显示边框
+ */
+const box = ref(null)
+const svgBorderPath = ref()
+const mouseInElement = (target?:MaybeElementRef) => {
+  const targetRef = ref(target ?? window?.document.body)
+  const el = unrefElement(targetRef)
+  el?.addEventListener('mousedown',(e:any) => {
+    console.log(e.target.outerHTML);
+    // e.target.setAttribute("transform","scale(1.1)");
+    svgBorderPath.value = e.target.outerHTML
+  })
+}
+
+
+onMounted(()=>{
+  mouseInElement(box)
+})
 </script>

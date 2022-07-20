@@ -25,7 +25,7 @@ async function getIcon(){
   // const tabler = locate('tabler');
   // console.log('taler icon 所在的路径', tabler);
   const carbon = locate('carbon');
-  console.log('taler icon 所在的路径', carbon);
+  // console.log('taler icon 所在的路径', carbon);
   return carbon
 }
 
