@@ -23,6 +23,7 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 ## 开发要点
 - onClickOutside
+- starport
 - 🚑 虚拟列表
 - 🤡 dom 框选
 - 🛴 svg 基础

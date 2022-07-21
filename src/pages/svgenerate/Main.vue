@@ -23,13 +23,20 @@
 
     </div>
     <Footer></Footer>
+
+    <ProxyComponent></ProxyComponent>
+
   </div>
 </template>
 <script setup lang="ts">
 import { MaybeElementRef } from '@vueuse/core';
 import { UseSvgBorder } from './Svg'
 
+import { ProxyComponent } from '~/components/StarportSvg'
+
+
 const store = useSvgenerateStore()
+const storeSvg = useSvgStore()
 
 /** icon 的尺寸 */
 const viewBox = computed(() => {
@@ -52,6 +59,7 @@ const mouseInElement = (target?:MaybeElementRef) => {
   const el = unrefElement(targetRef)
   el?.addEventListener('mousedown',(e:any) => {
     svgBorderPath.value = e.target.outerHTML
+    storeSvg.selectedSvgDom = e.target
   })
 
   onClickOutside(el, (event) => svgBorderPath.value = '' )
