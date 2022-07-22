@@ -6,6 +6,7 @@
     <div class="relative w-[192px] h-[192px]" style="font-size:192px">
       <UseSvgBorder :path="svgBorderPath" :viewBox="viewBox"></UseSvgBorder>
       <svg
+        id="wholeSvg"
         class="absolute"
         ref="box"
         xmlns="http://www.w3.org/2000/svg"
@@ -58,6 +59,8 @@ const mouseInElement = (target?:MaybeElementRef) => {
   const targetRef = ref(target ?? window?.document.body)
   const el = unrefElement(targetRef)
   el?.addEventListener('mousedown',(e:any) => {
+    if (e.target.id === 'wholeSvg')
+      return
     svgBorderPath.value = e.target.outerHTML
     storeSvg.selectedSvgDom = e.target
   })

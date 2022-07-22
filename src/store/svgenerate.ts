@@ -6,12 +6,6 @@ interface SvgenerateType {
   width:number,
   height:number,
   body:string,
-  /** svg的属性 */
-  property:{
-    stokeColor:string,
-    stokeWidth:number,
-    fillColor:string
-  }
 }
 export const useSvgenerateStore = defineStore('svgenerate', () => {
 
@@ -33,7 +27,6 @@ export const useSvgenerateStore = defineStore('svgenerate', () => {
     svgObj.body = options.body
     svgObj.width = options.width
     svgObj.height = options.height
-    svgObj.property = options.property
   }
 
   function resetSvgenerateStore() {
@@ -41,11 +34,6 @@ export const useSvgenerateStore = defineStore('svgenerate', () => {
     svgObj.body = ''
     svgObj.width = 0
     svgObj.height = 0
-    svgObj.property = {
-      stokeColor:'',
-      stokeWidth:0,
-      fillColor:''
-    }
   }
 
   return {

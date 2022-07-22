@@ -5,6 +5,7 @@ export const useSvgStore = defineStore({
   state: () => {
     return {
       selectedSvgDom: null,
+      /** 各种属性：stoke、fill等 */
     }
   },
   getters: {

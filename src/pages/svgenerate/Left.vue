@@ -55,6 +55,7 @@ const search = () => {
     console.log("检索");
 }
 const store = useSvgenerateStore()
+const storeSvg = useSvgStore()
 
 /** icon 的尺寸 */
 const viewBox = ref('0 0 32 32')
@@ -71,6 +72,8 @@ const handleClick = (svgObj:any) => {
     }
   }
   store.setCurrentSvg(obj)
+
+  storeSvg.resetSvgStore()
 }
 onMounted(()=>{
   fetchData()
