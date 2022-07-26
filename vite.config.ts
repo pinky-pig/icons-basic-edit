@@ -13,6 +13,7 @@ import Inspect from 'vite-plugin-inspect'
 import Prism from 'markdown-it-prism'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Unocss from 'unocss/vite'
+import prismjs from 'vite-plugin-prismjs';
 
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
 
@@ -125,6 +126,11 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-inspect
     // Visit http://localhost:3333/__inspect/ to see the inspector
     Inspect(),
+
+    // https://www.npmjs.com/package/prismjs
+    prismjs({
+      languages: 'all',
+    }),
   ],
 
   // https://github.com/antfu/vite-ssg

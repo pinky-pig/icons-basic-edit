@@ -16,3 +16,12 @@ name: code
 {{name}}
 
 
+```ts
+watch(() => storeSvg.selectedSvgDom, (v1, v2) => {
+  if (v1?.outerHTML)
+    name.value = v1.outerHTML
+})
+
+```
+
+
