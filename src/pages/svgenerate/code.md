@@ -1,21 +1,18 @@
+---
+name: code
+---
 
 <script setup>
-  import { watch } from 'vue'
-  import { useSvgenerateStore } from "../../store/svgenerate.ts";
-  const store = useSvgenerateStore()
-
-  let name = '666'
-  watch(() => store.svgObj.name,() => {
-    console.log(store.svgObj.name);
-    name = store.svgObj.name
+  import { watch,ref } from 'vue'
+  import { useSvgStore } from "../../store";
+  const storeSvg = useSvgStore()
+  const name = ref('666')
+  watch(() => storeSvg.selectedSvgDom, (v1, v2) => {
+    if (v1?.outerHTML)
+      name.value = v1.outerHTML
   })
 </script>
 
-```js
-  function vitesse() {
-    const foo = 'bar'
-    console.log(foo)
-  }
-```
 {{name}}
+
 

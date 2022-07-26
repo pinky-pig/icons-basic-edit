@@ -70,6 +70,7 @@ export const createStarport = (component:DefineComponent<{},{},any>) => {
         return {
           position: 'fixed',
           fontSize:'50px',
+          animationTimingFunction:'cubic-bezier(0.5, 0.2, 0.3, 1.0)',
           transition: hasTransition ? 'all 800ms ease-in-out 0s' : '',
           left: `${floatLeft.value}px`,
           top: `${floatTop.value}px`,
