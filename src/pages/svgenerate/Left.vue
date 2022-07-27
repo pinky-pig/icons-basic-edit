@@ -43,10 +43,26 @@
         <div class="w-[90px] mx-auto" style="font-size: 0.25rem;">{{item.name}}</div>
       </div>
     </div>
+
+    <!-- <div v-bind="containerProps" style="height: 300px">
+      <div v-bind="wrapperProps">
+        <div v-for="item in list" :key="item.index" class="mb-8" style="height: 22px">
+          <img class=" mx-auto " :src="item.data" alt="">
+        </div>
+      </div>
+    </div> -->
   </div>
 </template>
 <script setup lang="ts">
 import axios from 'axios';
+
+// let url = 'https://i.picsum.photos/id/490/40/40.jpg?hmac=CVLndRKw3fiJ7f4AfCUItGooiUnv2ht9Z0v21Tdfb9g'
+// const { list, containerProps, wrapperProps } = useVirtualList(
+//   new Array(250).fill(url),
+//   {
+//     itemHeight: 22,
+//   },
+// )
 
 const { t } = useI18n()
 const keyWord = $ref('')
