@@ -1,21 +1,14 @@
 <template>
-  <div class=" w-full h-full bg-[#F5F6F6] dark:bg-[#222]">
-    <ContainerComponent class=" w-150px mx-auto"></ContainerComponent>
+  <div class=" flex flex-col w-full h-full bg-[#F5F6F6] dark:bg-[#222] ">
+    <ContainerComponent class=" w-150px h-150px mx-auto my-4"></ContainerComponent>
+    <div class=" flex-1  "></div>
 
-    <code></code>
-    <PreviewCode :code="name" :type="'html'" />
+    <SvgCode class=" w-full h-60 flex flex-col justify-end items-end"></SvgCode>
 
   </div>
 </template>
 <script setup lang="ts">
 import { ContainerComponent } from '~/components/StarportSvg'
-import code from './code.md'
-import PreviewCode from './PreviewCode.vue'
+import SvgCode from './SvgCode.md'
 
-  const storeSvg = useSvgStore()
-  const name = ref('666')
-  watch(() => storeSvg.selectedSvgDom, (v1:any, v2:any) => {
-    if (v1?.outerHTML)
-      name.value = v1.outerHTML
-  })
 </script>

@@ -22,7 +22,7 @@
     </div>
 
     <div class="flex-1 py-4 overflow-auto flex flex-wrap content-start " >
-      <div class=" w-30 h-30 text-center cursor-pointer hover:bg-[#f7f7f7]" @click="handleClick(item)"  v-for="(item) in iconList">
+      <div class=" w-30 h-30 text-center cursor-pointer hover:bg-[#f7f7f7] dark:hover:bg-[#282828]" @click="handleClick(item)"  v-for="(item) in iconList">
 
         <div style="font-size:30px" class=" w-[30px] h-[30px] mx-auto flex flex-row items-center justify-center mt-[25px] mb-[10px]">
           <svg
