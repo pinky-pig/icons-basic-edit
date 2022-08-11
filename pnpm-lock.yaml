@@ -19,6 +19,7 @@ specifiers:
   eslint: ^8.20.0
   eslint-plugin-cypress: ^2.12.1
   express: ^4.18.1
+  gsap: ^3.10.4
   https-localhost: ^4.7.1
   markdown-it-link-attributes: ^4.0.0
   markdown-it-prism: ^2.2.4
@@ -54,6 +55,7 @@ dependencies:
   '@vueuse/head': registry.npmmirror.com/@vueuse/head/0.7.7_vue@3.2.37
   axios: registry.npmmirror.com/axios/0.27.2
   express: registry.npmmirror.com/express/4.18.1
+  gsap: registry.npmmirror.com/gsap/3.10.4
   nprogress: registry.npmmirror.com/nprogress/0.2.0
   pinia: registry.npmmirror.com/pinia/2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
   prism-theme-vars: registry.npmmirror.com/prism-theme-vars/0.2.4
@@ -1778,8 +1780,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': registry.npmmirror.com/@intlify/message-compiler/9.2.0-beta.40
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.40
+      '@intlify/message-compiler': registry.npmmirror.com/@intlify/message-compiler/9.2.0
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0
       jsonc-eslint-parser: registry.npmmirror.com/jsonc-eslint-parser/1.4.1
       source-map: registry.npmmirror.com/source-map/0.6.1
       vue-i18n: registry.npmmirror.com/vue-i18n/9.1.10_vue@3.2.37
@@ -1820,13 +1822,13 @@ packages:
       source-map: registry.npmmirror.com/source-map/0.6.1
     dev: false
 
-  registry.npmmirror.com/@intlify/message-compiler/9.2.0-beta.40:
-    resolution: {integrity: sha512-6QWTSYewmkew4nsRqgkwTVuGFKzxVCOK8EXsPt15N+tN1g+OYjC3PfGA2dPB6cVkNxqA9mV/hNK02uHPWU9t0A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@intlify/message-compiler/-/message-compiler-9.2.0-beta.40.tgz}
+  registry.npmmirror.com/@intlify/message-compiler/9.2.0:
+    resolution: {integrity: sha512-KGwwZsl+Nw2O26ZOKdytncxzKnMZ236KmM70u4GePgbizI+pu8yAh0apKxljSPzEJ7WECKTVc9R+laG12EJQYA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@intlify/message-compiler/-/message-compiler-9.2.0.tgz}
     name: '@intlify/message-compiler'
-    version: 9.2.0-beta.40
+    version: 9.2.0
     engines: {node: '>= 14'}
     dependencies:
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.40
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0
       source-map: registry.npmmirror.com/source-map/0.6.1
     dev: true
 
@@ -1855,10 +1857,10 @@ packages:
     engines: {node: '>= 10'}
     dev: false
 
-  registry.npmmirror.com/@intlify/shared/9.2.0-beta.40:
-    resolution: {integrity: sha512-xWz+SFjgt/LfaSbbHVn+V7gmvX4ZNP3cIFta790GWZ/tEgwJeC3tkV7i45iUbZ4ZimOerFgKH05b7qvJlKb6RQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@intlify/shared/-/shared-9.2.0-beta.40.tgz}
+  registry.npmmirror.com/@intlify/shared/9.2.0:
+    resolution: {integrity: sha512-71uObL3Sy2ZiBQBMVETbkspE4Plpy87Hvlj6FAUF3xdD+M82tuxe3MVJjaD3ucqhtHmQWBkAWEurVLdPYr8G2g==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@intlify/shared/-/shared-9.2.0.tgz}
     name: '@intlify/shared'
-    version: 9.2.0-beta.40
+    version: 9.2.0
     engines: {node: '>= 14'}
     dev: true
 
@@ -1879,7 +1881,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': registry.npmmirror.com/@intlify/bundle-utils/3.1.0_vue-i18n@9.1.10
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.40
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0
       '@rollup/pluginutils': registry.npmmirror.com/@rollup/pluginutils/4.2.1
       debug: registry.npmmirror.com/debug/4.3.4
       fast-glob: registry.npmmirror.com/fast-glob/3.2.11
@@ -5588,6 +5590,12 @@ packages:
       section-matter: registry.npmmirror.com/section-matter/1.0.0
       strip-bom-string: registry.npmmirror.com/strip-bom-string/1.0.0
     dev: true
+
+  registry.npmmirror.com/gsap/3.10.4:
+    resolution: {integrity: sha512-6QatdkKxXCMfvCW4rM++0RqyLQAzFX5nwl3yHS0XPgkZBkiSEY3VZVbMltrdtsbER/xZonLtyHt684wRp4erlQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/gsap/-/gsap-3.10.4.tgz}
+    name: gsap
+    version: 3.10.4
+    dev: false
 
   registry.npmmirror.com/gzip-size/6.0.0:
     resolution: {integrity: sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/gzip-size/-/gzip-size-6.0.0.tgz}

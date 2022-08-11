@@ -1,5 +1,6 @@
 interface Window {
-
+  gsap:any,
+  DrawSVGPlugin:any,
 }
 
 /** 通用类型 */
@@ -16,3 +17,6 @@ declare const PROJECT_BUILD_TIME: string
 
 /** ECharts */
 declare module 'echarts'
+
+/** ECharts */
+declare module 'DrawSVGPlugin'

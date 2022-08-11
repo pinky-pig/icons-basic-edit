@@ -1,5 +1,6 @@
 <template>
   <svg
+    class="svg-box"
     ref="box"
     style="font-size:150px"
     xmlns="http://www.w3.org/2000/svg"
