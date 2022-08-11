@@ -2,10 +2,9 @@
   <div class=" w-full h-full bg-[#FFFFFF] dark:bg-[#222] flex flex-col items-center">
     <div
       class=" bg-[#f7f7f7] dark:bg-[#222222] dark:border-[#444444] w-full h-20 border border-r-0 border-[#e0e1e4] flex-center">
-      <input id="input" v-model="keyWord" :placeholder="placeHolderText"
-        :aria-label="t('svgenerate.search-icon')" type="text" autocomplete="false" p="x4 y2" w="80%" h="60%"
-        text="center" bg="#FFFFFF" class=" dark:bg-[#282828]" border="~ rounded gray-200 dark:gray-700"
-        outline="none active:none" @keydown.enter="search">
+      <input id="input" v-model="keyWord" :placeholder="placeHolderText" :aria-label="t('svgenerate.search-icon')"
+        type="text" autocomplete="false" p="x4 y2" w="80%" h="60%" text="center" bg="#FFFFFF" class=" dark:bg-[#282828]"
+        border="~ rounded gray-200 dark:gray-700" outline="none active:none" @keydown.enter="search">
 
     </div>
 
@@ -19,7 +18,8 @@
             justifyContent: 'start',
             alignItems: 'center',
           }">
-            <div @click="handleClick(i)" class=" w-30 h-30 text-center cursor-pointer hover:bg-[#f7f7f7] dark:hover:bg-[#282828]"
+            <div @click="handleClick(i)"
+              class=" w-30 h-30 text-center cursor-pointer hover:bg-[#f7f7f7] dark:hover:bg-[#282828]"
               v-for="i in data">
               <div style="font-size:30px"
                 class=" w-[30px] h-[30px] mx-auto flex flex-row items-center justify-center mt-[25px] mb-[10px]">
@@ -42,7 +42,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import axios from 'axios';
 const store = useSvgenerateStore()
 const storeSvg = useSvgStore()
 /**
@@ -69,31 +68,39 @@ const handleClick = (svgObj: any) => {
   storeSvg.resetSvgStore()
 }
 const iconList = ref()
+/**
+ * 将一维数组划分为三个一组的数组
+ * @param arr 一维数组
+ * @param result 三个一组的数组
+ */
+const sliceBy3 = (arr: Array<any>, result: Array<any> = []) => {
+  if (arr.length == 0)
+    return
+  result.push(arr.splice(0, 3))
+  sliceBy3(arr, result)
+  return result
+}
 const fetchData = async () => {
-  await axios.get('http://localhost:3200/form/fetchSvgFromIconify').then((res:any) => {
-    let { icons,height,width } = res.data
-    let keysArr = Object.keys(icons)
-    let result = keysArr.map((i:string) => {
-      return {
-        name:i,
-        width,
-        height,
-        body:icons[i].body
-      }
+  await fetch('http://localhost:3200/form/fetchSvgFromIconify', { "method": "GET", })
+    .then(res => res.text())
+    .then((res: any) => {
+      let { icons, height, width } = JSON.parse(res)
+      let keysArr = Object.keys(icons)
+      let result = keysArr.map((i: string) => {
+        return {
+          name: i,
+          width,
+          height,
+          body: icons[i].body
+        }
+      })
+      // iconList.value = result.slice(0,100)
+      iconList.value = result
+      iconList.value = sliceBy3(iconList.value)
     })
-    // iconList.value = result.slice(0,100)
-    iconList.value = result
-    const sliceBy3 = (arr:Array<any>,result:Array<any> = []) => {
-      if(arr.length == 0)
-        return
-      result.push(arr.splice(0,3))
-      sliceBy3(arr,result)
-      return result
-    }
-    iconList.value = sliceBy3(iconList.value)
-  })
 }
 await fetchData()
+
 
 const { list, containerProps, wrapperProps } = useVirtualList(
   iconList,
@@ -110,8 +117,22 @@ const { t } = useI18n()
 const keyWord = $ref('')
 const placeHolderText = ref(t('svgenerate.search-icon') + ' (' + iconList.value.length + ')')
 const search = () => {
-  if (keyWord)
-    console.log("检索");
+  fetch(`http://localhost:3200/form/queryIcons?name=${keyWord}`, {
+    "method": "GET",
+  }).then(res => res.text()).then(res => {
+    // let { result } = JSON.parse(res)
+    // let resultSpliced = ref(sliceBy3(result)) as any
+
+    // let searchVirtualList = useVirtualList(
+    //   resultSpliced,
+    //   {
+    //     itemHeight: 120,
+    //   },
+    // )
+    // list.value = searchVirtualList.list
+    // console.log(searchVirtualList);
+  })
+
 }
 
 

@@ -8,6 +8,8 @@ const SVG_API = require('./svg/index.js')
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+// debugger方法：打开浏览器，打开控制台，点击左下角的node标志，地址栏输入接口地址，即可进入断点
+
 //设置跨域访问
 app.all("*",function(req,res,next){
   //设置允许跨域的域名，*代表允许任意域名跨域

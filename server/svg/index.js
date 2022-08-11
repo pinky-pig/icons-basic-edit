@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+let path = undefined
 // const { rule, option } = require('../data/formJSON')
 
 router.post('/test', function (req, res) {
@@ -30,9 +31,25 @@ async function getIcon(){
 }
 
 router.get('/fetchSvgFromIconify', async function (req, res) {
-  let path =  await getIcon()
+  path =  await getIcon()
   const file = require(path)
   res.send(file)
+})
+router.get('/queryIcons', async function (req, res) {
+  if (!req.query.name)
+    return []
+  if(!path)
+    path =  await getIcon()
+
+  let file = require(path)
+  let icons = Object.keys(file.icons)
+  let arr = icons.filter((i)=>{
+    return i.includes(req.query.name)
+  })
+  let result = arr.map(i => file.icons[i])
+  res.send({
+    result
+  })
 })
 module.exports = router
 
