@@ -73,7 +73,7 @@ const store = useSvgenerateStore()
 const propertyList = ref([
   {
     label:'Size',
-    value:store.svgObj.property.scale
+    value:store.svgObj.property.size
   },
   {
     label:'Stroke',

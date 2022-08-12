@@ -4,7 +4,7 @@
     <div class=" text-3xl text-[#374151] dark:text-[#e5e7eb]"> &nbsp; {{ store.svgObj.name }}&nbsp; </div>
 
 
-    <div class="relative" style="font-size:192px">
+    <div class="relative" :style="{fontSize:store.svgObj.property.size}" style="font-size:192px">
       <svg :style="{ width: `calc(192px * ${wrapperSize})`, height: `calc(192px * ${wrapperSize})` }">
         <UseSvgBorder :path="svgBorderPath" :viewBox="viewBox"></UseSvgBorder>
         <svg id="wholeSvg" class="absolute" ref="box" xmlns="http://www.w3.org/2000/svg"
