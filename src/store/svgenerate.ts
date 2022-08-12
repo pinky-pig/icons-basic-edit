@@ -6,6 +6,12 @@ interface SvgenerateType {
   width:number,
   height:number,
   body:string,
+  property:{
+    scale:number,
+    stokeColor:string,
+    stokeWidth:string,
+    fillColor:string
+  }
 }
 export const useSvgenerateStore = defineStore('svgenerate', () => {
 
@@ -16,8 +22,9 @@ export const useSvgenerateStore = defineStore('svgenerate', () => {
       width:0,
       height:0,
       property:{
+        scale:1,
         stokeColor:'',
-        stokeWidth:0,
+        stokeWidth:'',
         fillColor:''
       }
     }

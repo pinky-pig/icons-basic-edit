@@ -1,28 +1,26 @@
 <template>
-  <div class=" py-4 w-full h-full flex flex-col justify-between items-center dark:bg-[#222]">
+  <div class="py-4 w-full h-full flex flex-col justify-between items-center dark:bg-[#222]">
     <!-- name -->
-    <div class=" text-3xl text-[#374151] dark:text-[#e5e7eb]"> {{store.svgObj.name}} </div>
+    <div class=" text-3xl text-[#374151] dark:text-[#e5e7eb]"> &nbsp; {{ store.svgObj.name }}&nbsp; </div>
 
-    <div class="relative w-[192px] h-[192px]" style="font-size:192px">
-      <UseSvgBorder :path="svgBorderPath" :viewBox="viewBox"></UseSvgBorder>
-      <svg
-        id="wholeSvg"
-        class="absolute"
-        ref="box"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        aria-hidden="true"
-        role="img"
-        width="1em"
-        height="1em"
-        preserveAspectRatio="xMidYMid meet"
-        :viewBox=viewBox
-        >
-        <g fill="none" stroke="currentColor" v-html="store.svgObj.body" >
-        </g>
+
+    <div class="relative" style="font-size:192px">
+      <svg :style="{ width: `calc(192px * ${wrapperSize})`, height: `calc(192px * ${wrapperSize})` }">
+        <UseSvgBorder :path="svgBorderPath" :viewBox="viewBox"></UseSvgBorder>
+        <svg id="wholeSvg" class="absolute" ref="box" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em"
+          preserveAspectRatio="xMidYMid meet" :viewBox=viewBox>
+          <g fill="none" stroke="currentColor" v-html="store.svgObj.body">
+          </g>
+        </svg>
       </svg>
 
+
     </div>
+
+    <!-- 控制画布大小 -->
+    <!-- <input type="range" min="1" max="3" v-model="wrapperSize" /> -->
+
     <Footer></Footer>
 
     <ProxyComponent></ProxyComponent>
@@ -45,7 +43,7 @@ const viewBox = computed(() => {
 })
 
 /** 监听当前 svg 是否改变，若改变，清空选择边控 */
-watch(() => store.svgObj.name,() => {
+watch(() => store.svgObj.name, () => {
   svgBorderPath.value = ''
 })
 
@@ -55,21 +53,27 @@ watch(() => store.svgObj.name,() => {
  */
 const box = ref(null)
 const svgBorderPath = ref()
-const mouseInElement = (target?:MaybeElementRef) => {
+const mouseInElement = (target?: MaybeElementRef) => {
   const targetRef = ref(target ?? window?.document.body)
   const el = unrefElement(targetRef)
-  el?.addEventListener('mousedown',(e:any) => {
+  el?.addEventListener('mousedown', (e: any) => {
     if (e.target.id === 'wholeSvg')
       return
     svgBorderPath.value = e.target.outerHTML
     storeSvg.selectedSvgDom = e.target
   })
 
-  onClickOutside(el, (event) => svgBorderPath.value = '' )
+  onClickOutside(el, (event) => svgBorderPath.value = '')
 }
 
 
-onMounted(()=>{
+onMounted(() => {
   mouseInElement(box)
 })
+
+
+// 控制画布的尺寸
+const wrapperSize = ref(1)
+
 </script>
+

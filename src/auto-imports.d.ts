@@ -66,6 +66,7 @@ declare global {
   const onScopeDispose: typeof import('vue')['onScopeDispose']
   const onServerPrefetch: typeof import('vue')['onServerPrefetch']
   const onStartTyping: typeof import('@vueuse/core')['onStartTyping']
+  const onStrokeAnimate: typeof import('./composables/gsap')['onStrokeAnimate']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
@@ -333,6 +334,7 @@ declare module '@vue/runtime-core' {
     readonly onScopeDispose: UnwrapRef<typeof import('vue')['onScopeDispose']>
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
     readonly onStartTyping: UnwrapRef<typeof import('@vueuse/core')['onStartTyping']>
+    readonly onStrokeAnimate: UnwrapRef<typeof import('./composables/gsap')['onStrokeAnimate']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
