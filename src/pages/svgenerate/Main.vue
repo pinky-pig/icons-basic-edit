@@ -4,10 +4,10 @@
     <div class=" text-3xl text-[#374151] dark:text-[#e5e7eb]"> &nbsp; {{ store.svgObj.name }}&nbsp; </div>
 
 
-    <div class="relative" :style="{fontSize:store.svgObj.property.size}" style="font-size:192px">
-      <svg :style="{ width: `calc(192px * ${wrapperSize})`, height: `calc(192px * ${wrapperSize})` }">
-        <UseSvgBorder :path="svgBorderPath" :viewBox="viewBox"></UseSvgBorder>
-        <svg id="wholeSvg" class="absolute" ref="box" xmlns="http://www.w3.org/2000/svg"
+    <div class="relative" :style="{fontSize:store.svgObj.size}" style="font-size:192px">
+      <svg :style="{ width: `calc(192px * ${wrapperSize})`, height: `calc(192px * ${wrapperSize})`,transform:`scale(${wrapperScale})` }">
+        <UseSvgBorder id="shadowSvg" :path="svgBorderPath" :viewBox="viewBox"></UseSvgBorder>
+        <svg id="wholeSvg" :style="{strokeWidth:`${wrapperStrokeWidth}`}" class="absolute" ref="box" xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em"
           preserveAspectRatio="xMidYMid meet" :viewBox=viewBox>
           <g fill="none" stroke="currentColor" v-html="store.svgObj.body">
@@ -63,7 +63,7 @@ const mouseInElement = (target?: MaybeElementRef) => {
     storeSvg.selectedSvgDom = e.target
   })
 
-  onClickOutside(el, (event) => svgBorderPath.value = '')
+  onClickOutside(el, () => svgBorderPath.value = '')
 }
 
 
@@ -74,6 +74,14 @@ onMounted(() => {
 
 // 控制画布的尺寸
 const wrapperSize = ref(1)
+// 画布放大scale
+const wrapperScale = computed(() => {
+  return (store.svgObj.size / 192).toFixed(1)
+}) 
+const wrapperStrokeWidth = computed(() => {
+  return store.svgObj.stokeWidth
+}) 
+
 
 </script>
 
