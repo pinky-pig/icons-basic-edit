@@ -21,6 +21,18 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 <br>
 
+## 运行方式
+```bash
+# 克隆项目并运行
+mkdir icons-basic-edit && git clone https://github.com/pinky-pig/icons-basic-edit.git
+cd icons-basic-edit
+pnpm i
+npm run dev
+
+# 接口需要node一个express
+node server
+```
+
 ## 开发要点
 - onClickOutside
 - starport
