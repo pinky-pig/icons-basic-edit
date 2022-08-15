@@ -17,7 +17,7 @@ import Main from "./Main.vue";
 
     </main>
 
-    <section class=" h-screen w-1/4 border-l-1 border-gray-300 dark:bg-[#222222] dark:border-[#DDDDDD]">
+    <section class=" h-screen w-[370px] border-l-1 border-gray-300 dark:bg-[#222222] dark:border-[#DDDDDD]">
       <Right></Right>
     </section>
 

@@ -7,7 +7,7 @@
     <div class="relative" :style="{fontSize:store.svgObj.size}" style="font-size:192px">
       <svg :style="{ width: `calc(192px * ${wrapperSize})`, height: `calc(192px * ${wrapperSize})`,transform:`scale(${wrapperScale})` }">
         <UseSvgBorder id="shadowSvg" :path="svgBorderPath" :viewBox="viewBox"></UseSvgBorder>
-        <svg id="wholeSvg" :style="{strokeWidth:`${wrapperStrokeWidth}`}" class="absolute" ref="box" xmlns="http://www.w3.org/2000/svg"
+        <svg id="wholeSvg" :style="{strokeWidth:`${wrapperStrokeWidth}`,color:`${wrapperStrokeColor}`}" class="absolute" ref="box" xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em"
           preserveAspectRatio="xMidYMid meet" :viewBox=viewBox>
           <g fill="none" stroke="currentColor" v-html="store.svgObj.body">
@@ -80,6 +80,9 @@ const wrapperScale = computed(() => {
 }) 
 const wrapperStrokeWidth = computed(() => {
   return store.svgObj.stokeWidth
+}) 
+const wrapperStrokeColor = computed(() => {
+  return store.svgObj.stokeColor
 }) 
 
 

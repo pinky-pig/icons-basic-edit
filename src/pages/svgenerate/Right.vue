@@ -5,8 +5,8 @@
 
       <div class=" mb-44px" v-for="item in propertyList">
         <div class="flex flex-row justify-between mb-16px text-1.25rem">
-          <div>{{ item.label }}</div>
-          <div>{{ item.value }}</div>
+          <div>{{ item.label }} px</div>
+          <div>{{ item.value }} px</div>
         </div>
         <Slide v-model="item.value" :min="item.min" :max="item.max"></Slide>
       </div>
@@ -16,8 +16,8 @@
         <div class="flex flex-row mb-16px text-1.25rem">
           <div>Color</div>
         </div>
-        <div class="flex flex-row mb-16px text-1.25rem" v-for="item in 2">
-          <input v-for="it in 5" class="border-0 outline-none w-40px h-30px" type="color" :value="isDark ? '#e5e7eb' : '#374151'" />
+        <div class="flex flex-row mb-16px text-1.25rem" >
+          <input class="border-0 outline-none w-40px h-30px cursor-pointer" type="color" v-model="inputColor"  />
         </div>
 
       </div>
@@ -97,6 +97,7 @@ const propertyList = ref([
   },
 ])
 
+
 watch(() => propertyList.value[0].value, (v1) => {
   store.svgObj.size = Number(v1)
 })
@@ -104,6 +105,8 @@ watch(() => propertyList.value[1].value, (v1) => {
   store.svgObj.stokeWidth = Number(v1)
 })
 
-
-
+const inputColor = ref(isDark.value ? '#e5e7eb' : '#374151')
+watch(() => inputColor.value, (v1) => {
+  store.svgObj.stokeColor = v1
+})
 </script>
