@@ -21,7 +21,7 @@ export const useSvgenerateStore = defineStore('svgenerate', () => {
       height:0,
       size:192,
       stokeColor:'',
-      stokeWidth:0,
+      stokeWidth:1,
       fillColor:''
   }
   )

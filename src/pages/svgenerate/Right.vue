@@ -5,7 +5,7 @@
 
       <div class=" mb-44px" v-for="item in propertyList">
         <div class="flex flex-row justify-between mb-16px text-1.25rem">
-          <div>{{ item.label }} px</div>
+          <div>{{ item.label }}</div>
           <div>{{ item.value }} px</div>
         </div>
         <Slide v-model="item.value" :min="item.min" :max="item.max"></Slide>
