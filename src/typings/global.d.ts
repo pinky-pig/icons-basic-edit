@@ -20,3 +20,5 @@ declare module 'echarts'
 
 /** ECharts */
 declare module 'DrawSVGPlugin'
+
+declare module '@intlify/vite-plugin-vue-i18n'

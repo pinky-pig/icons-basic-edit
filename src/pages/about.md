@@ -3,12 +3,12 @@ title: README
 ---
 
 <div class="text-center">
-  <!-- You can use Vue components inside markdown -->
   <div i-carbon-dicom-overlay class="text-4xl -mb-6 m-auto" />
   <h3>README</h3>
 </div>
 
-[Vitesse](https://github.com/pinky-pig/icons-basic-edit.git) is an opinionated [Vite](https://github.com/vitejs/vite) starter template made by [@antfu](https://github.com/antfu) for mocking apps swiftly. With **file-based routing**, **components auto importing**, **markdown support**, I18n, PWA and uses **UnoCSS** for styling and icons.
+[icons-basic-edit](https://github.com/pinky-pig/icons-basic-edit.git) 目的是为了学习[Vu3](https://cn.vuejs.org/guide/introduction.html)、[Vite](https://vitejs.dev/) 等前端技术，基于[@antfu](https://github.com/antfu)的 [vitesse](https://github.com/antfu/vitesse) 模板所开发的编辑 svg icon 的工具。  
+**file-based routing**
 
 ```js
 // syntax highlighting example
@@ -18,4 +18,4 @@ function vitesse() {
 }
 ```
 
-Check out the [GitHub repo](https://github.com/antfu/vitesse) for more details.
+Check out the [GitHub repo](https://github.com/pinky-pig/icons-basic-edit.git) for more details.

@@ -5,6 +5,7 @@
     "target": "ESNext",
     "lib": ["DOM", "ESNext"],
     "strict": true,
+    "noImplicitAny": false, // 是否在表达式和声明上有隐含的any类型时报错
     "esModuleInterop": true,
     "jsx": "preserve",
     "skipLibCheck": true,
@@ -18,7 +19,6 @@
       "vitest",
       "vite/client",
       "vue/ref-macros",
-      "vite-plugin-pages/client",
       "vite-plugin-vue-layouts/client"
     ],
     "paths": {

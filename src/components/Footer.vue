@@ -26,6 +26,10 @@ const { t } = useI18n()
       <div i-carbon-dicom-overlay />
     </RouterLink>
 
+    <a class="icon-btn mx-2" rel="noreferrer" href="https://pinky-pig.github.io/blog/" target="_blank" title="GitHub">
+      <div i-carbon-blog />
+    </a>
+
     <a class="icon-btn mx-2" rel="noreferrer" href="https://github.com/pinky-pig/icons-basic-edit.git" target="_blank" title="GitHub">
       <div i-carbon-logo-github />
     </a>

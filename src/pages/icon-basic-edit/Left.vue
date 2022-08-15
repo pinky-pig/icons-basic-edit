@@ -47,7 +47,7 @@
           justifyContent: 'start',
           alignItems: 'start',
         }">
-          <div @click="handleClick(body)" class=" w-30 h-30 text-center cursor-pointer hover:bg-[#f7f7f7] dark:hover:bg-[#282828]" >
+          <div @click="handleClick({'body':body,name,'height':32,'width':32})" class=" w-30 h-30 text-center cursor-pointer hover:bg-[#f7f7f7] dark:hover:bg-[#282828]" >
             <div style="font-size:30px"
               class=" w-[30px] h-[30px] mx-auto flex flex-row items-center justify-center mt-[25px] mb-[10px]">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
