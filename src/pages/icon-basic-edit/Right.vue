@@ -1,5 +1,5 @@
 <template>
-  <div class=" flex flex-col w-full h-full bg-[#F5F6F6] dark:bg-[#222] ">
+  <div class=" flex flex-col w-full h-full bg-[#F5F6F6] dark:bg-[#222] overflow-hidden">
     <ContainerComponent class=" w-150px h-200px min-h-200px mx-auto my-4 "></ContainerComponent>
     <div class=" flex-1 flex flex-col p-5 border-t border-gray-300 select-none">
 
