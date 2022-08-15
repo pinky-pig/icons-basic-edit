@@ -1,4 +1,6 @@
 
+// 启动调试 node --inspect server.js
+// chrome://inspect 
 var express = require('express')
 var app = express()
 

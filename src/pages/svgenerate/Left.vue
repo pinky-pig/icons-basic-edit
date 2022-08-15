@@ -1,14 +1,15 @@
 <template>
   <div class=" w-full h-full bg-[#FFFFFF] dark:bg-[#222] flex flex-col items-center">
     <div
-      class=" bg-[#f7f7f7] dark:bg-[#222222] dark:border-[#444444] w-full h-20 border border-r-0 border-[#e0e1e4] flex-center">
+      class=" bg-[#f7f7f7] dark:bg-[#222222] dark:border-[#444444] w-full min-h-20 h-20 border border-r-0 border-[#e0e1e4] flex-center">
       <input id="input" v-model="keyWord" :placeholder="placeHolderText" :aria-label="t('svgenerate.search-icon')"
         type="text" autocomplete="false" p="x4 y2" w="80%" h="60%" text="center" bg="#FFFFFF" class=" dark:bg-[#282828]"
-        border="~ rounded gray-200 dark:gray-700" outline="none active:none" @keydown.enter="search">
+        border="~ rounded gray-200 dark:gray-700" outline="none active:none" @keydown.enter="search" v-on:input="search">
 
     </div>
 
-    <div class="flex-1 py-4 overflow-auto flex flex-wrap content-start ">
+    <!-- 全部的数量较多，虚拟列表 -->
+    <div v-show="!hasWord" class="flex-1 py-4 overflow-auto flex flex-wrap content-start ">
 
       <div v-bind="containerProps" style="height:100%" class="overflow-auto  rounded">
         <div v-bind="wrapperProps">
@@ -38,6 +39,28 @@
 
     </div>
 
+    <!-- 检索的，数量较少 -->
+    <div v-show="hasWord" class="py-4 overflow-auto flex flex-wrap content-start w-full ">
+      <div v-for="{ body,name } in searchList" :style="{
+          height: `${120}px`,
+          display: 'flex',
+          justifyContent: 'start',
+          alignItems: 'start',
+        }">
+          <div @click="handleClick(body)" class=" w-30 h-30 text-center cursor-pointer hover:bg-[#f7f7f7] dark:hover:bg-[#282828]" >
+            <div style="font-size:30px"
+              class=" w-[30px] h-[30px] mx-auto flex flex-row items-center justify-center mt-[25px] mb-[10px]">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" :viewBox=viewBox>
+                <g v-html="body"> </g>
+              </svg>
+            </div>
+
+            <div class="w-[90px] mx-auto" style="font-size: 0.25rem;">{{ name }}</div>
+          </div>
+      </div>
+    </div>
+
 
   </div>
 </template>
@@ -57,14 +80,14 @@ const handleClick = (svgObj: any) => {
     body: svgObj.body,
     width: svgObj.width,
     height: svgObj.height,
-    property: {
-      stokeColor: '',
-      stokeWidth: 0,
-      fillColor: ''
-    }
+
+    size: 192,
+    stokeColor: '',
+    stokeWidth: 1,
+    fillColor: ''
   }
   store.setCurrentSvg(obj)
-
+ 
   storeSvg.resetSvgStore()
 }
 const iconList = ref()
@@ -114,26 +137,21 @@ const { list, containerProps, wrapperProps } = useVirtualList(
  * 检索
  */
 const { t } = useI18n()
-const keyWord = $ref('')
+const keyWord = ref('')
+const hasWord = computed(()=>Boolean(keyWord.value))
 const placeHolderText = ref(t('svgenerate.search-icon') + ' (' + iconList.value.length + ')')
+const searchList = ref<Array<any>>([])
 const search = () => {
-  fetch(`http://localhost:3200/form/queryIcons?name=${keyWord}`, {
+  fetch(`http://localhost:3200/form/queryIcons?name=${keyWord.value}`, {
     "method": "GET",
   }).then(res => res.text()).then(res => {
-    // let { result } = JSON.parse(res)
-    // let resultSpliced = ref(sliceBy3(result)) as any
-
-    // let searchVirtualList = useVirtualList(
-    //   resultSpliced,
-    //   {
-    //     itemHeight: 120,
-    //   },
-    // )
-    // list.value = searchVirtualList.list
-    // console.log(searchVirtualList);
+    let { result } = JSON.parse(res)
+    searchList.value = result
   })
-
 }
+watch(() => hasWord,(v1,v2)=>{
+  search()
+})
 
 
 

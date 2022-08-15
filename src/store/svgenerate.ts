@@ -30,6 +30,11 @@ export const useSvgenerateStore = defineStore('svgenerate', () => {
     svgObj.body = options.body
     svgObj.width = options.width
     svgObj.height = options.height
+
+    svgObj.size = options.size
+    svgObj.stokeColor = options.stokeColor,
+    svgObj.stokeWidth = options.stokeWidth,
+    svgObj.fillColor  = options.fillColor
   }
 
   function resetSvgenerateStore() {
