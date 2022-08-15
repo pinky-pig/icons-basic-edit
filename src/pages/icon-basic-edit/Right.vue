@@ -80,7 +80,7 @@ const animate = () => {
  * 3.stroke-color
  * 4.fill-color
  */
-const store = useSvgenerateStore()
+const storeSvg = useSvgStore()
 
 const propertyList = ref([
   {
@@ -97,16 +97,15 @@ const propertyList = ref([
   },
 ])
 
-
 watch(() => propertyList.value[0].value, (v1) => {
-  store.svgObj.size = Number(v1)
+  storeSvg.size = Number(v1)
 })
 watch(() => propertyList.value[1].value, (v1) => {
-  store.svgObj.stokeWidth = Number(v1)
+  storeSvg.stokeWidth = Number(v1)
 })
 
 const inputColor = ref(isDark.value ? '#e5e7eb' : '#374151')
 watch(() => inputColor.value, (v1) => {
-  store.svgObj.stokeColor = v1
+  storeSvg.stokeColor = v1
 })
 </script>

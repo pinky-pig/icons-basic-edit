@@ -7,10 +7,10 @@ interface SvgenerateType {
   height:number,
   body:string,
 
-  size:number,
-  stokeColor:string,
-  stokeWidth:number,
-  fillColor:string
+  // size:number,
+  // stokeColor:string,
+  // stokeWidth:number,
+  // fillColor:string
 }
 export const useSvgenerateStore = defineStore('svgenerate', () => {
 
@@ -20,10 +20,10 @@ export const useSvgenerateStore = defineStore('svgenerate', () => {
       body:'',
       width:0,
       height:0,
-      size:192,
-      stokeColor:'',
-      stokeWidth:1,
-      fillColor:''
+      // size:192,
+      // stokeColor:'',
+      // stokeWidth:1,
+      // fillColor:''
   })
   function setCurrentSvg(options:SvgenerateType) {
     svgObj.name = options.name
@@ -31,10 +31,10 @@ export const useSvgenerateStore = defineStore('svgenerate', () => {
     svgObj.width = options.width
     svgObj.height = options.height
 
-    svgObj.size = options.size
-    svgObj.stokeColor = options.stokeColor,
-    svgObj.stokeWidth = options.stokeWidth,
-    svgObj.fillColor  = options.fillColor
+    // svgObj.size = options.size
+    // svgObj.stokeColor = options.stokeColor,
+    // svgObj.stokeWidth = options.stokeWidth,
+    // svgObj.fillColor  = options.fillColor
   }
 
   function resetSvgenerateStore() {

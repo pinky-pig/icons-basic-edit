@@ -1,11 +1,5 @@
 import { defineStore } from 'pinia'
 
-interface IconProperty {
-  size:number,
-  stokeColor:string,
-  stokeWidth:number,
-  fillColor:string
-}
 export const useSvgStore = defineStore({
   id: 'svg',
   state: () => {

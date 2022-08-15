@@ -4,7 +4,7 @@
     <div class=" text-3xl text-[#374151] dark:text-[#e5e7eb]"> &nbsp; {{ store.svgObj.name }}&nbsp; </div>
 
 
-    <div class="relative" :style="{fontSize:store.svgObj.size}" style="font-size:192px">
+    <div class="relative" :style="{fontSize:storeSvg.size}" style="font-size:192px">
       <svg :style="{ width: `calc(192px * ${wrapperSize})`, height: `calc(192px * ${wrapperSize})`,transform:`scale(${wrapperScale})` }">
         <UseSvgBorder id="shadowSvg" :path="svgBorderPath" :viewBox="viewBox"></UseSvgBorder>
         <svg id="wholeSvg" :style="{strokeWidth:`${wrapperStrokeWidth}`,color:`${wrapperStrokeColor}`}" class="absolute" ref="box" xmlns="http://www.w3.org/2000/svg"
@@ -76,13 +76,13 @@ onMounted(() => {
 const wrapperSize = ref(1)
 // 画布放大scale
 const wrapperScale = computed(() => {
-  return (store.svgObj.size / 192).toFixed(1)
+  return (storeSvg.size / 192).toFixed(1)
 }) 
 const wrapperStrokeWidth = computed(() => {
-  return store.svgObj.stokeWidth
+  return storeSvg.stokeWidth
 }) 
 const wrapperStrokeColor = computed(() => {
-  return store.svgObj.stokeColor
+  return storeSvg.stokeColor
 }) 
 
 
