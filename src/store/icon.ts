@@ -6,11 +6,6 @@ interface SvgenerateType {
   width:number,
   height:number,
   body:string,
-
-  // size:number,
-  // stokeColor:string,
-  // stokeWidth:number,
-  // fillColor:string
 }
 export const useSvgenerateStore = defineStore('svgenerate', () => {
 
@@ -20,21 +15,12 @@ export const useSvgenerateStore = defineStore('svgenerate', () => {
       body:'',
       width:0,
       height:0,
-      // size:192,
-      // stokeColor:'',
-      // stokeWidth:1,
-      // fillColor:''
   })
   function setCurrentSvg(options:SvgenerateType) {
     svgObj.name = options.name
     svgObj.body = options.body
     svgObj.width = options.width
     svgObj.height = options.height
-
-    // svgObj.size = options.size
-    // svgObj.stokeColor = options.stokeColor,
-    // svgObj.stokeWidth = options.stokeWidth,
-    // svgObj.fillColor  = options.fillColor
   }
 
   function resetSvgenerateStore() {

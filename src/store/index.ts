@@ -1,2 +1,2 @@
-export * from './svg'
-export * from './svgenerate'
+export * from './icons-property'
+export * from './icon'
