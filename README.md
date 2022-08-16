@@ -31,7 +31,6 @@
 - 🚟 [Bézier-曲线]()
 
 
-
 ### Icons
 使用的图标库为开源图标库[Iconify](https://iconify.design)，从这些图标集中选择使用[🔍Icônes](https://icones.netlify.app/)。本项目中是[carbon](https://icones.netlify.app/collection/carbon)图标集。
 
@@ -72,3 +71,8 @@ router.get('/fetchSvgFromIconify', async function (req, res) {
 
 
 待补充。。。
+
+接下来的功能：开发svg编辑器和svg动画编辑
+- 新建svg标尺和网格背景面板
+- 新增svg路径，每一项是每一条路径，在网格中移动编辑
+- 选中每一项，可为其添加GSAP动画
