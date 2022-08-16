@@ -1,8 +1,7 @@
-
-<div class="text-center">
-  <div i-carbon-dicom-overlay class="text-4xl -mb-6 m-auto" />
-  <h3>README</h3>
-</div>
+<p align='center'>
+  <img src='https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20220816114227.png' alt='icon-basic-edit - svg icon editor' width='300'/>
+  <img src='https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20220816114403.png' alt='icon-basic-edit - svg icon editor' width='300'/>
+</p>
 
 [icons-basic-edit](https://github.com/pinky-pig/icons-basic-edit.git) 目的是为了学习[Vu3](https://cn.vuejs.org/guide/introduction.html)、[Vite](https://vitejs.dev/) 、[Svg](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial)等，基于[@antfu](https://github.com/antfu)的 [vitesse](https://github.com/antfu/vitesse) 模板所开发的编辑 icon 的工具。  
 
