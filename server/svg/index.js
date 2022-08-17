@@ -41,8 +41,6 @@ router.get('/queryIcons', async function (req, res) {
   if(!path)
     path =  await getIcon()
 
-  debugger
-
   let file = require(path)
   let icons = Object.keys(file.icons)
   let arr = icons.filter((i)=>{
