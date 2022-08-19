@@ -3,7 +3,11 @@
   <img src='https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20220816114403.png' alt='icon-basic-edit - svg icon editor' width='300'/>
 </p>
 
-[icons-basic-edit](https://github.com/pinky-pig/icons-basic-edit.git) 目的是为了学习[Vu3](https://cn.vuejs.org/guide/introduction.html)、[Vite](https://vitejs.dev/) 、[Svg](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial)等，基于[@antfu](https://github.com/antfu)的 [vitesse](https://github.com/antfu/vitesse) 模板所开发的编辑 icon 的工具。  
+- part one 编辑生成svg icon ：https://yqnn.github.io/svg-path-editor/
+- part two svg动画 ：https://svgartista.net/
+
+
+[icons-basic-edit](https://github.com/pinky-pig/icons-basic-edit.git) 目的是为了学习[Vu3](https://cn.vuejs.org/guide/introduction.html)、[Vite](https://vitejs.dev/) 、[Svg](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial)等，基于[@antfu](https://github.com/antfu)的 [vitesse](https://github.com/antfu/vitesse) 模板所开发的编辑 icon 的工具。
 
 ## 技术点
 
@@ -34,7 +38,7 @@
 使用的图标库为开源图标库[Iconify](https://iconify.design)，从这些图标集中选择使用[🔍Icônes](https://icones.netlify.app/)。本项目中是[carbon](https://icones.netlify.app/collection/carbon)图标集。
 
 ```bash
-pnpm i @iconify/json 
+pnpm i @iconify/json
 pnpm i @iconify-json/carbon
 ```
 获取全部carbon集合中全部的图标

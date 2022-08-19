@@ -9,7 +9,7 @@
       y1="0"
       :x2="props.viewPortX + props.viewPortWidth"
       y2="0"
-      stroke="currentColor"
+      stroke="#99999990"
       fill="transparent"
       :stroke-width="strokeWidth * 4"
       />
@@ -18,7 +18,7 @@
       :y1="props.viewPortY"
       :x2="0"
       :y2="props.viewPortY + props.viewPortHeight"
-      stroke="currentColor"
+      stroke="#99999990"
       fill="transparent"
       :stroke-width="strokeWidth * 4"
       />

@@ -6,6 +6,7 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Canvas: typeof import('./components/Canvas.vue')['default']
+    Collapse: typeof import('./components/Collapse.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     PreviewCode: typeof import('./components/PreviewCode.vue')['default']
@@ -14,6 +15,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     Slide: typeof import('./components/Slide.vue')['default']
     SvgBox: typeof import('./components/SvgBox.vue')['default']
+    Tools: typeof import('./components/Tools.vue')['default']
   }
 }
 
