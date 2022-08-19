@@ -159,7 +159,7 @@ useEventListener(canvas, 'mouseup', (evt: MouseEvent) => {
 useEventListener(canvas, 'mousemove', (evt: MouseEvent) => {
   drag(evt)
 })
-
+/** 鼠标事件触发的位置location */
 function eventToLocation(event: MouseEvent | TouchEvent, idx = 0): { x: number, y: number } {
   const { top, left, } = useElementBounding(canvas)
 
