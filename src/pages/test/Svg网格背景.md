@@ -218,6 +218,11 @@ function browserComputePathBoundingBox(path) {
 }
 ```
 
+
+<p align='center'>
+  <img style="background:white" src='https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/imagesPage 1.png' alt='icon-basic-edit - svg icon editor' width='300'/>
+</p>
+
 ## 6.窗口尺寸改变，自适应改变网格
 - 前面有通过 useElementBounding() 方法获取 canvas dom 的尺寸
 - 现在对其进行一个监听，调用 updateViewPort() 方法改变视图变量
