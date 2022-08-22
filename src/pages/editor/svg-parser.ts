@@ -89,6 +89,7 @@ export class SvgParser {
         cursor += match[0].length
         const componentList = SvgParser.components(command, path, cursor)
         cursor = componentList[0]
+        // tokens 数组，路径数组 -- [['M', '4', '8'],['L', '10', '1']]
         tokens = [...tokens, ...componentList[1]]
       } else {
         throw new Error('malformed path (first error at ' + cursor + ')')

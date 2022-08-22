@@ -157,3 +157,11 @@ kNumberRegex：用来匹配数字的。^[+-]? 代表着匹配正负数，以+ �
   <img style="background:white" src='https://cdn.jsdelivr.net/gh/pinky-pig/pic-bed/images20220822150555.png' alt='kNumberRegex' />
 </p>
 kCommaWsp：用来匹配`,`，[\t\n\f\r ]+ 代表空格或换行{0,,} ,`,?[\t\n\f\r ]*)`代表`,`0或者1次。
+
+## 遍历 svg path
+
+1. 一个指针下标 cursor : number
+2. 路径数组 tokens: string[][]
+3. 遍历命令 移动下标， return tokens
+4. 每一个命令有对应的参数，比如M 有两个参数，L 有两个参数， Z 没有参数
+5. 针对全部的 path ，指针一个一个往后走，跟参数进行匹配，跟空格进行匹配，最后 return
