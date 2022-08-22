@@ -10,7 +10,8 @@
         :strokeWidth="strokeWidth"
         :canvasWidth="canvasWidth"
         :canvasHeight="canvasHeight"
-        :rawPath="kDefaultPath"
+        :parsedPath="parsedPath"
+        :targetPoints="targetPoints"
         ></Canvas>
     </div>
 
@@ -18,6 +19,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { Svg } from './Svg';
 
 const canvasWidth = ref(100)
 const canvasHeight = ref(100)
@@ -44,6 +46,34 @@ watch([width, height], () => {
   )
 })
 
+onMounted(() => {
+  setTimeout(() => {
+    openPath(rawPath.value, '');
+  }, 0);
+})
+function openPath(newPath: string, name: string): void {
+  reloadPath(newPath, true);
+}
+function reloadPath(newPath: string, autozoom = false): void {
+  try {
+    rawPath.value = newPath
+    parsedPath.value = new Svg(rawPath.value);
+    reloadPoints();
+    if (autozoom) {
+      zoomAuto();
+    }
+  } catch (e) {
+    if (!parsedPath.value) {
+      parsedPath.value = new Svg('');
+    }
+  }
+}
+
+function reloadPoints(): void {
+  targetPoints.value = parsedPath.value.targetLocations();
+  controlPoints.value = parsedPath.value.controlLocations();
+}
+
 /**
  * 初始化画布
  */
@@ -58,9 +88,16 @@ const kDefaultPath = ref(
 + `A 5 5 0 0 0 4 10 Q 3.5 9.9 3.5 10.5 T 2 11.8 T 1.2 11 T 2.5 9.5 T 3 9 A 5 5 90 0 0 0 7 A 1.42 1.42 0 0 1 1 6 `
 + `C 1 5 2 6 3 6 C 2 7 3 7 4 8 M 10 1 L 10 3 L 12 3 L 10.2 2.8 L 10 1`
 )
+// 路径变量
+const rawPath = ref(kDefaultPath.value)
+// 经过 parse 的路径
+const parsedPath = ref()
+// 控制点
+const targetPoints = ref()
+const controlPoints = ref()
+
 function zoomAuto() {
-  const rawPath = kDefaultPath.value
-  const bbox = browserComputePathBoundingBox(rawPath);
+  const bbox = browserComputePathBoundingBox(rawPath.value);
   const k = canvasHeight.value / canvasWidth.value;
   let w = bbox.width + 2;
   let h = bbox.height + 2;

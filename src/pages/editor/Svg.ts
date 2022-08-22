@@ -8,6 +8,65 @@ export class Svg {
     this.path = rawPath.map(it => SvgItem.Make(it));
     this.refreshAbsolutePositions()
   }
+  asString(decimals: number = 4, minify: boolean = false): string {
+    return this.path
+      .reduce((acc: { type?: string, item: SvgItem, trailing: SvgItem[] }[], it: SvgItem) => {
+        // Group together the items that can be merged (M 0 0 L 1 1 => M 0 0 1 1)
+        const type = it.getType();
+        if (minify && acc.length > 0) {
+          const last = acc[acc.length - 1];
+          if (last.type === type) {
+            last.trailing.push(it);
+            return acc;
+          }
+        }
+        acc.push({
+          type: type === 'm' ? 'l' : (type === 'M' ? 'L' : type),
+          item: it,
+          trailing: []
+        });
+        return acc;
+      }, [])
+      .map(it => {
+        const str = it.item.asString(decimals, minify, it.trailing);
+        if (minify) {
+          return str
+            .replace(/^([a-z]) /i, '$1')
+            .replace(/ -/g, '-')
+            .replace(/(\.[0-9]+) (?=\.)/g, '$1');
+        } else {
+          return str;
+        }
+      }).join(minify ? '' : ' ');
+  }
+
+  targetLocations(): SvgPoint[] {
+    return this.path.map((it) => it.targetLocation());
+  }
+
+  controlLocations(): SvgControlPoint[] {
+    let result: SvgControlPoint[] = [];
+    for (let i = 1; i < this.path.length; ++i) {
+      const controls = this.path[i].controlLocations();
+      controls.forEach((it, idx) => {
+        it.subIndex = idx;
+      });
+      result = [...result, ...controls];
+    }
+    return result;
+  }
+
+
+  setLocation(ptReference: SvgPoint, to: Point) {
+    if (ptReference instanceof SvgControlPoint) {
+      ptReference.itemReference.setControlLocation(ptReference.subIndex, to);
+    } else {
+      ptReference.itemReference.setTargetLocation(to);
+    }
+    this.refreshAbsolutePositions();
+  }
+
+
   refreshAbsolutePositions() {
     let previous: SvgItem | null = null;
     let origin = new Point(0, 0);

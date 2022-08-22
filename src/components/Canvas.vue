@@ -48,11 +48,23 @@
       :stroke-width="strokeWidth"
       stroke="currentColor"
       fill="transparent"
-      :d="rawPath"
+      :d="parsedPath"
     />
+
+    <circle
+      v-for="item in props.targetPoints"
+      :cx="item.x"
+      :cy="item.y"
+      :r="3 * strokeWidth"
+      :stroke-width="3 * strokeWidth"
+      stroke="currentColor"
+      fill="transparent"
+    />
+
   </svg>
 </template>
-<script setup lang="ts">
+<script setup lang="ts">import { SvgPoint } from '~/pages/editor/Svg';
+
 
 const props = defineProps({
   viewPortX: {
@@ -85,10 +97,25 @@ const props = defineProps({
     default: 100
   },
 
-  rawPath: {
+  parsedPath: {
     type: String,
     default: ''
   },
+
+
+  targetPoints: {
+    type: Array<SvgPoint>,
+    default: []
+  },
+
+})
+
+const parsedPath = computed(() => {
+  console.log(props.targetPoints,'props.targetPoints');
+  if (props.parsedPath)
+    return (props.parsedPath as any).asString()
+  else
+    return
 })
 
 const xGrid = ref()
