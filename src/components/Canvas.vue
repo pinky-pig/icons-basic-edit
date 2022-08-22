@@ -56,9 +56,10 @@
       :cx="item.x"
       :cy="item.y"
       :r="3 * strokeWidth"
-      :stroke-width="3 * strokeWidth"
+      :stroke-width="5 * strokeWidth"
       stroke="currentColor"
       fill="transparent"
+      @mousedown.native="startDrag(item)"
     />
 
   </svg>
@@ -108,6 +109,12 @@ const props = defineProps({
     default: []
   },
 
+  draggedPoint: {
+    type: Object,
+    default: {}
+  },
+
+
 })
 
 const parsedPath = computed(() => {
@@ -130,6 +137,17 @@ watch(props,()=>{
   }
 },{ immediate:true })
 
+const startDrag = (item:SvgPoint) => {
+  draggedPoint.value = item
+  console.log(draggedPoint);
+}
+
+const draggedPoint = ref(props.draggedPoint.value)
+const emit = defineEmits(['update:draggedPoint'])
+watch(() => draggedPoint.value,(v1,v2)=>{
+  debugger
+  emit('update:draggedPoint', v1)
+})
 
 // M = moveto(M X,Y) ：将画笔移动到指定的坐标位置
 // L = lineto(L X,Y) ：画直线到指定的坐标位置

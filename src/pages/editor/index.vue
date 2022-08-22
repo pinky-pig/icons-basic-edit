@@ -12,6 +12,9 @@
         :canvasHeight="canvasHeight"
         :parsedPath="parsedPath"
         :targetPoints="targetPoints"
+
+        @updateDraggedPoint="updateDraggedPoint"
+        v-model:draggedPoint="draggedPoint"
         ></Canvas>
     </div>
 
@@ -46,34 +49,6 @@ watch([width, height], () => {
   )
 })
 
-onMounted(() => {
-  setTimeout(() => {
-    openPath(rawPath.value, '');
-  }, 0);
-})
-function openPath(newPath: string, name: string): void {
-  reloadPath(newPath, true);
-}
-function reloadPath(newPath: string, autozoom = false): void {
-  try {
-    rawPath.value = newPath
-    parsedPath.value = new Svg(rawPath.value);
-    reloadPoints();
-    if (autozoom) {
-      zoomAuto();
-    }
-  } catch (e) {
-    if (!parsedPath.value) {
-      parsedPath.value = new Svg('');
-    }
-  }
-}
-
-function reloadPoints(): void {
-  targetPoints.value = parsedPath.value.targetLocations();
-  controlPoints.value = parsedPath.value.controlLocations();
-}
-
 /**
  * 初始化画布
  */
@@ -92,10 +67,6 @@ const kDefaultPath = ref(
 const rawPath = ref(kDefaultPath.value)
 // 经过 parse 的路径
 const parsedPath = ref()
-// 控制点
-const targetPoints = ref()
-const controlPoints = ref()
-
 function zoomAuto() {
   const bbox = browserComputePathBoundingBox(rawPath.value);
   const k = canvasHeight.value / canvasWidth.value;
@@ -209,7 +180,6 @@ function eventToLocation(event: MouseEvent | TouchEvent, idx = 0): { x: number, 
 
 function drag(event: MouseEvent | TouchEvent) {
   if (draggedEvt) {
-
     const pt = eventToLocation(event);
     const pinchToZoomValue = pinchToZoom(draggedEvt, event)
     if (pinchToZoomValue !== null){
@@ -254,6 +224,47 @@ function pinchToZoom(previousEvent: MouseEvent | TouchEvent, event: MouseEvent |
 
 function stopDrag() {
   draggedEvt = null;
+}
+
+
+/** 拖拽移动控制点 points */
+const targetPoints = ref()
+const controlPoints = ref()
+const draggedPoint = ref()
+
+const updateDraggedPoint = (dp) => {
+  draggedPoint.value = dp
+}
+
+watch(draggedPoint.value,v1 => {
+  debugger
+  console.log(v1);
+})
+onMounted(() => {
+  setTimeout(() => {
+    openPath(rawPath.value, '');
+  }, 0);
+})
+function openPath(newPath: string, name: string): void {
+  reloadPath(newPath, true);
+}
+function reloadPath(newPath: string, autozoom = false): void {
+  try {
+    rawPath.value = newPath
+    parsedPath.value = new Svg(rawPath.value);
+    reloadPoints();
+    if (autozoom) {
+      zoomAuto();
+    }
+  } catch (e) {
+    if (!parsedPath.value) {
+      parsedPath.value = new Svg('');
+    }
+  }
+}
+function reloadPoints(): void {
+  targetPoints.value = parsedPath.value.targetLocations();
+  controlPoints.value = parsedPath.value.controlLocations();
 }
 
 </script>
