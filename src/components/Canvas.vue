@@ -44,15 +44,21 @@
       />
 
     <path
-      class="filled"
       :stroke-width="strokeWidth"
       stroke="currentColor"
-      fill="transparent"
+      fill="rgba(0,0,0,0.5)"
       :d="parsedPath"
     />
 
+    <path
+      stroke="rgb(0, 174, 255)"
+      fill="none"
+      :d="focusedItemPath"
+      :stroke-width="strokeWidth"
+    />
+
     <circle
-      class="target"
+      class="target cursor-pointer "
       v-for="item in props.targetPoints"
       :cx="item.x"
       :cy="item.y"
@@ -60,24 +66,24 @@
       :stroke-width="5 * strokeWidth"
       stroke="currentColor"
       fill="transparent"
-      @mousedown.native="startDrag(item)"
+      @mousedown="startDrag(item)"
     />
 
     <circle
-      class="control"
+      class="control cursor-pointer "
       v-for="item in props.controlPoints"
       :cx="item.x"
       :cy="item.y"
       :r="3 * strokeWidth"
       :stroke-width="5 * strokeWidth"
-      stroke="rgba(0,0,0,0.5)"
+      stroke="currentColor"
       fill="transparent"
-      @mousedown.native="startDrag(item)"
+      @mousedown="startDrag(item)"
     />
 
     <g v-for="loc in props.controlPoints" >
       <line
-        class="control"
+        class="control cursor-pointer"
         v-for="rel in loc.relations"
         :x1="loc.x"
         :y1="loc.y"
@@ -90,7 +96,8 @@
 
   </svg>
 </template>
-<script setup lang="ts">import { SvgControlPoint, SvgPoint } from '~/pages/editor/Svg';
+<script setup lang="ts">
+import { Svg, SvgControlPoint, SvgPoint } from '~/pages/editor/Svg';
 
 
 const props = defineProps({
@@ -140,10 +147,14 @@ const props = defineProps({
   },
 
   draggedPoint: {
-    type: Object,
-    default: {}
+    type: SvgPoint,
+    default: null
   },
 
+  focusedItem: {
+    type: Object || null,
+    default: null
+  },
 
 })
 
@@ -167,10 +178,18 @@ watch(props,()=>{
 },{ immediate:true })
 
 // 将 dragPoint 传给父组件
-const emit = defineEmits(['update:draggedPoint'])
+const emit = defineEmits(['update:draggedPoint','update:focusedItem'])
 const startDrag = (item:SvgPoint) => {
   emit('update:draggedPoint', item)
+  emit('update:focusedItem', item.itemReference)
 }
+
+const focusedItemPath = computed(() => {
+  if (props.focusedItem !== null )
+    return props.focusedItem?.asStandaloneString()
+  else
+    return
+})
 
 
 // M = moveto(M X,Y) ：将画笔移动到指定的坐标位置

@@ -15,6 +15,7 @@
         :controlPoints="controlPoints"
 
         v-model:draggedPoint="draggedPoint"
+        v-model:focusedItem="focusedItem"
         ></Canvas>
     </div>
 
@@ -22,7 +23,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Point, Svg } from './Svg';
+import { Point, Svg, SvgControlPoint, SvgPoint } from './Svg';
 
 const canvasWidth = ref(100)
 const canvasHeight = ref(100)
@@ -242,13 +243,16 @@ function stopDrag() {
   draggedEvt = null
   // 清除拖拽 dragPoint
   draggedPoint.value = null
+  //
+  focusedItem.value = null
 }
 
 
 /** 拖拽移动控制点 points */
-const targetPoints = ref()
-const controlPoints = ref()
+const targetPoints = ref<SvgPoint[]>()
+const controlPoints = ref<SvgControlPoint[]>()
 const draggedPoint = ref()
+const focusedItem = ref()
 onMounted(() => {
   setTimeout(() => {
     openPath(rawPath.value, '');
