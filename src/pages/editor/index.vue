@@ -21,7 +21,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Svg } from './Svg';
+import { Point, Svg } from './Svg';
 
 const canvasWidth = ref(100)
 const canvasHeight = ref(100)
@@ -178,9 +178,24 @@ function eventToLocation(event: MouseEvent | TouchEvent, idx = 0): { x: number, 
 }
 
 function drag(event: MouseEvent | TouchEvent) {
-  if (draggedEvt) {
-    const pt = eventToLocation(event);
-    const pinchToZoomValue = pinchToZoom(draggedEvt, event)
+  // 计算当前鼠标的位置
+  const pt = eventToLocation(event);
+  // 这是触摸版缩放移动，暂不考虑
+  const pinchToZoomValue = pinchToZoom(draggedEvt, event)
+  // 拖拽 dragPoint 移动 svg
+  if(draggedPoint.value && parsedPath.value){
+    // 当前的鼠标位置保留小数，目的让点在格子上，因为格子的长度是1单位 decimals => n.	小数；十进算术
+    const decimals = 0
+    pt.x = parseFloat(pt.x.toFixed(decimals));
+    pt.y = parseFloat(pt.y.toFixed(decimals));
+
+    // 设置当前鼠标点击的这个点的位置为鼠标的这个位置
+    parsedPath.value.setLocation(draggedPoint.value, pt as Point);
+    // 以上是更新svg，这个方法是更新svg上的点 dragPoint。重新渲染一遍
+    afterModelChange();
+    draggedEvt = null;
+  }else if (draggedEvt) {
+    // 拖拽画布
     if (pinchToZoomValue !== null){
       const w = pinchToZoomValue.zoom * cfg.viewPortWidth;
       const h = pinchToZoomValue.zoom * cfg.viewPortHeight;
@@ -222,7 +237,10 @@ function pinchToZoom(previousEvent: MouseEvent | TouchEvent, event: MouseEvent |
 }
 
 function stopDrag() {
-  draggedEvt = null;
+  // 清除拖拽画布
+  draggedEvt = null
+  // 清除拖拽 dragPoint
+  draggedPoint.value = null
 }
 
 
@@ -231,9 +249,6 @@ const targetPoints = ref()
 const controlPoints = ref()
 const draggedPoint = ref()
 
-watch(() => draggedPoint.value, v1 => {
-  console.log(v1);
-})
 onMounted(() => {
   setTimeout(() => {
     openPath(rawPath.value, '');
@@ -259,6 +274,11 @@ function reloadPath(newPath: string, autozoom = false): void {
 function reloadPoints(): void {
   targetPoints.value = parsedPath.value.targetLocations();
   controlPoints.value = parsedPath.value.controlLocations();
+}
+
+function afterModelChange(): void {
+  reloadPoints();
+  rawPath.value = parsedPath.value.asString(4, false);
 }
 
 </script>
