@@ -57,6 +57,13 @@
       :stroke-width="strokeWidth"
     />
 
+    <path
+      stroke="rgb(255, 25, 255)"
+      fill="none"
+      :d="hoveredItemPath"
+      :stroke-width="strokeWidth"
+    />
+
     <circle
       class="target cursor-pointer "
       v-for="item in props.targetPoints"
@@ -67,6 +74,8 @@
       stroke="currentColor"
       fill="transparent"
       @mousedown="startDrag(item)"
+      @mouseenter="startHover(item)"
+      @mouseleave="stopHover()"
     />
 
     <circle
@@ -79,6 +88,8 @@
       stroke="currentColor"
       fill="transparent"
       @mousedown="startDrag(item)"
+      @mouseenter="startHover(item)"
+      @mouseleave="stopHover()"
     />
 
     <g v-for="loc in props.controlPoints" >
@@ -156,14 +167,13 @@ const props = defineProps({
     default: null
   },
 
+  hoveredItem: {
+    type: Object || null,
+    default: null
+  },
+
 })
 
-const parsedPath = computed(() => {
-  if (props.parsedPath)
-    return (props.parsedPath as any).asString()
-  else
-    return
-})
 
 const xGrid = ref()
 const yGrid = ref()
@@ -177,13 +187,29 @@ watch(props,()=>{
   }
 },{ immediate:true })
 
+// svg 路径
+const parsedPath = computed(() => {
+  if (props.parsedPath)
+    return (props.parsedPath as any).asString()
+  else
+    return
+})
+
 // 将 dragPoint 传给父组件
-const emit = defineEmits(['update:draggedPoint','update:focusedItem'])
+const emit = defineEmits(['update:draggedPoint','update:focusedItem','update:hoveredItem'])
 const startDrag = (item:SvgPoint) => {
   emit('update:draggedPoint', item)
   emit('update:focusedItem', item.itemReference)
+  stopHover()
+}
+const startHover = (item:SvgPoint) => {
+  emit('update:hoveredItem', item.itemReference)
+}
+const stopHover = () => {
+  emit('update:hoveredItem', null)
 }
 
+// svg 选中的高亮路径
 const focusedItemPath = computed(() => {
   if (props.focusedItem !== null )
     return props.focusedItem?.asStandaloneString()
@@ -191,6 +217,13 @@ const focusedItemPath = computed(() => {
     return
 })
 
+// svg hover 的高亮路径
+const hoveredItemPath = computed(() => {
+  if (props.hoveredItem !== null )
+    return props.hoveredItem?.asStandaloneString()
+  else
+    return
+})
 
 // M = moveto(M X,Y) ：将画笔移动到指定的坐标位置
 // L = lineto(L X,Y) ：画直线到指定的坐标位置

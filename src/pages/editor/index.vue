@@ -16,6 +16,7 @@
 
         v-model:draggedPoint="draggedPoint"
         v-model:focusedItem="focusedItem"
+        v-model:hoveredItem="hoveredItem"
         ></Canvas>
     </div>
 
@@ -243,7 +244,7 @@ function stopDrag() {
   draggedEvt = null
   // 清除拖拽 dragPoint
   draggedPoint.value = null
-  //
+  // 清除选中的高亮路径
   focusedItem.value = null
 }
 
@@ -253,6 +254,7 @@ const targetPoints = ref<SvgPoint[]>()
 const controlPoints = ref<SvgControlPoint[]>()
 const draggedPoint = ref()
 const focusedItem = ref()
+const hoveredItem = ref()
 onMounted(() => {
   setTimeout(() => {
     openPath(rawPath.value, '');
@@ -262,6 +264,8 @@ function openPath(newPath: string, name: string): void {
   reloadPath(newPath, true);
 }
 function reloadPath(newPath: string, autozoom = false): void {
+  hoveredItem.value = null;
+  focusedItem.value = null;
   try {
     rawPath.value = newPath
     parsedPath.value = new Svg(rawPath.value);
