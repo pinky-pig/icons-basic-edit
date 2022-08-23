@@ -137,17 +137,12 @@ watch(props,()=>{
   }
 },{ immediate:true })
 
+// 将 dragPoint 传给父组件
+const emit = defineEmits(['update:draggedPoint'])
 const startDrag = (item:SvgPoint) => {
-  draggedPoint.value = item
-  console.log(draggedPoint);
+  emit('update:draggedPoint', item)
 }
 
-const draggedPoint = ref(props.draggedPoint.value)
-const emit = defineEmits(['update:draggedPoint'])
-watch(() => draggedPoint.value,(v1,v2)=>{
-  debugger
-  emit('update:draggedPoint', v1)
-})
 
 // M = moveto(M X,Y) ：将画笔移动到指定的坐标位置
 // L = lineto(L X,Y) ：画直线到指定的坐标位置

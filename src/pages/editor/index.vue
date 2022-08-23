@@ -13,7 +13,6 @@
         :parsedPath="parsedPath"
         :targetPoints="targetPoints"
 
-        @updateDraggedPoint="updateDraggedPoint"
         v-model:draggedPoint="draggedPoint"
         ></Canvas>
     </div>
@@ -232,12 +231,7 @@ const targetPoints = ref()
 const controlPoints = ref()
 const draggedPoint = ref()
 
-const updateDraggedPoint = (dp) => {
-  draggedPoint.value = dp
-}
-
-watch(draggedPoint.value,v1 => {
-  debugger
+watch(() => draggedPoint.value, v1 => {
   console.log(v1);
 })
 onMounted(() => {
