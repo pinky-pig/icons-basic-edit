@@ -56,7 +56,6 @@ export class Svg {
     return result;
   }
 
-
   setLocation(ptReference: SvgPoint, to: Point) {
     if (ptReference instanceof SvgControlPoint) {
       ptReference.itemReference.setControlLocation(ptReference.subIndex, to);

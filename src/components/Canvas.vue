@@ -52,6 +52,7 @@
     />
 
     <circle
+      class="target"
       v-for="item in props.targetPoints"
       :cx="item.x"
       :cy="item.y"
@@ -62,9 +63,34 @@
       @mousedown.native="startDrag(item)"
     />
 
+    <circle
+      class="control"
+      v-for="item in props.controlPoints"
+      :cx="item.x"
+      :cy="item.y"
+      :r="3 * strokeWidth"
+      :stroke-width="5 * strokeWidth"
+      stroke="rgba(0,0,0,0.5)"
+      fill="transparent"
+      @mousedown.native="startDrag(item)"
+    />
+
+    <g v-for="loc in props.controlPoints" >
+      <line
+        class="control"
+        v-for="rel in loc.relations"
+        :x1="loc.x"
+        :y1="loc.y"
+        :x2="rel.x"
+        :y2="rel.y"
+        :stroke-width="strokeWidth"
+        stroke="rgba(0,0,0,0.5)"
+        />
+    </g>
+
   </svg>
 </template>
-<script setup lang="ts">import { SvgPoint } from '~/pages/editor/Svg';
+<script setup lang="ts">import { SvgControlPoint, SvgPoint } from '~/pages/editor/Svg';
 
 
 const props = defineProps({
@@ -103,9 +129,13 @@ const props = defineProps({
     default: ''
   },
 
-
   targetPoints: {
     type: Array<SvgPoint>,
+    default: []
+  },
+
+  controlPoints: {
+    type: Array<SvgControlPoint>,
     default: []
   },
 
@@ -118,7 +148,6 @@ const props = defineProps({
 })
 
 const parsedPath = computed(() => {
-  console.log(props.targetPoints,'props.targetPoints');
   if (props.parsedPath)
     return (props.parsedPath as any).asString()
   else

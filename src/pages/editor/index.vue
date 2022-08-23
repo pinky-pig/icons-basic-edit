@@ -12,6 +12,7 @@
         :canvasHeight="canvasHeight"
         :parsedPath="parsedPath"
         :targetPoints="targetPoints"
+        :controlPoints="controlPoints"
 
         v-model:draggedPoint="draggedPoint"
         ></Canvas>
@@ -248,7 +249,6 @@ function stopDrag() {
 const targetPoints = ref()
 const controlPoints = ref()
 const draggedPoint = ref()
-
 onMounted(() => {
   setTimeout(() => {
     openPath(rawPath.value, '');
@@ -271,11 +271,12 @@ function reloadPath(newPath: string, autozoom = false): void {
     }
   }
 }
+/** 加载控制点及辅助线 */
 function reloadPoints(): void {
   targetPoints.value = parsedPath.value.targetLocations();
   controlPoints.value = parsedPath.value.controlLocations();
 }
-
+/** 移动控制点后修改其位置 */
 function afterModelChange(): void {
   reloadPoints();
   rawPath.value = parsedPath.value.asString(4, false);
