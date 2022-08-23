@@ -66,6 +66,7 @@
 
     <circle
       class="target cursor-pointer "
+      :style="{color: props.hoveredItem == item.itemReference ? 'rgb(255, 25, 255)' :  (props.focusedItem == item.itemReference) ? 'rgb(0, 174, 255)' :''}"
       v-for="item in props.targetPoints"
       :cx="item.x"
       :cy="item.y"
