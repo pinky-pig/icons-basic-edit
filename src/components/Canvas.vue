@@ -81,6 +81,7 @@
 
     <circle
       class="control cursor-pointer "
+      :style="{color: props.hoveredItem == item.itemReference ? 'rgb(255, 25, 255)' :  (props.focusedItem == item.itemReference) ? 'rgb(0, 174, 255)' :''}"
       v-for="item in props.controlPoints"
       :cx="item.x"
       :cy="item.y"
@@ -204,7 +205,9 @@ const startDrag = (item:SvgPoint) => {
   stopHover()
 }
 const startHover = (item:SvgPoint) => {
-  emit('update:hoveredItem', item.itemReference)
+  if (!props.focusedItem) {
+    emit('update:hoveredItem', item.itemReference)
+  }
 }
 const stopHover = () => {
   emit('update:hoveredItem', null)
