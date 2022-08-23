@@ -21,12 +21,11 @@
     </div>
 
     <Path>
-      <!-- div contenteditable height = scrollHeight -->
       <textarea
         class="resize border rounded-md w-full h-[200px]"
         v-model="textareaValue"
         @blur="textareaBlur"
-        @focus="textareafocus"
+        @focus="textareaFocus"
         ></textarea>
     </Path>
 
@@ -41,8 +40,11 @@
               type="text"
               class="w-full text-center"
               :value="value"
-              @input="updateCommandValue(value, idx)"
+              @input="v => updateCommandValue(v,index, idx)"
+              @blur="inputBlur"
+              @focus="inputFocus"
               />
+
           </div>
         </div>
       </div>
@@ -327,7 +329,7 @@ watch(() => rawPath.value,v1 => {
   },
   { immediate:true }
 )
-const textareafocus = () => {
+const textareaFocus = () => {
   textEditFlag = true
 }
 const textareaBlur = () => {
@@ -344,9 +346,25 @@ const commandList = ref()
 watch(() => parsedPath.value,() => {
   commandList.value = parsedPath.value.path
 })
-const updateCommandValue = (v,index) => {
-  commandList.value[index] = v
+const updateCommandValue = (v,index,idx) => {
+  commandList.value[index].values[idx] = v.srcElement.value
 }
+let inputEditFlag = false
+const inputBlur = () => {
+  inputEditFlag = true
+}
+const inputFocus = () => {
+  inputEditFlag = false
+}
+watch(()=> commandList.value, v1 =>{
+  //   console.log(parsedPath.value);
+
+  // if (inputEditFlag) {
+  //   // reloadPath(parsedPath.value, false);
+  //   console.log(parsedPath.value);
+  // }
+},{deep:true}
+)
 </script>
 
 <route lang="yaml">

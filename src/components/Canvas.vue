@@ -145,7 +145,7 @@ const props = defineProps({
   },
 
   parsedPath: {
-    type: String,
+    type:  Object || String,
     default: ''
   },
 
