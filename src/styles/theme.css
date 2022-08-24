@@ -1,0 +1,47 @@
+
+
+html.dark{
+  --primary-bg             :#333;
+  --primary-bg-dark        :#505354;
+  --primary-text           :#FFF;
+
+  --layout-header-bg       : var(--primary-bg) ;
+  --layout-header-text     : var(--primary-text);
+
+  --layout-sidebar-bg      : var(--primary-bg) ;
+  --layout-sidebar-text    : var(--primary-text);
+
+  --layout-main-bg         : var(--primary-bg);
+  --layout-main-outer-bg   : var(--primary-bg-dark);
+  --layout-main-text       : var(--primary-text);
+
+
+  --color-accent           : hsl(241, 99%, 70%);
+  --color-primary          : var(--color-accent);
+  --color-secondary        : hsl(186, 84%, 74%);
+  --color-text             : hsl(211, 19%, 70%);
+  --color-dark             : hsl(216, 14%, 14%);
+  --layout-header-height   : 6rem;
+  --layout-sider-width     : 20rem;
+  --layout-footer-height   : 4rem;
+  --screen-sm              : 480px;
+  --screen-md              : 768px;
+  --screen-lg              : 976px;
+  --screen-xl              : 1440px;
+}
+html{
+  --primary-bg             :#F5F6F6;
+  --primary-bg-light       :#ffffff;
+  --primary-text           :#000;
+  --layout-header-bg       : var(--primary-bg) ;
+  --layout-header-text     : var(--primary-text);
+  --layout-sidebar-bg      : var(--primary-bg) ;
+  --layout-sidebar-text    : var(--primary-text);
+  --layout-main-bg         : var(--primary-bg) ;
+  --layout-main-outer-bg   : var(--primary-bg-light) ;
+  --layout-main-text       : var(--primary-text);
+}
+
+
+
+

@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     Slide: typeof import('./components/Slide.vue')['default']
     SvgBox: typeof import('./components/SvgBox.vue')['default']
+    ToolButton: typeof import('./components/ToolButton.vue')['default']
     Tools: typeof import('./components/Tools.vue')['default']
   }
 }

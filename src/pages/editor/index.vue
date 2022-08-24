@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-row w-screen h-screen bg-[#f7f7f7] dark:bg-[#222222] text-[#374151] dark:text-[#e5e7eb] ">
+  <div class="flex flex-col w-screen h-screen bg-[#f7f7f7] dark:bg-[#0a0a0a] text-[#383838] dark:text-[#e5e7eb] ">
+
+    <Header></Header>
 
     <div ref="canvas" class=" w-full h-full min-w-10">
       <Canvas
@@ -19,7 +21,6 @@
         v-model:hoveredItem="hoveredItem"
         ></Canvas>
     </div>
-
     <Path>
       <textarea
         class="resize border rounded-md w-full h-[200px]"
@@ -48,10 +49,12 @@
       </div>
     </Command>
 
+
     <Footer class=" absolute left-[calc(50%-80px)] bottom-0"></Footer>
   </div>
 </template>
 <script lang="ts" setup>
+import Header from "./Header.vue";
 import { Point, Svg, SvgControlPoint, SvgItem, SvgPoint } from './Svg';
 
 const canvasWidth = ref(100)
