@@ -40,9 +40,7 @@
               type="text"
               class="w-full text-center"
               :value="value"
-              @input="v => updateCommandValue(v,index, idx)"
-              @blur="inputBlur"
-              @focus="inputFocus"
+              @input="v => updateCommandValue(v,item,idx)"
               />
 
           </div>
@@ -54,7 +52,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Point, Svg, SvgControlPoint, SvgPoint } from './Svg';
+import { Point, Svg, SvgControlPoint, SvgItem, SvgPoint } from './Svg';
 
 const canvasWidth = ref(100)
 const canvasHeight = ref(100)
@@ -346,25 +344,15 @@ const commandList = ref()
 watch(() => parsedPath.value,() => {
   commandList.value = parsedPath.value.path
 })
-const updateCommandValue = (v,index,idx) => {
-  commandList.value[index].values[idx] = v.srcElement.value
+const updateCommandValue = (v,item:SvgItem,idx:number) => {
+  let val = Number(v.srcElement.value)
+  if (!isNaN(val) ) {
+    item.values[idx] = Number(val)
+    parsedPath.value.refreshAbsolutePositions()
+    afterModelChange();
+  }
 }
-let inputEditFlag = false
-const inputBlur = () => {
-  inputEditFlag = true
-}
-const inputFocus = () => {
-  inputEditFlag = false
-}
-watch(()=> commandList.value, v1 =>{
-  //   console.log(parsedPath.value);
 
-  // if (inputEditFlag) {
-  //   // reloadPath(parsedPath.value, false);
-  //   console.log(parsedPath.value);
-  // }
-},{deep:true}
-)
 </script>
 
 <route lang="yaml">
