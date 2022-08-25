@@ -2,7 +2,7 @@
 
 html.dark{
 
-  --main-background-image  :url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='roughpaper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.06' result='noise' numOctaves='5' /%3E%3CfeDiffuseLighting in='noise' lighting-color='%23080808' surfaceScale='5'%3E%3CfeDistantLight azimuth='75' elevation='20' /%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23roughpaper)' style='opacity:0.18' /%3E%3C/svg%3E%0A");
+  --main-background-image  :url(~/assets/img/black-bg.png);
   --primary-bg             :#333;
   --primary-bg-dark        :#505354;
   --primary-text           :#FFF;
@@ -33,7 +33,7 @@ html.dark{
 
 }
 html{
-  --main-background-image  :url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='roughpaper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.025' result='noise' numOctaves='5' /%3E%3CfeDiffuseLighting in='noise' lighting-color='%23fff' surfaceScale='2'%3E%3CfeDistantLight azimuth='45' elevation='70' /%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23roughpaper)' /%3E%3C/svg%3E ");
+  --main-background-image  :url(~/assets/img/white-bg.png);
 
   --primary-bg             :#F5F6F6;
   --primary-bg-light       :#ffffff;

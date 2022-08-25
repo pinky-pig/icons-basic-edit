@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col w-screen h-screen bg-[#f7f7f7] dark:bg-[#0a0a0a] text-[#383838] dark:text-[#e5e7eb] ">
+  <div class=" main-container flex flex-col w-screen h-screen bg-[#f7f7f7] dark:bg-[#0a0a0a] text-[#383838] dark:text-[#e5e7eb] ">
 
     <Header></Header>
 
-    <div ref="canvas" class=" w-full h-full min-w-10">
+    <div ref="canvas" class="relative w-full h-full min-w-10 ">
       <Canvas
         :viewPortWidth="cfg.viewPortWidth"
         :viewPortHeight="cfg.viewPortHeight"
@@ -358,6 +358,12 @@ const updateCommandValue = (v,item:SvgItem,idx:number) => {
 
 </script>
 
+
+<style>
+.main-container{
+  background-image: var(--main-background-image);
+}
+</style>
 <route lang="yaml">
 name: icons-editor
 path: /icons-editor

@@ -1,5 +1,6 @@
 <template>
   <svg
+    class=" bg-transparent"
     width="100%"
     height="100%"
     :viewBox="viewPortX+' '+viewPortY+' '+viewPortWidth+' '+viewPortHeight"

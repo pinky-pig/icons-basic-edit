@@ -1,5 +1,5 @@
 <template>
-  <div class="header-container h-[100px] flex-shrink-0 w-full flex flex-row justify-between items-center px-10">
+  <div class="header-container bg-transparent h-[100px] flex-shrink-0 w-full flex flex-row justify-between items-center px-10">
     <div style="font-size:32px;font-family: fangsong;">Title</div>
     <div class=" flex flex-row gap-4">
 
@@ -24,8 +24,8 @@
 <script setup lang="ts">
 
 </script>
-<style>
-.header-container{
+<style scoped>
+/* .header-container{
   background-image: var(--main-background-image);
-}
+} */
 </style>

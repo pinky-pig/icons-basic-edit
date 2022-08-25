@@ -41,6 +41,31 @@ feDistantLight
 - azimuth  就是灯光角度。指定在XY平面上（顺时针方向）的光源，在度的x轴方向的角度。
 - elevation  就是灯光高度（海拔）。指定用于从XY平面中的光源朝向Z轴，在度的方向角。请注意，正Z轴指向内容
 
+黑色
+```html
+
+<svg width="100%" height="100%">
+  <filter id='roughpaper'>
+    <feTurbulence type="fractalNoise" baseFrequency='0.06' result='noise' numOctaves="5" />
+    <feDiffuseLighting in='noise' lighting-color='#080808' surfaceScale='5'>
+      <feDistantLight azimuth='75' elevation='20' />
+    </feDiffuseLighting>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#roughpaper)" style="opacity:0.18" />
+</svg>
+
+```
+
+```css
+html, body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background:#0a0a0a;
+}
+
+```
+
 白色材质
 ```html
 <div></div>
