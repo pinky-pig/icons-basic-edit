@@ -1,6 +1,6 @@
 <template>
   <div class="header-container bg-transparent h-[100px] flex-shrink-0 w-full flex flex-row justify-between items-center px-10">
-    <div style="font-size:32px;font-family: fangsong;">Title</div>
+    <div style="font-size:44px;font-family: fangsong;">Title</div>
     <div class=" flex flex-row gap-4">
 
       <div class=" w-180px h-50px bg-[#1c1c1e] rounded-md grid grid-cols-2 divide-x divide-gray-700 p-2 ">
@@ -24,8 +24,4 @@
 <script setup lang="ts">
 
 </script>
-<style scoped>
-/* .header-container{
-  background-image: var(--main-background-image);
-} */
-</style>
+

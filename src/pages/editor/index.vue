@@ -1,9 +1,12 @@
 <template>
-  <div class=" main-container flex flex-col w-screen h-screen bg-[#f7f7f7] dark:bg-[#0a0a0a] text-[#383838] dark:text-[#e5e7eb] ">
+  <div
+    class=" flex flex-col w-screen h-screen bg-[#f7f7f7] dark:bg-[#0a0a0a] text-[#383838] dark:text-[#e5e7eb] "
+    style="background-image: var(--main-background-image);"
+    >
 
     <Header></Header>
 
-    <div ref="canvas" class="relative w-full h-full min-w-10 ">
+    <div ref="canvas" class="w-full h-full min-w-10 overflow-hidden">
       <Canvas
         :viewPortWidth="cfg.viewPortWidth"
         :viewPortHeight="cfg.viewPortHeight"
@@ -21,40 +24,44 @@
         v-model:hoveredItem="hoveredItem"
         ></Canvas>
     </div>
-    <Path>
-      <textarea
-        class="resize border rounded-md w-full h-[200px]"
-        v-model="textareaValue"
-        @blur="textareaBlur"
-        @focus="textareaFocus"
-        ></textarea>
-    </Path>
 
-    <Command>
-      <div class="h-[300px] overflow-auto cursor-default">
-        <div class=" flex flex-row gap-2 mb-2 px-4 py-2 " v-for="item,index in commandList" >
-          <div class="bg-orange-300 w-6">{{index}}</div>
-          <div class=" max-w-4 w-4">{{item.getType()}}</div>
-          <div class="w-6" v-for="value,idx in item.values" contenteditable>
-            <!-- {{value}} -->
-            <input
-              type="text"
-              class="w-full text-center"
-              :value="value"
-              @input="v => updateCommandValue(v,item,idx)"
-              />
+    <Left>
+      <Path>
+        <textarea
+          class="resize border rounded-md w-full h-[200px] bg-[#2e2e30] border-0 p-2"
+          v-model="textareaValue"
+          @blur="textareaBlur"
+          @focus="textareaFocus"
+          ></textarea>
+      </Path>
+    </Left>
 
+    <Right>
+      <Command>
+        <div class="h-[300px] w-full overflow-auto cursor-default">
+          <div class=" flex flex-row gap-2 mb-2 px-4 py-2 " v-for="item,index in commandList" >
+            <div class="bg-[#007bf2] w-6 ">{{index}}</div>
+            <div class=" max-w-4 w-4">{{item.getType()}}</div>
+            <div class="w-6" v-for="value,idx in item.values" contenteditable>
+              <input
+                type="text"
+                class="w-full text-center bg-[#2e2e30] border-0 "
+                :value="value"
+                @input="v => updateCommandValue(v,item,idx)"
+                />
+            </div>
           </div>
         </div>
-      </div>
-    </Command>
-
+      </Command>
+    </Right>
 
     <Footer class=" absolute left-[calc(50%-80px)] bottom-0"></Footer>
   </div>
 </template>
 <script lang="ts" setup>
 import Header from "./Header.vue";
+import Left from "./Left.vue";
+import Right from "./Right.vue";
 import { Point, Svg, SvgControlPoint, SvgItem, SvgPoint } from './Svg';
 
 const canvasWidth = ref(100)
@@ -358,12 +365,6 @@ const updateCommandValue = (v,item:SvgItem,idx:number) => {
 
 </script>
 
-
-<style>
-.main-container{
-  background-image: var(--main-background-image);
-}
-</style>
 <route lang="yaml">
 name: icons-editor
 path: /icons-editor
