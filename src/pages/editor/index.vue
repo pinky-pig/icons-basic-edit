@@ -1,6 +1,6 @@
 <template>
   <div
-    class=" flex flex-col w-screen h-screen bg-[#f7f7f7] dark:bg-[#0a0a0a] text-[#383838] dark:text-[#e5e7eb] "
+    class=" flex flex-col w-screen h-screen bg-[var(--canvas-bg)] text-[var(--canvas-text)] "
     style="background-image: var(--main-background-image);"
     >
 
@@ -118,8 +118,9 @@ function zoomAuto() {
     h = k * w;
   }
 
+  // -1 是为了让原点靠近左上角 1 格。后面的 减是为了让原点靠近中间
   updateViewPort(
-    bbox.x - 1,
+    bbox.x - 1 - 6,
     bbox.y - 1,
     w,
     h

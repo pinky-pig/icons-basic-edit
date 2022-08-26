@@ -1,50 +1,37 @@
 
 
 html.dark{
-
+  /* 全局背景图片 */
   --main-background-image  :url(~/assets/img/black-bg.png);
-  --primary-bg             :#333;
-  --primary-bg-dark        :#505354;
-  --primary-text           :#FFF;
+  /* canvas背景颜色 */
+  --canvas-bg              :#0a0a0a;
+  /* canvas文字颜色 */
+  --canvas-text            :#e5e7eb;
 
-  --layout-header-bg       : var(--primary-bg) ;
-  --layout-header-text     : var(--primary-text);
+  /* 主要的背景颜色 */
+  --primary-bg-color       :#0a0a0a;
+  /* 主要的文字颜色 */
+  --primary-text-color     :#e5e7eb;
 
-  --layout-sidebar-bg      : var(--primary-bg) ;
-  --layout-sidebar-text    : var(--primary-text);
-
-  --layout-main-bg         : var(--primary-bg);
-  --layout-main-outer-bg   : var(--primary-bg-dark);
-  --layout-main-text       : var(--primary-text);
+  /* 第二种背景颜色 */
+  --second-bg-color        :#1c1c1e;
+  /* 第二种文字颜色 */
+  --second-text-color        :#e5e7eb;
 
 
-  --color-accent           : hsl(241, 99%, 70%);
-  --color-primary          : var(--color-accent);
-  --color-secondary        : hsl(186, 84%, 74%);
-  --color-text             : hsl(211, 19%, 70%);
-  --color-dark             : hsl(216, 14%, 14%);
-  --layout-header-height   : 6rem;
-  --layout-sider-width     : 20rem;
-  --layout-footer-height   : 4rem;
-  --screen-sm              : 480px;
-  --screen-md              : 768px;
-  --screen-lg              : 976px;
-  --screen-xl              : 1440px;
 
 }
 html{
   --main-background-image  :url(~/assets/img/white-bg.png);
+  --canvas-bg              :#f7f7f7;
+  --canvas-text            :#383838;
+  --primary-bg-color       :#f7f7f7;
+  --primary-text-color     :#ffffff;
 
-  --primary-bg             :#F5F6F6;
-  --primary-bg-light       :#ffffff;
-  --primary-text           :#000;
-  --layout-header-bg       : var(--primary-bg) ;
-  --layout-header-text     : var(--primary-text);
-  --layout-sidebar-bg      : var(--primary-bg) ;
-  --layout-sidebar-text    : var(--primary-text);
-  --layout-main-bg         : var(--primary-bg) ;
-  --layout-main-outer-bg   : var(--primary-bg-light) ;
-  --layout-main-text       : var(--primary-text);
+  --second-bg-color :#0087ff;
+  --second-text-color        :#383838;
+
+
 }
 
 
