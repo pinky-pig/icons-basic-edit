@@ -72,10 +72,10 @@ html.dark {
   --icon-fill-color: #212529;
   --icon-green-fill-color: #2b8a3e;
   --default-bg-color: #fff;
-  --input-bg-color: #fff;
+  /* --input-bg-color: #fff;
   --input-border-color: #ced4da;
   --input-hover-bg-color: #f1f3f5;
-  --input-label-color: #495057;
+  --input-label-color: #495057; */
   --island-bg-color: hsla(0,0%,100%,0.96);
   --keybinding-color: #adb5bd;
   --link-color: #1c7ed6;

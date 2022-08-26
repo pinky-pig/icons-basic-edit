@@ -28,7 +28,7 @@
     <Left>
       <Path>
         <textarea
-          class="resize border rounded-md w-full h-[200px] bg-[#2e2e30] border-0 p-2"
+          class="resize border rounded-md w-full h-[200px] border-0 p-2 bg-[var(--input-bg-color)] text-[var(--input-text-color)] "
           v-model="textareaValue"
           @blur="textareaBlur"
           @focus="textareaFocus"

@@ -47,7 +47,7 @@
     <path
       :stroke-width="strokeWidth"
       stroke="currentColor"
-      fill="rgba(0,0,0,0.5)"
+      fill="#ffffff90"
       :d="parsedPath"
     />
 
