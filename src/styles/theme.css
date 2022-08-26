@@ -27,6 +27,9 @@ html.dark{
   --input-hover-bg-color: #f1f3f5;
   --input-label-color: #495057; */
 
+  /* 工具条的颜色 */
+  --toolBar-header-color     :#e5e7eb80
+
 
 }
 html{
@@ -42,6 +45,7 @@ html{
   --input-bg-color         :#383838;
   --input-text-color       :#ffffff;
 
+  --toolBar-header-color     :#38383880
 
 }
 

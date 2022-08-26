@@ -26,34 +26,38 @@
     </div>
 
     <Left>
-      <Path>
-        <textarea
-          class="resize border rounded-md w-full h-[200px] border-0 p-2 bg-[var(--input-bg-color)] text-[var(--input-text-color)] "
-          v-model="textareaValue"
-          @blur="textareaBlur"
-          @focus="textareaFocus"
-          ></textarea>
-      </Path>
-    </Left>
+      <template #path>
+        <Path>
+          <textarea
+            class="resize border rounded-md w-full h-[200px] border-0 p-2 bg-[var(--input-bg-color)] text-[var(--input-text-color)] "
+            v-model="textareaValue"
+            @blur="textareaBlur"
+            @focus="textareaFocus"
+            ></textarea>
+        </Path>
+      </template>
 
-    <Right>
-      <Command>
-        <div class="h-[300px] w-full overflow-auto cursor-default">
-          <div class=" flex flex-row gap-2 mb-2 px-4 py-2 " v-for="item,index in commandList" >
-            <div class="bg-[#007bf2] w-6 ">{{index}}</div>
-            <div class=" max-w-4 w-4">{{item.getType()}}</div>
-            <div class="w-6" v-for="value,idx in item.values" contenteditable>
-              <input
-                type="text"
-                class="w-full text-center bg-[#2e2e30] border-0 "
-                :value="value"
-                @input="v => updateCommandValue(v,item,idx)"
-                />
+      <template #command>
+        <Command>
+          <div class="h-[300px] w-full overflow-auto cursor-default">
+            <div class=" flex flex-row gap-2 mb-2 px-4 py-2 " v-for="item,index in commandList" >
+              <div class="bg-[#007bf2] w-6 ">{{index}}</div>
+              <div class=" max-w-4 w-4">{{item.getType()}}</div>
+              <div class="w-6" v-for="value,idx in item.values" contenteditable>
+                <input
+                  type="text"
+                  class="w-full text-center bg-[#2e2e30] border-0 "
+                  :value="value"
+                  @input="v => updateCommandValue(v,item,idx)"
+                  />
+              </div>
             </div>
           </div>
-        </div>
-      </Command>
-    </Right>
+        </Command>
+      </template>
+    </Left>
+
+    <Right />
 
     <Footer class=" absolute left-[calc(50%-80px)] bottom-0"></Footer>
   </div>

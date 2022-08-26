@@ -4,14 +4,16 @@
 </script>
 
 <template>
-  <div class="w-[24.5rem] divide-y shadow-xl select-none left-30px top-120px h-[85vh]  leading-5 rounded-2xl overflow-auto text-[1.25rem]
+  <div class=" w-[24.5rem] divide-y shadow-xl select-none left-30px top-120px h-[85vh]  leading-5 rounded-2xl overflow-auto text-[1.25rem]
               bg-[var(--second-bg-color)] text-[var(--primary-text-color)] divide-slate-400/20  shadow-black/5 ring-1 ring-slate-700/10 fixed ">
+    <div class="absolute w-20 h-1 top-2 rounded-md  bg-[var(--toolBar-header-color)]" style="left: calc(50% - 2.5rem);"></div>
     <div class="flex items-center p-4 text-3xl">
-      Path
+      Tools
     </div>
 
-    <div class="flex items-center p-4 ">
-      <slot></slot>
+    <div class="flex items-center p-4 flex-col divide-y divide-slate-400/20 gap-2">
+      <slot name="path"></slot>
+      <slot name="command"></slot>
     </div>
   </div>
 </template>
