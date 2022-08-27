@@ -1,7 +1,7 @@
 <template>
-  <div class="p-4 ">
-    <div class=" flex justify-between " @click="switcher">
-      <div> {{props.title}} </div>
+  <div>
+    <div class=" flex justify-between leading-14 h-14 items-center p-4 cursor-pointer" @click="switcher">
+      <div > {{props.title}} </div>
       <div :i="isOpen ? 'carbon-caret-up': 'carbon-caret-down'" />
     </div>
 

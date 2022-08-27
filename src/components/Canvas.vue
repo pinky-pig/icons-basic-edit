@@ -188,6 +188,7 @@ watch(props,()=>{
     xGrid.value = []
     yGrid.value = []
   }
+
 },{ immediate:true })
 
 // svg 路径

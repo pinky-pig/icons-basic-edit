@@ -364,3 +364,30 @@ function stopDrag() {
 }
 
 ```
+
+
+## points 网格背景
+```html
+<circle
+  v-for="item in pointsGrid"
+  :cx="item[0]"
+  :cy="item[1]"
+  :r="strokeWidth"
+  stroke="#99999990"
+  fill="white"
+  :stroke-width="strokeWidth"
+  />
+```
+
+```ts
+const pointsGrid = ref()
+/** xGrid和yGrid，复杂度O(n²) */
+const mergeArray = (a:[],b:[]) => {
+  return a.map(item => {
+    return b.map(it=>{
+      return [item,it]
+    })
+  })
+}
+pointsGrid.value = mergeArray(xGrid.value,yGrid.value).flat()
+```

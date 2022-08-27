@@ -11,7 +11,7 @@
       Tools
     </div>
 
-    <div class="flex items-center p-4 flex-col divide-y divide-slate-400/20 gap-2">
+    <div class="flex items-center flex-col gap-4 py-4 divide-y divide-slate-400/20">
       <slot name="path"></slot>
       <slot name="command"></slot>
     </div>
