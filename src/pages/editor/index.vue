@@ -25,7 +25,7 @@
         ></Canvas>
     </div>
 
-    <Left>
+    <Right>
       <template #path>
         <Path>
           <textarea
@@ -62,7 +62,7 @@
 
         </Collapse>
       </template>
-    </Left>
+    </Right>
 
 
     <Footer class=" absolute left-[calc(50%-80px)] bottom-0"></Footer>
@@ -70,7 +70,7 @@
 </template>
 <script lang="ts" setup>
 import Header from "./Header.vue"
-import Left from "./Left.vue"
+import Right from "./Right.vue"
 import { Point, Svg, SvgControlPoint, SvgItem, SvgPoint } from './Svg'
 
 const canvasWidth = ref(100)
@@ -107,10 +107,13 @@ onMounted(() => {
   }, 0);
 })
 // 初始化默认的icon
+// const kDefaultPath = ref(
+//   `M 4 8 L 10 1 L 13 0 L 12 3 L 5 9 C 6 10 6 11 7 10 C 7 11 8 12 7 12 A 1.42 1.42 0 0 1 6 13 `
+// + `A 5 5 0 0 0 4 10 Q 3.5 9.9 3.5 10.5 T 2 11.8 T 1.2 11 T 2.5 9.5 T 3 9 A 5 5 90 0 0 0 7 A 1.42 1.42 0 0 1 1 6 `
+// + `C 1 5 2 6 3 6 C 2 7 3 7 4 8 M 10 1 L 10 3 L 12 3 L 10.2 2.8 L 10 1`
+// )
 const kDefaultPath = ref(
-  `M 4 8 L 10 1 L 13 0 L 12 3 L 5 9 C 6 10 6 11 7 10 C 7 11 8 12 7 12 A 1.42 1.42 0 0 1 6 13 `
-+ `A 5 5 0 0 0 4 10 Q 3.5 9.9 3.5 10.5 T 2 11.8 T 1.2 11 T 2.5 9.5 T 3 9 A 5 5 90 0 0 0 7 A 1.42 1.42 0 0 1 1 6 `
-+ `C 1 5 2 6 3 6 C 2 7 3 7 4 8 M 10 1 L 10 3 L 12 3 L 10.2 2.8 L 10 1`
+`M26 16c-.088 0-.173.01-.26.013L24.237 9H28V7h-5a1 1 0 0 0-.978 1.21L22.62 11H12.387l-1-3H14V6H7v2h2.28l1.041 3.123l-2.57 5.14A6 6 0 1 0 11.91 23h2.61a1.991 1.991 0 0 0 1.562-.75l7.058-8.824l.644 3.004A5.99 5.99 0 1 0 26 16ZM6 26a4 4 0 1 1 .836-7.91l-1.73 3.463l.009.004A.983.983 0 0 0 5 22a.993.993 0 0 0 1.885.443l.01.004L8.617 19A3.983 3.983 0 0 1 6 26Zm5.91-5a5.999 5.999 0 0 0-2.373-3.836l1.678-3.358L13.613 21Zm3.458-1.06L13.054 13h7.865ZM26 26a3.988 3.988 0 0 1-1.786-7.56l.808 3.77l.02-.004A.986.986 0 0 0 26 23a1 1 0 0 0 1-1a.946.946 0 0 0-.042-.206l.02-.004l-.808-3.773A3.993 3.993 0 0 1 26 26Z`
 )
 // 路径变量
 const rawPath = ref(kDefaultPath.value)
@@ -129,7 +132,7 @@ function zoomAuto() {
 
   // -1 是为了让原点靠近左上角 1 格。后面的 减是为了让原点靠近中间
   updateViewPort(
-    bbox.x - 1 - 6,
+    bbox.x - 1,
     bbox.y - 1,
     w,
     h

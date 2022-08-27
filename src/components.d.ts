@@ -7,10 +7,8 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Canvas: typeof import('./components/Canvas.vue')['default']
     Collapse: typeof import('./components/Collapse.vue')['default']
-    Command: typeof import('./components/Command.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
-    Path: typeof import('./components/Path.vue')['default']
     PreviewCode: typeof import('./components/PreviewCode.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -18,7 +16,6 @@ declare module '@vue/runtime-core' {
     Slide: typeof import('./components/Slide.vue')['default']
     SvgBox: typeof import('./components/SvgBox.vue')['default']
     ToolButton: typeof import('./components/ToolButton.vue')['default']
-    Tools: typeof import('./components/Tools.vue')['default']
   }
 }
 
