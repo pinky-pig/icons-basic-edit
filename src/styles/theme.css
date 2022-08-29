@@ -2,52 +2,58 @@
 
 html.dark{
   /* 全局背景图片 */
-  --main-background-image      :url(~/assets/img/black-bg.png);
+  --main-background-image           :url(~/assets/img/black-bg.png);
   /* canvas背景颜色 */
-  --canvas-bg                  :#0a0a0a;
+  --canvas-bg                       :#0a0a0a;
   /* canvas文字颜色 */
-  --canvas-text                :#e5e7eb;
+  --canvas-text                     :#e5e7eb;
 
   /* 主要的背景颜色 */
-  --primary-bg-color           :#0a0a0a;
+  --primary-bg-color                :#0a0a0a;
   /* 主要的文字颜色 */
-  --primary-text-color         :#e5e7eb;
+  --primary-text-color              :#e5e7eb;
 
   /* 第二种背景颜色 */
-  --second-bg-color            :#1c1c1e;
+  --second-bg-color                 :#1c1c1e;
   /* 第二种文字颜色 */
-  --second-text-color          :#e5e7eb;
+  --second-text-color               :#e5e7eb;
 
   /* 输入框的背景颜色 */
-  --input-bg-color             :#383838;
+  --input-bg-color                  :#383838;
   /* 输入框的文字颜色 */
-  --input-text-color           :#ffffff;
+  --input-text-color                :#ffffff;
 
 
   /* 属性面板的颜色 */
-  --property-header-color      :#e5e7eb80;
-  --property-bg-color          :#1c1c1e;
-  --property-text-color        :#e5e7eb;
-  --property-button-color      :#1c1c1e;
-  --property-button-hover-color:#2e2e30;
+  --property-header-color           :#e5e7eb80;
+  --property-bg-color               :#1c1c1e;
+  --property-text-color             :#e5e7eb;
+  --property-button-color           :#1c1c1e;
+  --property-button-hover-bg-color  :#2e2e30;
+  --property-button-hover-text-color:#fff;
 
 
 }
 html{
-  --main-background-image  :url(~/assets/
-  --canvas-text            :#383838;img/white-bg.png);
-  --canvas-bg              :#f7f7f7;
-  --primary-bg-color       :#f7f7f7;
-  --primary-text-color     :#383838;
+  --main-background-image           :url(~/assets/img/white-bg.png);
+  --canvas-text                     :#383838;
+  --canvas-bg                       :#f7f7f7;
+  --primary-bg-color                :#f7f7f7;
+  --primary-text-color              :#383838;
 
-  --second-bg-color        :#ffffff;
-  --second-text-color      :#0087ff;
+  --second-bg-color                 :#ffffff;
+  --second-text-color               :#0087ff;
 
-  --input-bg-color         :#383838;
-  --input-text-color       :#ffffff;
+  --input-bg-color                  :#383838;
+  --input-text-color                :#ffffff;
 
   /* 属性面板 */
-  --property-header-color   :#38383880;
+  --property-header-color           :#e5e7eb80;
+  --property-bg-color               :#f7f7f7;
+  --property-text-color             :#383838;
+  --property-button-color           :#f7f7f7;
+  --property-button-hover-bg-color  :#e7e7e7;
+  --property-button-hover-text-color:#383838;
 
 }
 

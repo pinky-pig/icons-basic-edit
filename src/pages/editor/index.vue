@@ -67,23 +67,10 @@
 
       <template #button>
         <div class="w-full h-full flex flex-row justify-around items-center ">
-          <div class="w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--property-button-hover-color)]">
+          <div class="property-panel-button " v-for=" in 4">
             <div i="carbon-sun dark:carbon-moon" />
             <div>edit</div>
           </div>
-          <div class="w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--property-button-hover-color)]">
-            <div i="carbon-sun dark:carbon-moon" />
-            <div>edit</div>
-          </div>
-          <div class="w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--property-button-hover-color)]">
-            <div i="carbon-sun dark:carbon-moon" />
-            <div>edit</div>
-          </div>
-          <div class="w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--property-button-hover-color)]">
-            <div i="carbon-sun dark:carbon-moon" />
-            <div>edit</div>
-          </div>
-
         </div>
       </template>
     </Right>
@@ -402,6 +389,14 @@ const updateCommandValue = (v,item:SvgItem,idx:number) => {
 
 </script>
 
+
+<style scoped>
+.property-panel-button{
+ @apply w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--property-button-hover-bg-color)];
+
+}
+
+</style>
 <route lang="yaml">
 name: icons-editor
 path: /icons-editor
