@@ -393,9 +393,7 @@ const updateCommandValue = (v,item:SvgItem,idx:number) => {
 <style scoped>
 .property-panel-button{
  @apply w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--property-button-hover-bg-color)];
-
 }
-
 </style>
 <route lang="yaml">
 name: icons-editor
