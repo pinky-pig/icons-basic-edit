@@ -9,7 +9,7 @@
 export type Fn = () => void
 
 /** ctrl + z / ctrl + y */
-export function undo(listener:Fn) {
+export function undoFn(listener:Fn) {
   const { Ctrl_Z} = useMagicKeys()
   const stopWatch = watch(Ctrl_Z, (v) => {
     if (v)
@@ -17,11 +17,11 @@ export function undo(listener:Fn) {
   })
   return stopWatch
 }
-export function redo() {
+export function redoFn(listener:Fn) {
   const { Ctrl_Y} = useMagicKeys()
-  watch(Ctrl_Y, (v) => {
+  const stopWatch = watch(Ctrl_Y, (v) => {
     if (v)
-      console.log('Ctrl_Y have been pressed')
+      listener()
   })
+  return stopWatch
 }
-
