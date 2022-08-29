@@ -40,6 +40,5 @@ const handleRedo = () => {
   alert('redo')
 }
 
-
 </script>
 

@@ -109,6 +109,19 @@ watch([width, height], () => {
   )
 })
 
+/** 监听 ctrl space值 */
+const { Ctrl,Space } = useMagicKeys()
+let ctrlValue = false
+let spaceValue = false
+watch(Ctrl,(v) => {
+  ctrlValue = v
+})
+watch(Space,(v) => {
+  spaceValue = v
+})
+
+
+
 /**
  * 初始化画布
  */
@@ -197,12 +210,14 @@ function updateViewPort(x: number, y: number, w: number | null, h: number | null
 
 
 /**
- * 滚轮放大缩小更新计算视图 ViewPort
+ * 滚轮放大缩小更新计算视图 ViewPort。 需按 ctrl 键
  */
 useEventListener(canvas, 'wheel', (evt: WheelEvent) => {
+  evt.preventDefault()
+  if (!ctrlValue) return false
+
   const scale = Math.pow(1.005, evt.deltaY);
   const pt = eventToLocation(evt);
-
   zoomViewPort(scale, pt);
 })
 
@@ -261,6 +276,8 @@ function drag(event: MouseEvent | TouchEvent) {
     draggedEvt = null;
   }else if (draggedEvt) {
     // 拖拽画布
+    if (!ctrlValue) return false
+
     if (pinchToZoomValue !== null){
       const w = pinchToZoomValue.zoom * cfg.viewPortWidth;
       const h = pinchToZoomValue.zoom * cfg.viewPortHeight;
