@@ -6,7 +6,7 @@
 
       <div
         class=" w-180px h-50px p-2 rounded-md grid grid-cols-2 divide-x bg-[var(--second-bg-color)] divide-[var(--primary-text-color)]">
-        <div class="flex-center cursor-pointer">
+        <div class="flex-center cursor-pointer" @click="handleUndo">
           <svg style="font-size: 32px;" width="32" height="32" viewBox="0 0 256 256">
             <path fill="currentColor"
               d="M232 200a8 8 0 0 1-16 0a88.1 88.1 0 0 0-88-88H88v40a8 8 0 0 1-4.9 7.4a8.5 8.5 0 0 1-3.1.6a8.3 8.3 0 0 1-5.7-2.3l-48-48a8.1 8.1 0 0 1 0-11.4l48-48a8.4 8.4 0 0 1 8.8-1.7A8 8 0 0 1 88 56v40h40a104.2 104.2 0 0 1 104 104Z" />
@@ -30,6 +30,15 @@
 
 </template>
 <script setup lang="ts">
+import {undo} from './shortcuts'
+undo(() => {
+  handleUndo()
+})
+
+const handleUndo = () => {
+  console.log(11)
+}
+
 
 </script>
 
