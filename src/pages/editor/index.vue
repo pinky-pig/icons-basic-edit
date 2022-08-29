@@ -1,6 +1,6 @@
 <template>
   <div
-    class=" flex flex-col w-screen h-screen bg-[var(--canvas-bg)] text-[var(--canvas-text)] "
+    class=" flex flex-col w-screen h-screen bg-[var(--canvas-bg)] text-[var(--canvas-text)]"
     style="background-image: var(--main-background-image);"
     >
 
@@ -40,6 +40,13 @@
       <template #command>
         <Collapse
           class="w-full overflow-auto cursor-default pt-4"
+          :title="'Matrix'"
+          >
+
+        </Collapse>
+
+        <Collapse
+          class="w-full overflow-auto cursor-default pt-4"
           :title="'Command'"
           >
           <div class=" flex flex-row gap-2 mb-2 px-4 py-2 " v-for="item,index in commandList" >
@@ -55,12 +62,7 @@
             </div>
           </div>
         </Collapse>
-        <Collapse
-          class="w-full overflow-auto cursor-default pt-4"
-          :title="'Matrix'"
-          >
 
-        </Collapse>
       </template>
     </Right>
 

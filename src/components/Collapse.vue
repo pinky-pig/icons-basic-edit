@@ -5,7 +5,7 @@
       <div :i="isOpen ? 'carbon-caret-up': 'carbon-caret-down'" />
     </div>
 
-    <div ref="content" v-show="isOpen" class=" max-h-98 mt-3 overflow-auto">
+    <div ref="content" v-show="isOpen" class=" mt-3 overflow-auto">
       <slot></slot>
     </div>
 

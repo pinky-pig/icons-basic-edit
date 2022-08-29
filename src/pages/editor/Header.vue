@@ -1,6 +1,6 @@
 <template>
   <div
-    class="header-container bg-transparent h-[10vh] flex-shrink-0 w-full flex flex-row justify-between items-center px-10">
+    class="header-container bg-transparent h-[10vh] max-h-[80px] flex-shrink-0 w-full flex flex-row justify-between items-center px-10">
     <div style="font-size:44px;font-family: fangsong;">Title</div>
     <div class=" flex flex-row gap-4 text-[var(--primary-text-color)]">
 
