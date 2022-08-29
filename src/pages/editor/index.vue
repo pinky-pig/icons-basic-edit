@@ -64,6 +64,28 @@
         </Collapse>
 
       </template>
+
+      <template #button>
+        <div class="w-full h-full flex flex-row justify-around items-center ">
+          <div class="w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--property-button-hover-color)]">
+            <div i="carbon-sun dark:carbon-moon" />
+            <div>edit</div>
+          </div>
+          <div class="w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--property-button-hover-color)]">
+            <div i="carbon-sun dark:carbon-moon" />
+            <div>edit</div>
+          </div>
+          <div class="w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--property-button-hover-color)]">
+            <div i="carbon-sun dark:carbon-moon" />
+            <div>edit</div>
+          </div>
+          <div class="w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--property-button-hover-color)]">
+            <div i="carbon-sun dark:carbon-moon" />
+            <div>edit</div>
+          </div>
+
+        </div>
+      </template>
     </Right>
 
 
