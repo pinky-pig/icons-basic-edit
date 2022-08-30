@@ -413,9 +413,14 @@ const updateCommandValue = (v,item:SvgItem,idx:number) => {
 }
 
 /** 属性面板编辑操作 */
-const setFocusedItemFromInput = (item) => {
+const setFocusedItemFromInput = (item:SvgItem) => {
   focusedItem.value = item
 }
+// const deleteFn = (item:SvgItem) => {
+//   focusedItem.value = null;
+//   parsedPath.value.delete(item);
+//   afterModelChange();
+// }
 </script>
 
 

@@ -37,7 +37,6 @@ const options = [
     icon() { return h('div', { i: 'carbon-trash-can', }) },
     key: 'delete',
   },
-
 ]
 
 export default defineComponent({
@@ -45,6 +44,8 @@ export default defineComponent({
     return {
       options,
       handleSelect(key: string | number) {
+
+        console.log(key);
 
       },
 
