@@ -53,14 +53,19 @@
           class="w-full overflow-auto cursor-default pt-4"
           :title="'Command'"
           >
-          <div class=" flex-center gap-2 m-2 p-2 rounded-md hover:bg-[var(--property-button-hover-bg-color)]" v-for="item in commandList" >
+          <div
+            v-for="item in commandList"
+            class=" flex-center gap-2 m-2 p-2 rounded-md hover:bg-[var(--property-button-hover-bg-color)]"
+            :style="{background:focusedItem == item ? 'var(--property-button-active-bg-color)' : ''}"
+            @click="setFocusedItemFromInput(item)"
+            >
 
             <div class="flex-1 flex flex-row gap-2  ">
               <div class=" max-w-4 w-4">{{item.getType()}}</div>
               <div class="w-8" v-for="value,idx in item.values" contenteditable>
                 <input
                   type="text"
-                  class="w-full text-center bg-[#2e2e30] border-0 "
+                  class="w-full text-center bg-[#2e2e30] border-0"
                   :value="value"
                   @input="v => updateCommandValue(v,item,idx)"
                   />
@@ -407,6 +412,10 @@ const updateCommandValue = (v,item:SvgItem,idx:number) => {
   }
 }
 
+/** 属性面板编辑操作 */
+const setFocusedItemFromInput = (item) => {
+  focusedItem.value = item
+}
 </script>
 
 

@@ -22,6 +22,7 @@ html.dark{
   --input-bg-color                   :#383838;
   /* 输入框的文字颜色 */
   --input-text-color                 :#ffffff;
+  --input-hover-bg-color             :#09477190;
 
 
   /* 属性面板的颜色 */
@@ -31,7 +32,7 @@ html.dark{
   --property-button-color            :#1c1c1e;
   --property-button-hover-bg-color   :#2e2e30;
   --property-button-hover-text-color :#fff;
-  --property-button-active-color:#49657e;
+  --property-button-active-bg-color  :#49657e;
 
 
 }
@@ -47,6 +48,8 @@ html{
 
   --input-bg-color                   :#383838;
   --input-text-color                 :#ffffff;
+  --input-hover-bg-color             :#09477190;
+
 
   /* 属性面板 */
   --property-header-color            :#e5e7eb80;
@@ -55,7 +58,7 @@ html{
   --property-button-color            :#f7f7f7;
   --property-button-hover-bg-color   :#e7e7e7;
   --property-button-hover-text-color :#383838;
-  --property-button-active-color:#49657e90;
+  --property-button-active-bg-color  :#49657e90;
 
 
 
