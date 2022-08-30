@@ -1,4 +1,5 @@
 <template>
+<n-config-provider :theme="naiveUIDarkTheme">
   <div
     class=" flex flex-col w-screen h-screen bg-[var(--canvas-bg)] text-[var(--canvas-text)]"
     style="background-image: var(--main-background-image);"
@@ -27,14 +28,17 @@
 
     <Right>
       <template #path>
-        <Path>
-          <textarea
-            class="resize border rounded-md w-5/6 h-[200px] border-0 p-2 bg-[var(--input-bg-color)] text-[var(--input-text-color)] "
-            v-model="textareaValue"
-            @blur="textareaBlur"
-            @focus="textareaFocus"
-            ></textarea>
-        </Path>
+        <Collapse
+          class="w-full overflow-auto cursor-default "
+          :title="'Svg'"
+          >
+        <textarea
+          class="resize border rounded-md w-5/6 border-0 p-2 bg-[var(--input-bg-color)] text-[var(--input-text-color)] "
+          v-model="textareaValue"
+          @blur="textareaBlur"
+          @focus="textareaFocus"
+          ></textarea>
+          </Collapse>
       </template>
 
       <template #command>
@@ -49,17 +53,22 @@
           class="w-full overflow-auto cursor-default pt-4"
           :title="'Command'"
           >
-          <div class=" flex flex-row gap-2 mb-2 px-4 py-2 " v-for="item,index in commandList" >
-            <div class="bg-[#007bf2] w-6 ">{{index}}</div>
-            <div class=" max-w-4 w-4">{{item.getType()}}</div>
-            <div class="w-6" v-for="value,idx in item.values" contenteditable>
-              <input
-                type="text"
-                class="w-full text-center bg-[#2e2e30] border-0 "
-                :value="value"
-                @input="v => updateCommandValue(v,item,idx)"
-                />
+          <div class=" flex-center gap-2 m-2 p-2 rounded-md hover:bg-[var(--property-button-hover-bg-color)]" v-for="item in commandList" >
+
+            <div class="flex-1 flex flex-row gap-2  ">
+              <div class=" max-w-4 w-4">{{item.getType()}}</div>
+              <div class="w-8" v-for="value,idx in item.values" contenteditable>
+                <input
+                  type="text"
+                  class="w-full text-center bg-[#2e2e30] border-0 "
+                  :value="value"
+                  @input="v => updateCommandValue(v,item,idx)"
+                  />
+              </div>
             </div>
+
+            <CPopselect></CPopselect>
+
           </div>
         </Collapse>
 
@@ -75,9 +84,9 @@
       </template>
     </Right>
 
-
     <Footer class=" absolute left-[calc(50%-80px)] bottom-0"></Footer>
   </div>
+</n-config-provider>
 </template>
 <script lang="ts" setup>
 import Header from "./Header.vue"
@@ -110,17 +119,11 @@ watch([width, height], () => {
 })
 
 /** 监听 ctrl space值 */
-const { Ctrl,Space } = useMagicKeys()
+const { Ctrl } = useMagicKeys()
 let ctrlValue = false
-let spaceValue = false
 watch(Ctrl,(v) => {
   ctrlValue = v
 })
-watch(Space,(v) => {
-  spaceValue = v
-})
-
-
 
 /**
  * 初始化画布

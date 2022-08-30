@@ -8,6 +8,7 @@ declare module '@vue/runtime-core' {
     Canvas: typeof import('./components/Canvas.vue')['default']
     Collapse: typeof import('./components/Collapse.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
+    CPopselect: typeof import('./components/CPopselect.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     PreviewCode: typeof import('./components/PreviewCode.vue')['default']
     README: typeof import('./components/README.md')['default']
