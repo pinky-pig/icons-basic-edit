@@ -15,7 +15,7 @@
       <slot name="command"></slot>
     </div>
 
-    <div class=" w-full h-[80px] mt-8 p-3 rounded-2xl bg-[var(--property-button-color)] text-[var(--property-text-color)]">
+    <div class="w-full h-[80px] mt-8 p-3 rounded-2xl bg-[var(--property-button-color)] text-[var(--property-text-color)]">
       <div class="w-full h-full rounded-xl overflow-y-hidden">
         <slot name="button"></slot>
       </div>
@@ -24,5 +24,4 @@
 </template>
 
 <style scoped>
-
 </style>

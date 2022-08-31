@@ -43,14 +43,14 @@
 
       <template #command>
         <Collapse
-          class="w-full overflow-auto cursor-default pt-4"
+          class="w-full overflow-auto cursor-default "
           :title="'Matrix'"
           >
 
         </Collapse>
 
         <Collapse
-          class="w-full overflow-auto cursor-default pt-4"
+          class="w-full overflow-auto cursor-default "
           :title="'Command'"
           >
           <div

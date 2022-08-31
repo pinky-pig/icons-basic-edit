@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class=" flex justify-between leading-14 h-14 items-center p-4 cursor-pointer" @click="switcher">
+    <div class="select-none flex justify-between leading-10 h-10 items-center px-4 py-1 cursor-pointer" @click="switcher">
       <div > {{props.title}} </div>
       <div :i="isOpen ? 'carbon-caret-up': 'carbon-caret-down'" />
     </div>
 
-    <div ref="content" v-show="isOpen" class=" mt-3 overflow-auto">
+    <div ref="content" v-show="isOpen" class="overflow-auto">
       <slot></slot>
     </div>
 
