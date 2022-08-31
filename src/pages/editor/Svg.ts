@@ -40,6 +40,15 @@ export class Svg {
       }).join(minify ? '' : ' ');
   }
 
+  delete(item: SvgItem) {
+    const idx = this.path.indexOf(item);
+    if (idx !== -1) {
+      this.path.splice(idx, 1);
+      this.refreshAbsolutePositions();
+    }
+    return this;
+  }
+
   targetLocations(): SvgPoint[] {
     return this.path.map((it) => it.targetLocation());
   }

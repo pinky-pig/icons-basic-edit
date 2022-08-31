@@ -72,7 +72,7 @@
               </div>
             </div>
 
-            <CPopselect></CPopselect>
+            <CPopselect @delete="deleteFn(item)"></CPopselect>
 
           </div>
         </Collapse>
@@ -416,11 +416,11 @@ const updateCommandValue = (v,item:SvgItem,idx:number) => {
 const setFocusedItemFromInput = (item:SvgItem) => {
   focusedItem.value = item
 }
-// const deleteFn = (item:SvgItem) => {
-//   focusedItem.value = null;
-//   parsedPath.value.delete(item);
-//   afterModelChange();
-// }
+const deleteFn = (item:SvgItem) => {
+  focusedItem.value = null;
+  parsedPath.value.delete(item);
+  afterModelChange();
+}
 </script>
 
 
