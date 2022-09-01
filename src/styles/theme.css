@@ -8,22 +8,16 @@ html.dark{
   /* canvas文字颜色 */
   --canvas-text                      :#e5e7eb;
 
-  /* 主要的背景颜色 */
-  --primary-bg-color                 :#0a0a0a;
-  /* 主要的文字颜色 */
-  --primary-text-color               :#e5e7eb;
-
-  /* 第二种背景颜色 */
-  --second-bg-color                  :#1c1c1e;
-  /* 第二种文字颜色 */
-  --second-text-color                :#e5e7eb;
-
   /* 输入框的背景颜色 */
   --input-bg-color                   :#383838;
   /* 输入框的文字颜色 */
   --input-text-color                 :#ffffff;
   --input-hover-bg-color             :#09477190;
 
+  /* 工具条 */
+  --tool-button-color                :#1c1c1e;
+  --tool-text-color                  :#e5e7eb;
+  --tool-hover-color                 :#555555;
 
   /* 属性面板的颜色 */
   --panel-header-color            :#e5e7eb80;
@@ -38,11 +32,6 @@ html{
   --main-background-image            :url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='roughpaper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03' result='noise' numOctaves='4' /%3E%3CfeDiffuseLighting in='noise' lighting-color='%23080B1B' surfaceScale='4'%3E%3CfeDistantLight azimuth='75' elevation='20' /%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23roughpaper)'/%3E%3C/svg%3E");
   --canvas-text                      :#FFF;
   --canvas-bg                        :#f7f7f7;
-  --primary-bg-color                 :#f7f7f7;
-  --primary-text-color               :#383838;
-
-  --second-bg-color                  :#ffffff;
-  --second-text-color                :#0087ff;
 
   --input-bg-color                   :#383838;
   --input-text-color                 :#ffffff;
@@ -50,7 +39,7 @@ html{
 
   /* 工具条 */
   --tool-button-color                :#262746;
-  --tool-text-color                  :#fff;
+  --tool-text-color                  :#4AA0EA;
   --tool-hover-color                 :#141629;
 
 
