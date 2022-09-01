@@ -59,12 +59,13 @@
             @click="setFocusedItemFromInput(item)"
             >
 
-            <div class="flex-1 flex flex-row gap-2  ">
-              <div class=" max-w-4 w-4">{{item.getType()}}</div>
-              <div class="w-8" v-for="value,idx in item.values" contenteditable>
+            <div class="flex-1 flex flex-row gap-1">
+              <div class=" max-w-4 w-4 ">{{item.getType()}}</div>
+              <div class="w-8" v-for="value,idx in item.values">
                 <input
                   type="text"
-                  class="w-full text-center bg-[#2e2e30] border-0"
+                  style="font-size:10px;outline: none;"
+                  class="w-full text-center bg-[var(--input-bg-color)] border-0 focus:ring-0"
                   :value="value"
                   @input="v => updateCommandValue(v,item,idx)"
                   />
