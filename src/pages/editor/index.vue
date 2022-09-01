@@ -72,7 +72,7 @@
               </div>
             </div>
 
-            <CPopselect @delete="deleteFn(item)"></CPopselect>
+            <CPopselect @delete="deleteFn(item)" :canDelete="canDelete(item)"></CPopselect>
 
           </div>
         </Collapse>
@@ -415,6 +415,10 @@ const updateCommandValue = (v,item:SvgItem,idx:number) => {
 /** 属性面板编辑操作 */
 const setFocusedItemFromInput = (item:SvgItem) => {
   focusedItem.value = item
+}
+const canDelete = (item:SvgItem) : boolean => {
+  const idx = parsedPath.value.path.indexOf(item);
+  return idx > 0;
 }
 const deleteFn = (item:SvgItem) => {
   focusedItem.value = null;

@@ -9,6 +9,13 @@
 </template>
 
 <script lang="ts" setup>
+
+const props = defineProps({
+  canDelete:{
+    type:Boolean,
+  }
+})
+
 const options = ref(
   [
    {
@@ -36,6 +43,7 @@ const options = ref(
      label: '删除',
      icon() { return h('div', { i: 'carbon-trash-can', }) },
      key: 'delete',
+     disabled: !props.canDelete
    },
  ]
 )
