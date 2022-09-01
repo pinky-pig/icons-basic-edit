@@ -1,7 +1,7 @@
 <template>
   <n-dropdown :options="options" placement="bottom-start" trigger="click" @select="handleSelect">
     <div
-      class=" text- cursor-pointer w-6 h-6 flex rounded-md justify-center items-center active:bg-[var(--property-button-active-color)]">
+      class=" text- cursor-pointer w-6 h-6 flex rounded-md justify-center items-center active:bg-[var(--panel-button-active-color)]">
       <div i="carbon-overflow-menu-horizontal"></div>
     </div>
   </n-dropdown>

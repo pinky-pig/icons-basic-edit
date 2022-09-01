@@ -54,8 +54,8 @@
           >
           <div
             v-for="item in commandList"
-            class=" flex-center gap-2 m-2 p-2 rounded-md hover:bg-[var(--property-button-hover-bg-color)]"
-            :style="{background:focusedItem == item ? 'var(--property-button-active-bg-color)' : ''}"
+            class=" flex-center gap-2 m-2 p-2 rounded-md hover:bg-[var(--panel-hover-bg-color)]"
+            :style="{background:focusedItem == item ? 'var(--panel-button-active-bg-color)' : ''}"
             @click="setFocusedItemFromInput(item)"
             >
 
@@ -429,7 +429,7 @@ const deleteFn = (item:SvgItem) => {
 
 <style scoped>
 .property-panel-button{
- @apply w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--property-button-hover-bg-color)];
+ @apply w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--panel-hover-bg-color)];
 }
 </style>
 <route lang="yaml">

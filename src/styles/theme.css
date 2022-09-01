@@ -26,20 +26,17 @@ html.dark{
 
 
   /* 属性面板的颜色 */
-  --property-header-color            :#e5e7eb80;
-  --property-bg-color                :#1c1c1e;
-  --property-text-color              :#e5e7eb;
-  --property-button-color            :#1c1c1e;
-  --property-button-hover-bg-color   :#2e2e30;
-  --property-button-hover-text-color :#fff;
-  --property-button-active-bg-color  :#49657e;
-
-
+  --panel-header-color            :#e5e7eb80;
+  --panel-bg-color                :#1c1c1e;
+  --panel-text-color              :#e5e7eb;
+  --panel-hover-bg-color          :#2e2e30;
+  --panel-button-active-bg-color  :#49657e;
 
 }
 html{
-  --main-background-image            :url(~/assets/img/white-bg.png);
-  --canvas-text                      :#383838;
+  /* --main-background-image            :url(~/assets/img/white-bg.png); */
+  --main-background-image            :url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='roughpaper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03' result='noise' numOctaves='4' /%3E%3CfeDiffuseLighting in='noise' lighting-color='%23080B1B' surfaceScale='4'%3E%3CfeDistantLight azimuth='75' elevation='20' /%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23roughpaper)'/%3E%3C/svg%3E");
+  --canvas-text                      :#FFF;
   --canvas-bg                        :#f7f7f7;
   --primary-bg-color                 :#f7f7f7;
   --primary-text-color               :#383838;
@@ -51,15 +48,18 @@ html{
   --input-text-color                 :#ffffff;
   --input-hover-bg-color             :#09477190;
 
+  /* 工具条 */
+  --tool-button-color                :#262746;
+  --tool-text-color                  :#fff;
+  --tool-hover-color                 :#141629;
+
 
   /* 属性面板 */
-  --property-header-color            :#e5e7eb80;
-  --property-bg-color                :#f7f7f7;
-  --property-text-color              :#383838;
-  --property-button-color            :#f7f7f7;
-  --property-button-hover-bg-color   :#e7e7e7;
-  --property-button-hover-text-color :#383838;
-  --property-button-active-bg-color  :#49657e90;
+  --panel-header-color               :#e5e7eb80;
+  --panel-bg-color                   :#141629;
+  --panel-text-color                 :#FFF;
+  --panel-hover-bg-color             :#262746;
+  --panel-button-active-bg-color     :#4AA0EA;
 
 
 
