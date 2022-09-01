@@ -26,7 +26,7 @@
         ></Canvas>
     </div>
 
-    <Right>
+    <Left>
       <template #path>
         <Collapse
           class="w-full overflow-auto cursor-default "
@@ -43,10 +43,9 @@
 
       <template #command>
         <Collapse
-          class="w-full overflow-auto cursor-default "
+          class="w-full overflow-auto cursor-default"
           :title="'Matrix'"
           >
-
         </Collapse>
 
         <Collapse
@@ -87,7 +86,7 @@
           </div>
         </div>
       </template>
-    </Right>
+    </Left>
 
     <Footer class=" absolute left-[calc(50%-80px)] bottom-0"></Footer>
   </div>
@@ -95,7 +94,7 @@
 </template>
 <script lang="ts" setup>
 import Header from "./Header.vue"
-import Right from "./Right.vue"
+import Left from "./Left.vue"
 import { Point, Svg, SvgControlPoint, SvgItem, SvgPoint } from './Svg'
 
 const canvasWidth = ref(100)

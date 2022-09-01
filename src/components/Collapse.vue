@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="select-none flex justify-between leading-10 h-10 items-center px-4 py-1 cursor-pointer" @click="switcher">
+    <div class="hover:bg-[var(--property-button-hover-bg-color)] rounded-md select-none flex justify-between leading-10 h-10 items-center mx-2 px-2 py-1 cursor-pointer" @click="switcher">
       <div > {{props.title}} </div>
       <div :i="isOpen ? 'carbon-caret-up': 'carbon-caret-down'" />
     </div>
