@@ -1,7 +1,7 @@
 <template>
   <div
     class="header-container bg-transparent max-h-[60px] min-h-[60px] flex-shrink-0 w-full flex flex-row justify-between items-center px-10">
-    <div style="font-size:28px;font-family: fangsong;font-weight: 400;">Icon Editor</div>
+    <div style="font-size:28px;font-family: fangsong;font-weight: 400;">🌈 Icon Editor</div>
     <div class=" flex flex-row gap-4 text-[var(--tool-text-color)]">
 
       <div
