@@ -1,101 +1,44 @@
 <template>
-<n-config-provider :theme="naiveUIDarkTheme">
   <div
-    class=" flex flex-col w-screen h-screen bg-[var(--canvas-bg)] text-[var(--canvas-text)]"
-    style="background-image: var(--main-background-image);"
+    class="z-99 w-screen h-screen p-4 flex flex-col gap-4 bg-[#302f34]"
     >
+    <div class=" w-full h-4/5 rounded-3xl gap-4 flex flex-row justify-between">
+      <div class="w-350px h-full rounded-3xl bg-[#191d20]">
 
-    <Header></Header>
+      </div>
+      <div
+        ref="canvas"
+        class="flex-1 h-full rounded-3xl bg-[#0f0f11] overflow-hidden"
+        >
 
-    <div ref="canvas" class="w-full h-full min-w-10 overflow-hidden">
-      <Canvas
-        :viewPortWidth="cfg.viewPortWidth"
-        :viewPortHeight="cfg.viewPortHeight"
-        :viewPortX="cfg.viewPortX"
-        :viewPortY="cfg.viewPortY"
-        :strokeWidth="strokeWidth"
-        :canvasWidth="canvasWidth"
-        :canvasHeight="canvasHeight"
-        :parsedPath="parsedPath"
-        :targetPoints="targetPoints"
-        :controlPoints="controlPoints"
+          <Canvas
+            :viewPortWidth="cfg.viewPortWidth"
+            :viewPortHeight="cfg.viewPortHeight"
+            :viewPortX="cfg.viewPortX"
+            :viewPortY="cfg.viewPortY"
+            :strokeWidth="strokeWidth"
+            :canvasWidth="canvasWidth"
+            :canvasHeight="canvasHeight"
+            :parsedPath="parsedPath"
+            :targetPoints="targetPoints"
+            :controlPoints="controlPoints"
 
-        v-model:draggedPoint="draggedPoint"
-        v-model:focusedItem="focusedItem"
-        v-model:hoveredItem="hoveredItem"
-        ></Canvas>
+            v-model:draggedPoint="draggedPoint"
+            v-model:focusedItem="focusedItem"
+            v-model:hoveredItem="hoveredItem"
+            ></Canvas>
+
+      </div>
     </div>
 
-    <Left>
-      <template #path>
-        <Collapse
-          class="w-full overflow-auto cursor-default "
-          :title="'Svg'"
-          >
-        <textarea
-          class="resize border rounded-md w-5/6 border-0 p-2 bg-[var(--input-bg-color)] text-[var(--input-text-color)] "
-          v-model="textareaValue"
-          @blur="textareaBlur"
-          @focus="textareaFocus"
-          ></textarea>
-          </Collapse>
-      </template>
+    <div class=" w-full flex-1 rounded-3xl bg-[#191d20]">
 
-      <template #command>
-        <Collapse
-          class="w-full overflow-auto cursor-default"
-          :title="'Matrix'"
-          >
-        </Collapse>
+    </div>
 
-        <Collapse
-          class="w-full overflow-auto cursor-default "
-          :title="'Command'"
-          >
-          <div
-            v-for="item in commandList"
-            class=" flex-center gap-2 m-2 p-2 rounded-md hover:bg-[var(--panel-hover-bg-color)]"
-            :style="{background:focusedItem == item ? 'var(--panel-button-active-bg-color)' : ''}"
-            @click="setFocusedItemFromInput(item)"
-            >
-
-            <div class="flex-1 flex flex-row gap-1">
-              <div class=" max-w-4 w-4 ">{{item.getType()}}</div>
-              <div class="w-8" v-for="value,idx in item.values">
-                <input
-                  type="text"
-                  style="font-size:10px;outline: none;"
-                  class="w-full text-center bg-[var(--input-bg-color)] border-0 focus:ring-0"
-                  :value="value"
-                  @input="v => updateCommandValue(v,item,idx)"
-                  />
-              </div>
-            </div>
-
-            <CPopselect @delete="deleteFn(item)" :canDelete="canDelete(item)"></CPopselect>
-
-          </div>
-        </Collapse>
-
-      </template>
-
-      <template #button>
-        <div class="w-full h-full flex flex-row justify-around items-center ">
-          <div class="w-1/4 h-full flex flex-col rounded-xl justify-center items-center cursor-pointer hover:bg-[var(--panel-hover-bg-color)] " v-for=" in 4">
-            <div i="carbon-sun dark:carbon-moon" />
-            <div>edit</div>
-          </div>
-        </div>
-      </template>
-    </Left>
-
-    <Footer class=" absolute left-[calc(50%-80px)] bottom-0"></Footer>
   </div>
-</n-config-provider>
+
 </template>
 <script lang="ts" setup>
-import Header from "./Header.vue"
-import Left from "./Left.vue"
 import { Point, Svg, SvgControlPoint, SvgItem, SvgPoint } from './Svg'
 
 const canvasWidth = ref(100)
@@ -425,11 +368,11 @@ const deleteFn = (item:SvgItem) => {
 </script>
 
 <route lang="yaml">
-name: icons-editor
-path: /icons-editor
-meta:
-  layout: home
-  requiresAuth: false
-  id: 2
-  string: "2"
-</route>
+  name: edit
+  meta:
+    layout: home
+    requiresAuth: false
+    id: 3
+    string: "3"
+  </route>
+
