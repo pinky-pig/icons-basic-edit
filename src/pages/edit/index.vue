@@ -5,7 +5,7 @@
     class="z-99 w-screen h-screen p-4 flex flex-col gap-4 bg-[#302f34]"
     >
     <div class=" w-full h-4/5 rounded-3xl gap-4 flex flex-row justify-between">
-      <div class="w-350px h-full rounded-3xl bg-[#191d20] p-5">
+      <div class="w-350px h-full rounded-3xl bg-[#191d20]">
         <PathToolsPanel></PathToolsPanel>
       </div>
 
