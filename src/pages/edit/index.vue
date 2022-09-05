@@ -1,4 +1,6 @@
 <template>
+<n-config-provider :theme="naiveUIDarkTheme">
+
   <div
     class="z-99 w-screen h-screen p-4 flex flex-col gap-4 bg-[#302f34]"
     >
@@ -18,6 +20,7 @@
     </div>
 
   </div>
+</n-config-provider>
 
 </template>
 <script setup lang="ts">

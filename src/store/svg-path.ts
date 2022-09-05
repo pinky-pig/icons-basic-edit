@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { SvgItem } from '~/pages/edit/Svg'
 export const kDefaultPath = ref(
   `M 4 8 L 10 1 L 13 0 L 12 3 L 5 9 C 6 10 6 11 7 10 C 7 11 8 12 7 12 A 1.42 1.42 0 0 1 6 13 `
 + `A 5 5 0 0 0 4 10 Q 3.5 9.9 3.5 10.5 T 2 11.8 T 1.2 11 T 2.5 9.5 T 3 9 A 5 5 90 0 0 0 7 A 1.42 1.42 0 0 1 1 6 `
@@ -25,9 +26,9 @@ export const useSvgPathStore = defineStore({
 
       targetPoints: [],
       controlPoints: [],
-      draggedPoint: undefined,
-      focusedItem: undefined,
-      hoveredItem: undefined,
+      draggedPoint: null as unknown as SvgItem,
+      focusedItem: null as unknown as SvgItem,
+      hoveredItem: null as unknown as SvgItem,
 
       commandList: [],
     }

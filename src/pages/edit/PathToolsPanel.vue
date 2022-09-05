@@ -1,16 +1,29 @@
 
 <script setup lang="ts">
-// import { canvasProps } from './props'
 import { initPath } from './PathToolsPanel.module'
+import { SvgItem } from './Svg';
 
 const props = useSvgPathStore()
 
-// 初始化变量
-// const props = reactive(canvasProps())
-
-
 // 初始化Path
 initPath(props)
+
+/** 属性面板编辑操作 */
+const setFocusedItemFromInput = (item:SvgItem) => {
+  if (props.focusedItem) {
+    props.focusedItem = item
+  }
+}
+const deleteFn = (item:SvgItem) => {
+
+}
+const canDelete = (item:SvgItem) : boolean => {
+  return false
+}
+
+const updateCommandValue = (v,item:SvgItem,idx:number) => {
+
+}
 
 
 </script>
@@ -33,20 +46,38 @@ initPath(props)
     </div>
 
     <!-- command -->
-    <div class=" flex flex-col">
+    <div class=" flex flex-col flex-auto overflow-auto">
       <div class=" flex flex-row tracking-widest">
         Command
       </div>
 
-      <div
-        v-for=" in props.commandList"
-        class=" flex-center gap-2 m-2 p-2 rounded-md hover:bg-[var(--panel-hover-bg-color)]"
-        >
+      <div class="overflow-auto cursor-default ">
+        <div
+            v-for="item in props.commandList"
+            class=" flex-center gap-2 m-2 p-2 rounded-md hover:bg-[var(--panel-hover-bg-color)]"
+            :style="{background:props.focusedItem == item ? 'var(--panel-button-active-bg-color)' : ''}"
+            @click="setFocusedItemFromInput(item)"
+            >
 
-        6666
+            <div class="flex-1 flex flex-row gap-1">
+              <div class=" max-w-4 w-4 ">{{(item as any).getType()}}</div>
+              <div class="w-8" v-for="value,idx in (item as any).values">
+                <input
+                  type="text"
+                  style="font-size:10px;outline: none;"
+                  class="w-full text-center bg-[#2a2e31] border-0 focus:ring-0"
+                  :value="value"
+                  @input="v => updateCommandValue(v,item,idx)"
+                  />
+              </div>
+            </div>
+
+            <CPopselect @delete="deleteFn(item)" :canDelete="canDelete(item)"></CPopselect>
+
+          </div>
+
 
       </div>
-
 
 
 
