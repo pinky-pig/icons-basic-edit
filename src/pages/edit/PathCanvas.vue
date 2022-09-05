@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { canvasProps } from './props'
 import { initCanvas,initSvgPath,initEventListener } from './PathCanvas.module'
 
-// 初始化变量
-const props = reactive(canvasProps())
+const props = useSvgPathStore()
 // 初始化画布
 initCanvas(props)
 // 初始化 svg 路径
