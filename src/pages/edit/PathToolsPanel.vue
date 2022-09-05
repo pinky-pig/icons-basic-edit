@@ -1,49 +1,18 @@
 
 <script setup lang="ts">
-import { initPath } from './PathToolsPanel.module'
-import { SvgItem } from './Svg';
-
+import { initPath,initCommand } from './PathToolsPanel.module'
 const props = useSvgPathStore()
 
 // 初始化Path
 initPath(props)
 
-/** 属性面板编辑操作 */
-const setFocusedItemFromInput = (item:SvgItem) => {
-  if (props.focusedItem) {
-    props.focusedItem = item
-  }
-}
-const deleteFn = (item:SvgItem) => {
-
-}
-const canDelete = (item:SvgItem) : boolean => {
-  return false
-}
-
-const updateCommandValue = (v,item:SvgItem,idx:number) => {
-
-}
+// 初始化命令
+let { setFocusedItemFromInput,deleteFn,canDelete,updateCommandValue } =  initCommand(props)
 
 
-/** textarea 双向绑定的值 */
-let textEditFlag = false
-const textareaValue = ref()
-watch(() => props.rawPath,v1 => {
-    textareaValue.value = v1
-  },
-  { immediate:true }
-)
-const textareaFocus = () => {
-  textEditFlag = true
-}
-const textareaBlur = () => {
-  textEditFlag = false
-}
-watch(()=> textareaValue.value,()=>{
-  if (textEditFlag) {
-  }
-})
+
+
+
 
 
 </script>
@@ -60,10 +29,8 @@ watch(()=> textareaValue.value,()=>{
       <div>
         <textarea
           class="w-full max-w-full p-2 resize rounded-2xl bg-[#2a2e31] text-[#a4a8ab] outline-none"
-          v-model="textareaValue"
-          @blur="textareaBlur"
-          @focus="textareaFocus"
-          name="" id="" cols="50" rows="5">
+          v-model="props.rawPath"
+          name="" id="" cols="50" rows="8">
         </textarea>
       </div>
     </div>

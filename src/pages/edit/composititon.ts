@@ -196,6 +196,7 @@ export const useComposition = (props: any, context?: any) => {
     drag,
     stopDrag,
     setZoom,
+    afterModelChange,
   }
 }
 

@@ -31,6 +31,7 @@ export const useSvgPathStore = defineStore({
       hoveredItem: null as unknown as SvgItem,
 
       commandList: [],
+      textareaValue:''
     }
   },
   getters: {
