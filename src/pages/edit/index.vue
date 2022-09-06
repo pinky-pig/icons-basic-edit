@@ -15,6 +15,10 @@
           ></PathCanvas>
       </div>
 
+      <div class="w-350px h-full rounded-3xl bg-[var(--tool-bg-color)] text-[var(--tool-text-color)]">
+        <PathPropertyPanel></PathPropertyPanel>
+      </div>
+
     </div>
 
     <div class=" w-full flex-1 rounded-3xl bg-[var(--animate-bg-color)]">
@@ -28,8 +32,9 @@
 
 </template>
 <script setup lang="ts">
-import PathCanvas from "./PathCanvas.vue";
-import PathToolsPanel from "./PathToolsPanel.vue";
+import PathCanvas from "./PathCanvas.vue"
+import PathToolsPanel from "./PathToolsPanel.vue"
+import PathPropertyPanel from "./PathPropertyPanel.vue"
 
 
 </script>
