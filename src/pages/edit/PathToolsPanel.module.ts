@@ -1,5 +1,5 @@
 import { useComposition } from './composititon'
-import { SvgItem } from './Svg'
+import { Point, SvgItem } from './Svg'
 
 export function initPath(props: any, context?: any){
 
@@ -20,7 +20,14 @@ export function initPath(props: any, context?: any){
 }
 
 export function initCommand(props: any, context?: any){
-  let { focusedItem,parsedPath } = toRefs(props)
+  let {
+    focusedItem,
+    parsedPath,
+    draggedIsNew,
+    targetPoints,
+    historyDisabled,
+    draggedPoint,
+  } = toRefs(props)
   let { afterModelChange } = useComposition(props)
 
 
@@ -40,6 +47,72 @@ export function initCommand(props: any, context?: any){
     const idx = parsedPath.value.path.indexOf(item);
     return idx > 0;
   }
+  /** 插入 */
+  const insert = (type: string, after: SvgItem | null, convert: boolean) => {
+    if (convert) {
+      if(after) {
+        focusedItem.value = parsedPath.value.changeType(after, after.relative ? type.toLowerCase() : type);
+        afterModelChange();
+      }
+    } else {
+      draggedIsNew.value = true;
+      const pts = targetPoints.value;
+      let point1: Point;
+
+      let newItem: SvgItem | null = null;
+      if (after) {
+        point1 = after.targetLocation();
+      } else if (pts.length === 0) {
+        newItem = SvgItem.Make(['M', '0', '0']);
+        parsedPath.value.insert(newItem);
+        point1 = new Point(0, 0);
+      } else {
+        point1 = pts[pts.length - 1];
+      }
+
+      if (type.toLowerCase() !== 'm' || !newItem) {
+        const relative = type.toLowerCase() === type;
+        const X = (relative ?  0 : point1.x).toString();
+        const Y = (relative ?  0 : point1.y).toString();
+        switch (type.toLocaleLowerCase()) {
+          case 'm': case 'l': case 't':
+            newItem = SvgItem.Make([type, X, Y]) ; break;
+          case 'h':
+            newItem = SvgItem.Make([type, X]) ; break;
+          case 'v':
+            newItem = SvgItem.Make([type, Y]) ; break;
+          case 's': case 'q':
+            newItem = SvgItem.Make([type, X , Y, X, Y]) ; break;
+          case 'c':
+            newItem = SvgItem.Make([type, X , Y, X, Y, X, Y]) ; break;
+          case 'a':
+            newItem = SvgItem.Make([type, '1' , '1', '0', '0', '0', X, Y]) ; break;
+          case 'z':
+            newItem = SvgItem.Make([type]);
+        }
+        if(newItem) {
+          parsedPath.value.insert(newItem, after ?? undefined);
+        }
+      }
+      setHistoryDisabled(true);
+      afterModelChange();
+
+      if(newItem) {
+        focusedItem.value = newItem;
+        draggedPoint.value = newItem.targetLocation();
+      }
+    }
+
+
+
+  }
+
+  const setHistoryDisabled = (value: boolean) => {
+      historyDisabled.value = value;
+      if (!value) {
+        // pushHistory();
+      }
+  }
 
   const updateCommandValue = (v,item:SvgItem,idx:number) => {
     let val = Number(v.srcElement.value)
@@ -55,6 +128,7 @@ export function initCommand(props: any, context?: any){
     deleteFn,
     canDelete,
     updateCommandValue,
+    insert,
   }
 }
 

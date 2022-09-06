@@ -56,7 +56,7 @@ let { setFocusedItemFromInput,deleteFn,canDelete,updateCommandValue } =  initCom
             </div>
           </div>
 
-          <CPopselect @delete="deleteFn(item)" :canDelete="canDelete(item)"></CPopselect>
+          <CPopselect @D="deleteFn(item)" :canDelete="canDelete(item)"></CPopselect>
 
         </div>
 

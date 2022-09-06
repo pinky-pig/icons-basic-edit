@@ -10,15 +10,15 @@ export const useSvgPathStore = defineStore({
   id: 'svgPathStore',
   state: () => {
     return {
-      canvasWidth: 100,
-      canvasHeight: 100,
+      canvasWidth: 100 as number,
+      canvasHeight: 100 as number,
       cfg: {
-        viewPortX: 0,
-        viewPortY: 0,
-        viewPortWidth: 0,
-        viewPortHeight: 0,
+        viewPortX: 0 as number,
+        viewPortY: 0 as number,
+        viewPortWidth: 0 as number,
+        viewPortHeight: 0 as number,
       },
-      strokeWidth: 0,
+      strokeWidth: 0 as number,
       parsedPath: undefined,
       rawPath: kDefaultPath.value,
       draggedEvt: null,
@@ -31,7 +31,14 @@ export const useSvgPathStore = defineStore({
       hoveredItem: null as unknown as SvgItem,
 
       commandList: [],
-      textareaValue:''
+      textareaValue:'',
+
+      draggedIsNew : false,
+
+      // Undo/redo
+      history: [] as string[],
+      historyCursor : -1,
+      historyDisabled : false,
     }
   },
   getters: {
