@@ -9,12 +9,6 @@ initPath(props)
 // 初始化命令
 let { setFocusedItemFromInput,deleteFn,canDelete,updateCommandValue } =  initCommand(props)
 
-
-
-
-
-
-
 </script>
 
 <template>
@@ -28,7 +22,7 @@ let { setFocusedItemFromInput,deleteFn,canDelete,updateCommandValue } =  initCom
 
       <div>
         <textarea
-          class="w-full max-w-full min-w-full p-2 resize rounded-2xl bg-[#2a2e31] text-[#a4a8ab] outline-none"
+          class="w-full max-w-full min-w-full p-2 resize rounded-2xl bg-[var(--input-bg-color)] text-[var(--input-text-color)] outline-none"
           v-model="props.rawPath"
           name="" id="" cols="50" rows="8">
         </textarea>
@@ -55,7 +49,7 @@ let { setFocusedItemFromInput,deleteFn,canDelete,updateCommandValue } =  initCom
               <input
                 type="text"
                 style="font-size:10px;outline: none;"
-                class="w-full text-center bg-[#2a2e31] border-0 focus:ring-0"
+                class="w-full text-center border-0 focus:ring-0 bg-[var(--input-bg-color)] text-[var(--input-text-color)]"
                 :value="value"
                 @input="v => updateCommandValue(v,item,idx)"
                 />
