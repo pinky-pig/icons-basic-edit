@@ -28,7 +28,7 @@ let { setFocusedItemFromInput,deleteFn,canDelete,updateCommandValue } =  initCom
 
       <div>
         <textarea
-          class="w-full max-w-full p-2 resize rounded-2xl bg-[#2a2e31] text-[#a4a8ab] outline-none"
+          class="w-full max-w-full min-w-full p-2 resize rounded-2xl bg-[#2a2e31] text-[#a4a8ab] outline-none"
           v-model="props.rawPath"
           name="" id="" cols="50" rows="8">
         </textarea>
@@ -44,7 +44,7 @@ let { setFocusedItemFromInput,deleteFn,canDelete,updateCommandValue } =  initCom
       <div class="overflow-auto cursor-default px-3 mx-2">
         <div
           v-for="item in props.commandList"
-          class=" flex-center gap-2 my-2 py-2 rounded-md hover:bg-[var(--panel-hover-bg-color)]"
+          class=" flex-center gap-2 my-2 py-2 pl-2 rounded-md hover:bg-[var(--panel-hover-bg-color)]"
           :style="{background:props.focusedItem == item ? 'var(--panel-button-active-bg-color)' : ''}"
           @click="setFocusedItemFromInput(item)"
           >

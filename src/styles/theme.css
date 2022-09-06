@@ -2,18 +2,19 @@
 
 html.dark{
   /* 全局背景图片 */
-  --main-background-image            :url(~/assets/img/black-bg.png);
+  /* --main-background-image            :url(~/assets/img/black-bg.png); */
+  --main-background-image            :#302f34;
   /* canvas背景颜色 */
-  --canvas-bg                        :#0a0a0a;
+  --canvas-bg                        :#0f0f11;
+  /* canvas背景颜色 */
+  --canvas-bg-imgae                  :url(~/assets/img/black-bg.png);
   /* canvas文字颜色 */
   --canvas-text                      :#e5e7eb;
 
-  /* 输入框的背景颜色 */
-  --input-bg-color                   :#383838;
-  /* 输入框的文字颜色 */
-  --input-text-color                 :#ffffff;
-
-  /* 工具条 */
+  /* 工具面板 */
+  --tool-bg-color                    :#191d20;
+  --tool-bg-second-color             :#1c1c1e;
+  --tool-text-color                  :#1c1c1e;
   --tool-button-color                :#1c1c1e;
   --tool-text-color                  :#e5e7eb;
   --tool-hover-color                 :#555555;
@@ -26,21 +27,30 @@ html.dark{
   --panel-expand-bg-color         :#2e2e30;
   --panel-button-active-bg-color  :#49657e;
 
+  /* 底部动画面板 */
+  --animate-bg-color              :#191d20;
+  --animate-text-color              :#191d20;
+
+  /* 输入框的背景颜色 */
+  --input-bg-color                   :#383838;
+  /* 输入框的文字颜色 */
+  --input-text-color                 :#ffffff;
+
+
 }
 html{
   --main-background-image            :url(~/assets/img/white-bg.png);
   /* --main-background-image            :url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='roughpaper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03' result='noise' numOctaves='4' /%3E%3CfeDiffuseLighting in='noise' lighting-color='%23080B1B' surfaceScale='4'%3E%3CfeDistantLight azimuth='75' elevation='20' /%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23roughpaper)'/%3E%3C/svg%3E"); */
   --canvas-text                      :#FFF;
+  --canvas-bg-imgae                  :url(~/assets/img/white-bg.png);
   --canvas-bg                        :#f7f7f7;
 
-  --input-bg-color                   :#22233E;
-  --input-text-color                 :#ffffff;
-
   /* 工具条 */
-  --tool-button-color                :#262746;
+  --tool-bg-color                    :#1c1c1e;
+  --tool-bg-second-color             :#1c1c1e;
   --tool-text-color                  :#4AA0EA;
+  --tool-button-color                :#262746;
   --tool-hover-color                 :#141629;
-
 
   /* 属性面板 */
   --panel-header-color               :#e5e7eb80;
@@ -49,6 +59,14 @@ html{
   --panel-hover-bg-color             :#262746;
   --panel-expand-bg-color            :#2e2e30;
   --panel-button-active-bg-color     :#4AA0EA60;
+
+   /* 底部动画面板 */
+   --animate-bg-color              :#191d20;
+   --animate-text-color              :#191d20;
+
+
+  --input-bg-color                   :#22233E;
+  --input-text-color                 :#ffffff;
 
 
 

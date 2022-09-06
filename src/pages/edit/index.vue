@@ -2,20 +2,22 @@
 <n-config-provider :theme="naiveUIDarkTheme">
 
   <div
-    class="z-99 w-screen h-screen p-4 flex flex-col gap-4 bg-[#302f34]"
+    class="z-99 w-screen h-screen p-8 flex flex-col gap-8 bg-[var(--main-background-image)]"
     >
-    <div class=" w-full h-4/5 rounded-3xl gap-4 flex flex-row justify-between">
-      <div class="w-350px h-full rounded-3xl bg-[#191d20]">
+    <div class=" w-full h-4/5 rounded-3xl gap-8 flex flex-row justify-between">
+      <div class="w-350px h-full rounded-3xl bg-[var(--tool-bg-color)]">
         <PathToolsPanel></PathToolsPanel>
       </div>
 
-      <div class="flex-1 h-full rounded-3xl bg-[#0f0f11] overflow-hidden" >
-        <PathCanvas></PathCanvas>
+      <div class="flex-1 h-full rounded-3xl bg-[var(--canvas-bg)] overflow-hidden" >
+        <PathCanvas
+          style="background-image: var(--canvas-bg-imgae);"
+          ></PathCanvas>
       </div>
 
     </div>
 
-    <div class=" w-full flex-1 rounded-3xl bg-[#191d20]">
+    <div class=" w-full flex-1 rounded-3xl bg-[var(--animate-bg-color)]">
 
     </div>
 
