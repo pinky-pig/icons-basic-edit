@@ -49,6 +49,16 @@ export class Svg {
     return this;
   }
 
+  insert(item: SvgItem, after?: SvgItem) {
+    const idx = after ? this.path.indexOf(after) : -1;
+    if (idx !== -1) {
+      this.path.splice(idx + 1, 0, item);
+    } else {
+      this.path.push(item);
+    }
+    this.refreshAbsolutePositions();
+  }
+
   targetLocations(): SvgPoint[] {
     return this.path.map((it) => it.targetLocation());
   }

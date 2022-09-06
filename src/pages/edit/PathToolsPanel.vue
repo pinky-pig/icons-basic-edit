@@ -7,7 +7,7 @@ const props = useSvgPathStore()
 initPath(props)
 
 // 初始化命令
-let { setFocusedItemFromInput,deleteFn,canDelete,updateCommandValue } =  initCommand(props)
+let { setFocusedItemFromInput,deleteFn,canDelete,updateCommandValue,insert } =  initCommand(props)
 
 </script>
 
@@ -56,7 +56,20 @@ let { setFocusedItemFromInput,deleteFn,canDelete,updateCommandValue } =  initCom
             </div>
           </div>
 
-          <CPopselect @D="deleteFn(item)" :canDelete="canDelete(item)"></CPopselect>
+          <CPopselect
+            @D="deleteFn(item)"
+            @M="insert('M',item,false)"
+            @L="insert('L',item,false)"
+            @V="insert('V',item,false)"
+            @H="insert('H',item,false)"
+            @C="insert('C',item,false)"
+            @S="insert('S',item,false)"
+            @Q="insert('Q',item,false)"
+            @T="insert('T',item,false)"
+            @A="insert('A',item,false)"
+            @Z="insert('Z',item,false)"
+            :canDelete="canDelete(item)"
+            ></CPopselect>
 
         </div>
 
