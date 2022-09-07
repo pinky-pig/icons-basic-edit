@@ -17,6 +17,9 @@ export const lightThemeOverrides:GlobalThemeOverrides = {
     hoverColor : 'var(--input-hover-color)',
 
   },
+  Dropdown: {
+    dividerColor: 'var(--input-hover-color)'
+  }
 
 }
 
@@ -29,5 +32,8 @@ export const darkThemeOverrides:GlobalThemeOverrides = {
     borderRadius : '10px',
     popoverColor : 'var(--input-bg-color)',
     hoverColor : 'var(--input-hover-color)',
+  },
+  Dropdown: {
+    dividerColor: 'var(--input-hover-color)'
   }
 }
