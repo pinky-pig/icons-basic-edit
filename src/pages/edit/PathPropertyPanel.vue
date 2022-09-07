@@ -51,12 +51,6 @@ const options = [
   </div>
 </template>
 <style>
-.n-base-selection {
-  border-radius: 10px !important;
-}
-.n-base-select-menu{
-  border-radius: 10px !important;
-}
 .x-input::before{
   content: 'x';
   color: var(--input-text-color);

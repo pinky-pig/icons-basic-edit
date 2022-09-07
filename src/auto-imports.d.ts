@@ -52,6 +52,7 @@ declare global {
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
   const naiveUIDarkTheme: typeof import('./composables/dark')['naiveUIDarkTheme']
+  const naiveUIThemeOverrides: typeof import('./composables/dark')['naiveUIThemeOverrides']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
@@ -323,6 +324,7 @@ declare module '@vue/runtime-core' {
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly naiveUIDarkTheme: UnwrapRef<typeof import('./composables/dark')['naiveUIDarkTheme']>
+    readonly naiveUIThemeOverrides: UnwrapRef<typeof import('./composables/dark')['naiveUIThemeOverrides']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>

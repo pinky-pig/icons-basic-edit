@@ -70,11 +70,4 @@ const handleSelect = (key: insertType) => {
 </script>
 
 
-<style>
-.n-dropdown-menu {
-  border-radius: 10px;
-}
-.n-dropdown-menu .n-dropdown-option .n-dropdown-option-body::before {
-  border-radius: 8px;
-}
-</style>
+
