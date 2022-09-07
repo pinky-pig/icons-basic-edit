@@ -59,6 +59,22 @@ export class Svg {
     this.refreshAbsolutePositions();
   }
 
+  translate(dx: number, dy: number): Svg {
+    this.path.forEach((it, idx) => {
+      it.translate(dx, dy, idx === 0);
+    });
+    this.refreshAbsolutePositions();
+    return this;
+  }
+
+  scale(kx: number, ky: number): Svg {
+    this.path.forEach((it) => {
+      it.scale(kx, ky);
+    });
+    this.refreshAbsolutePositions();
+    return this;
+  }
+
   targetLocations(): SvgPoint[] {
     return this.path.map((it) => it.targetLocation());
   }
@@ -83,7 +99,6 @@ export class Svg {
     }
     this.refreshAbsolutePositions();
   }
-
 
   refreshAbsolutePositions() {
     let previous: SvgItem | null = null;

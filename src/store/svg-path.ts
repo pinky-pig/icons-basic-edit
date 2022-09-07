@@ -39,6 +39,11 @@ export const useSvgPathStore = defineStore({
       history: [] as string[],
       historyCursor : -1,
       historyDisabled : false,
+
+      scaleX : 1,
+      scaleY : 1,
+      translateX : 0,
+      translateY : 0,
     }
   },
   getters: {
