@@ -2,7 +2,7 @@ import { useComposition } from "./composititon"
 
 export function initMatrix(props: any, context?: any){
 
-  let { parsedPath,scaleX,scaleY,translateX,translateY } = toRefs(props)
+  let { parsedPath } = toRefs(props)
 
   let { afterModelChange } = useComposition(props)
 
@@ -15,8 +15,6 @@ export function initMatrix(props: any, context?: any){
 
   const translate = (x: number, y: number) => {
     parsedPath.value.translate(1 * x, 1 * y);
-    translateX.value = 0;
-    translateY.value = 0;
     afterModelChange();
   }
 

@@ -4,10 +4,11 @@ import { initMatrix } from './PathPropertyPanel.module';
 const props = useSvgPathStore()
 
 const matrixType = ref('Scale')
-const options = [
+const selectOptions = [
   { label: "Scale", value: 'Scale', },
   { label: 'Translate', value: 'Translate' }
 ]
+
 
 initMatrix(props)
 
@@ -28,7 +29,7 @@ initMatrix(props)
 
       <div class="h-34px overflow-auto cursor-default px-3 mx-2 flex flex-row justify-center items-center gap-2">
         <div class=" w-1/3 h-full ">
-          <n-select v-model:value="matrixType" :options="options" />
+          <n-select v-model:value="matrixType" :options="selectOptions" />
         </div>
 
         <div v-show="matrixType == 'Scale'" style="border-radius: 10px;" class=" x-input w-1/3 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
