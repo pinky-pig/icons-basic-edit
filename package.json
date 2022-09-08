@@ -2,6 +2,7 @@
   "private": true,
   "packageManager": "pnpm@7.4.0",
   "scripts": {
+    "deploy": "bash deploy.sh",
     "build": "vite build",
     "dev": "vite --port 3333 --open",
     "lint": "eslint .",
