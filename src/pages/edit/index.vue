@@ -1,6 +1,5 @@
 <template>
 <n-config-provider :theme="naiveUIDarkTheme" :theme-overrides="naiveUIThemeOverrides" >
-<n-theme-editor>
   <div
     class="z-99 w-screen h-screen p-8 flex flex-col gap-8 bg-[var(--main-background-image)]"
     >
@@ -28,7 +27,6 @@
     <Footer class=" absolute left-[calc(50%-80px)] bottom-0"></Footer>
 
   </div>
-</n-theme-editor>
 </n-config-provider>
 
 </template>
@@ -37,7 +35,6 @@ import PathCanvas from "./PathCanvas.vue"
 import PathToolsPanel from "./PathToolsPanel.vue"
 import PathPropertyPanel from "./PathPropertyPanel.vue"
 
-import { NThemeEditor } from 'naive-ui'
 </script>
 
 <route lang="yaml">

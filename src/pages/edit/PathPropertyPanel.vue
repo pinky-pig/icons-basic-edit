@@ -3,14 +3,9 @@
 import { initMatrix } from './PathPropertyPanel.module';
 const props = useSvgPathStore()
 
-const matrixType = ref('Scale')
-const selectOptions = [
-  { label: "Scale", value: 'Scale', },
-  { label: 'Translate', value: 'Translate' }
-]
 
+let { translate , scale } =  initMatrix(props)
 
-initMatrix(props)
 
 </script>
 
@@ -22,17 +17,16 @@ initMatrix(props)
     </div>
 
     <!-- command -->
-    <div class=" flex flex-col flex-auto overflow-auto ">
-      <div class=" flex flex-row tracking-widest px-5 pb-4">
+    <div class=" flex flex-col flex-auto overflow-auto gap-3">
+      <div class=" flex flex-row tracking-widest px-5 ">
         Morph
       </div>
 
       <div class="h-34px overflow-auto cursor-default px-3 mx-2 flex flex-row justify-center items-center gap-2">
-        <div class=" w-1/3 h-full ">
-          <n-select v-model:value="matrixType" :options="selectOptions" />
+        <div class="text-lg flex justify-center items-center rounded-lg w-1/3 h-full bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
+          <n-button @click="scale(props.scaleX,props.scaleY)" class="w-full text-lg">Scale</n-button>
         </div>
-
-        <div v-show="matrixType == 'Scale'" style="border-radius: 10px;" class=" x-input w-1/3 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
+        <div style="border-radius: 10px;" class=" x-input w-1/3 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
           <input
             type="text"
             style="font-size:18px;outline: none;"
@@ -40,7 +34,7 @@ initMatrix(props)
             v-model="props.scaleX"
             />
         </div>
-        <div v-show="matrixType == 'Scale'" style="border-radius: 10px;" class=" y-input w-1/3 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
+        <div style="border-radius: 10px;" class=" y-input w-1/3 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
           <input
             type="text"
             style="font-size:18px;outline: none;"
@@ -48,8 +42,14 @@ initMatrix(props)
             :value="props.scaleY"
             />
         </div>
+      </div>
 
-        <div v-show="matrixType == 'Translate'" style="border-radius: 10px;" class=" x-input w-1/3 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
+      <div class="h-34px overflow-auto cursor-default px-3 mx-2 flex flex-row justify-center items-center gap-2">
+        <div class="text-lg flex justify-center items-center rounded-lg w-1/3 h-full bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
+          <n-button @click="translate(props.translateX,props.translateY)" class="w-full text-lg">Translate</n-button>
+        </div>
+
+        <div style="border-radius: 10px;" class=" x-input w-1/3 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
           <input
             type="text"
             style="font-size:18px;outline: none;"
@@ -57,7 +57,7 @@ initMatrix(props)
             v-model="props.translateX"
             />
         </div>
-        <div v-show="matrixType == 'Translate'" style="border-radius: 10px;" class=" y-input w-1/3 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
+        <div style="border-radius: 10px;" class=" y-input w-1/3 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
           <input
             type="text"
             style="font-size:18px;outline: none;"
@@ -65,9 +65,8 @@ initMatrix(props)
             :value="props.translateY"
             />
         </div>
-
-
       </div>
+
     </div>
 
   </div>

@@ -47,6 +47,7 @@ import {
   NTooltip,
   NCarousel,
   NPopselect,
+  NTreeSelect,
 } from 'naive-ui'
 import { UserModule } from '~/types'
 
@@ -99,7 +100,8 @@ export const install: UserModule = ({ app }) => {
       NTimelineItem,
       NTooltip,
       NCarousel,
-      NPopselect
+      NPopselect,
+      NTreeSelect
     ],
   })
 
