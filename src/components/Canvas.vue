@@ -75,7 +75,7 @@
       :stroke-width="5 * strokeWidth"
       stroke="currentColor"
       fill="transparent"
-      @mousedown="startDrag(item)"
+      @mousedown=" e => startDrag(item,e)"
       @mouseenter="startHover(item)"
       @mouseleave="stopHover()"
     />
@@ -90,7 +90,7 @@
       :stroke-width="5 * strokeWidth"
       stroke="currentColor"
       fill="transparent"
-      @mousedown="startDrag(item)"
+      @mousedown="e => startDrag(item,e)"
       @mouseenter="startHover(item)"
       @mouseleave="stopHover()"
     />
@@ -161,7 +161,7 @@ const props = defineProps({
   },
 
   draggedPoint: {
-    type: SvgPoint,
+    type: Object,
     default: null
   },
 
@@ -201,10 +201,15 @@ const parsedPath = computed(() => {
 
 // 将 dragPoint 传给父组件
 const emit = defineEmits(['update:draggedPoint','update:focusedItem','update:hoveredItem'])
-const startDrag = (item:SvgPoint) => {
-  emit('update:draggedPoint', item)
-  emit('update:focusedItem', item.itemReference)
-  stopHover()
+const startDrag = (item:SvgPoint,evt?:MouseEvent) => {
+
+  // 鼠标左键
+  if (evt?.buttons === 1) {
+    emit('update:draggedPoint', item)
+    emit('update:focusedItem', item.itemReference)
+    stopHover()
+  }
+
 }
 const startHover = (item:SvgPoint) => {
   if (!props.focusedItem) {

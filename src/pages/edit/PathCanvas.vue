@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { initCanvas,initSvgPath,initEventListener } from './PathCanvas.module'
+import PathCanvasContextMenu from "./PathCanvasContextMenu.vue";
 
 const props = useSvgPathStore()
 // 初始化画布
@@ -18,12 +19,33 @@ watch([width, height], () => {
 })
 
 
+/** 鼠标hover上才能打开 右键菜单 */
+const showDropdownRef = ref(false)
+const xRef = ref(0)
+const yRef = ref(0)
+const handleContextMenu = (e: MouseEvent) => {
+  e.preventDefault()
+  showDropdownRef.value = false
+
+  if (props.hoveredItem) {
+    nextTick().then(() => {
+      showDropdownRef.value = true
+      xRef.value = e.clientX
+      yRef.value = e.clientY
+
+      // 将hoverItem赋值给focusItem
+      props.focusedItem = props.hoveredItem
+    })
+  }
+}
+
 
 </script>
 
 <template>
 <div ref="canvas" id="canvas" class="w-full h-full min-w-10 overflow-hidden">
   <Canvas
+    @contextmenu="handleContextMenu"
     :viewPortWidth="props.cfg.viewPortWidth"
     :viewPortHeight="props.cfg.viewPortHeight"
     :viewPortX="props.cfg.viewPortX"
@@ -39,5 +61,15 @@ watch([width, height], () => {
     v-model:focusedItem="props.focusedItem"
     v-model:hoveredItem="props.hoveredItem"
     ></Canvas>
+
+  <PathCanvasContextMenu
+    :x="xRef"
+    :y="yRef"
+    v-model:showDropdownRef="showDropdownRef"
+    ></PathCanvasContextMenu>
 </div>
+
+
+
+
 </template>

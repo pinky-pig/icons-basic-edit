@@ -1,24 +1,31 @@
 <template>
   <n-dropdown
-    :options="options"
-    placement="bottom-start"
-    trigger="click"
-    @select="handleSelect"
-    >
-    <div
-      class=" text- cursor-pointer w-6 h-6 flex rounded-md justify-center items-center active:bg-[var(--panel-button-active-color)]">
-      <div i="carbon-overflow-menu-horizontal"></div>
-    </div>
-  </n-dropdown>
+  placement="bottom-start"
+  trigger="manual"
+  :x="x"
+  :y="y"
+  :options="options"
+  :show="showDropdownRef"
+  :on-clickoutside="onClickoutside"
+  @select="handleSelect">
+</n-dropdown>
+
 
 </template>
 
 <script lang="ts" setup>
-
-const props = defineProps({
-  canDelete:{
+import { initContextMenuCommand } from "./PathCanvasContextMenu.module";
+const props = useSvgPathStore()
+defineProps({
+  x:{
+    type:Number,
+  },
+  y:{
+    type:Number,
+  },
+  showDropdownRef:{
     type:Boolean,
-  }
+  },
 })
 const insertLabel = {
   'M':'Move to',
@@ -32,6 +39,35 @@ const insertLabel = {
   'A':'Elliptical Arc',
   'Z':'Close Path',
 }
+
+
+
+type insertType = 'D' | 'M' | 'L' | 'V' | 'H' | 'C' | 'S' | 'Q' | 'T' | 'A' | 'Z'
+
+const { deleteFn,insert,canDelete } = initContextMenuCommand(props)
+
+const canDeleteType = computed(() => canDelete(props.focusedItem))
+const emit = defineEmits(['update:showDropdownRef','D' , 'M' , 'L' , 'V' , 'H' , 'C' , 'S' , 'Q' , 'T' , 'A' , 'Z'])
+const handleSelect = (key: insertType) => {
+  switch (key) {
+    case 'D':
+      deleteFn(props.focusedItem)
+      emit('update:showDropdownRef', false)
+      break;
+
+    default:
+      insert(key,props.focusedItem,false)
+      emit('update:showDropdownRef', false)
+      break;
+  }
+}
+
+const onClickoutside = () => {
+  emit('update:showDropdownRef', false)
+}
+
+
+
 const options = ref(
   [
    {
@@ -59,18 +95,10 @@ const options = ref(
      label: '删除',
      icon() { return h('div', { i: 'carbon-trash-can', }) },
      key: 'D',
-     disabled: !props.canDelete
+     disabled: !canDeleteType
    },
  ]
 )
-
-
-type insertType = 'D' | 'M' | 'L' | 'V' | 'H' | 'C' | 'S' | 'Q' | 'T' | 'A' | 'Z'
-
-const emit = defineEmits(['D' , 'M' , 'L' , 'V' , 'H' , 'C' , 'S' , 'Q' , 'T' , 'A' , 'Z'])
-const handleSelect = (key: insertType) => {
-  emit(key, key)
-}
 
 </script>
 

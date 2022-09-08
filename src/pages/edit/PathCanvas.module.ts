@@ -44,7 +44,11 @@ export function initEventListener(props: any, context?: any){
       stopDrag()
     })
     useEventListener(canvas, 'mousemove', (evt: MouseEvent) => {
-      drag(evt)
+      // 鼠标左键
+      if (evt?.buttons === 1) {
+        drag(evt)
+      }
+
     })
     useEventListener(canvas, 'wheel', (evt: WheelEvent) => {
       evt.preventDefault()

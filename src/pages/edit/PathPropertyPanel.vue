@@ -24,7 +24,7 @@ let { translate , scale } =  initMatrix(props)
 
       <div class="h-34px overflow-auto cursor-default px-3 mx-2 flex flex-row justify-center items-center gap-2">
         <div class="text-lg flex justify-center items-center rounded-lg w-1/3 h-full bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
-          <n-button @click="scale(props.scaleX,props.scaleY)" class="w-full text-lg">Scale</n-button>
+          <n-button @click="scale(props.scaleX,props.scaleY)" class="w-full text-lg p-0">Scale</n-button>
         </div>
         <div style="border-radius: 10px;" class=" x-input w-1/3 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
           <input
@@ -46,7 +46,7 @@ let { translate , scale } =  initMatrix(props)
 
       <div class="h-34px overflow-auto cursor-default px-3 mx-2 flex flex-row justify-center items-center gap-2">
         <div class="text-lg flex justify-center items-center rounded-lg w-1/3 h-full bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
-          <n-button @click="translate(props.translateX,props.translateY)" class="w-full text-lg">Translate</n-button>
+          <n-button @click="translate(props.translateX,props.translateY)" class="w-full text-lg p-0">Translate</n-button>
         </div>
 
         <div style="border-radius: 10px;" class=" x-input w-1/3 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
@@ -66,7 +66,7 @@ let { translate , scale } =  initMatrix(props)
             />
         </div>
       </div>
-
+<ContextMenu></ContextMenu>
     </div>
 
   </div>
