@@ -28,7 +28,6 @@ specifiers:
   pinia: ^2.0.22
   pnpm: ^7.11.0
   prism-theme-vars: ^0.2.4
-  prismjs: ^1.29.0
   typescript: ^4.8.2
   unocss: ^0.42.1
   unplugin-auto-import: ^0.9.5
@@ -60,7 +59,6 @@ dependencies:
   nprogress: registry.npmmirror.com/nprogress/0.2.0
   pinia: registry.npmmirror.com/pinia/2.0.22_l2oatbueq4zmnlmgggxhoql4nu
   prism-theme-vars: registry.npmmirror.com/prism-theme-vars/0.2.4
-  prismjs: registry.npmmirror.com/prismjs/1.29.0
   vue: registry.npmmirror.com/vue/3.2.39
   vue-demi: registry.npmmirror.com/vue-demi/0.13.11_vue@3.2.39
   vue-i18n: registry.npmmirror.com/vue-i18n/9.2.2_vue@3.2.39
@@ -91,7 +89,7 @@ devDependencies:
   vite: registry.npmmirror.com/vite/2.9.15
   vite-plugin-inspect: registry.npmmirror.com/vite-plugin-inspect/0.5.1_vite@2.9.15
   vite-plugin-pages: registry.npmmirror.com/vite-plugin-pages/0.25.0_vite@2.9.15
-  vite-plugin-prismjs: registry.npmmirror.com/vite-plugin-prismjs/0.0.8_prismjs@1.29.0
+  vite-plugin-prismjs: registry.npmmirror.com/vite-plugin-prismjs/0.0.8
   vite-plugin-pwa: registry.npmmirror.com/vite-plugin-pwa/0.12.7_vite@2.9.15
   vite-plugin-vue-layouts: registry.npmmirror.com/vite-plugin-vue-layouts/0.6.0_ukmh2hmir6ckhsju72xyafui3i
   vite-plugin-vue-markdown: registry.npmmirror.com/vite-plugin-vue-markdown/0.20.1_vite@2.9.15
@@ -3246,15 +3244,12 @@ packages:
       - supports-color
     dev: true
 
-  registry.npmmirror.com/babel-plugin-prismjs/2.1.0_prismjs@1.29.0:
+  registry.npmmirror.com/babel-plugin-prismjs/2.1.0:
     resolution: {integrity: sha512-ehzSKYfeAz4U78zi/sfwsjDPlq0LvDKxNefcZTJ/iKBu+plsHsLqZhUeGf1+82LAcA35UZGbU6ksEx2Utphc/g==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/babel-plugin-prismjs/-/babel-plugin-prismjs-2.1.0.tgz}
-    id: registry.npmmirror.com/babel-plugin-prismjs/2.1.0
     name: babel-plugin-prismjs
     version: 2.1.0
     peerDependencies:
       prismjs: ^1.18.0
-    dependencies:
-      prismjs: registry.npmmirror.com/prismjs/1.29.0
     dev: true
 
   registry.npmmirror.com/balanced-match/1.0.2:
@@ -7686,6 +7681,7 @@ packages:
     name: prismjs
     version: 1.29.0
     engines: {node: '>=6'}
+    dev: true
 
   registry.npmmirror.com/process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz}
@@ -9267,15 +9263,14 @@ packages:
       - supports-color
     dev: true
 
-  registry.npmmirror.com/vite-plugin-prismjs/0.0.8_prismjs@1.29.0:
+  registry.npmmirror.com/vite-plugin-prismjs/0.0.8:
     resolution: {integrity: sha512-mBPPMS/hwVUArdqCtp/oajZT7iq1qwJDDCciNZ3R5+Q5tQUuUHXtDKuZHYnklPLElNbENf2FyuOtC4FrgxQRAA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-plugin-prismjs/-/vite-plugin-prismjs-0.0.8.tgz}
-    id: registry.npmmirror.com/vite-plugin-prismjs/0.0.8
     name: vite-plugin-prismjs
     version: 0.0.8
     engines: {node: '>=12.0.0'}
     dependencies:
       '@babel/core': registry.npmmirror.com/@babel/core/7.19.0
-      babel-plugin-prismjs: registry.npmmirror.com/babel-plugin-prismjs/2.1.0_prismjs@1.29.0
+      babel-plugin-prismjs: registry.npmmirror.com/babel-plugin-prismjs/2.1.0
     transitivePeerDependencies:
       - prismjs
       - supports-color
