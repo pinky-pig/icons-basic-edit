@@ -1,18 +1,21 @@
 <script setup lang="ts">
-const user = useUserStore()
-const name = $ref(user.savedName)
+// const user = useUserStore()
+// const name = $ref(user.savedName)
 
 const router = useRouter()
-const go = () => {
-  if (name)
-    router.push(`/hi/${encodeURIComponent(name)}`)
-}
+router.push(`/edit`)
 
-const { t } = useI18n()
+// const go = () => {
+//   if (name)
+//     router.push(`/hi/${encodeURIComponent(name)}`)
+// }
+
+
+// const { t } = useI18n()
 </script>
 
 <template>
-  <div>
+  <!-- <div>
     <div text-4xl>
       <div i-carbon-campsite inline-block />
     </div>
@@ -53,11 +56,10 @@ const { t } = useI18n()
         {{ t('button.go') }}
       </button>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <route lang="yaml">
-name: name-override
 meta:
   layout: home
   requiresAuth: false
