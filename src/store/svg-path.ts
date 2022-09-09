@@ -44,6 +44,10 @@ export const useSvgPathStore = defineStore({
       scaleY : 1,
       translateX : 0,
       translateY : 0,
+      skewX : 0,
+      skewY : 0,
+      rotate : 0,
+      transformOrigin:0,
     }
   },
   getters: {

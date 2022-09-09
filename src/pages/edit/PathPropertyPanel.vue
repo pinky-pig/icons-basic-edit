@@ -6,15 +6,12 @@ const props = useSvgPathStore()
 initMatrix(props)
 
 const transformType = [
+  { label:'origin', value:[ props.transformOrigin ] },
   { label:'Scale', value:[ props.scaleX, props.scaleY ] },
   { label:'Translate', value:[ props.translateX, props.translateY, ] },
-  // { label:'Skew', value:[ {x:1}, {y:1}, ] },
-  // { label:'Rotate', value:[ {'角度':1}, ] },
-  // { label:'Transform-origin', value:[ {'center':1}, ] },
+  { label:'Skew', value:[ props.skewX, props.skewY ] },
+  { label:'Rotate', value:[ props.rotate ] },
 ]
-
-console.log(transformType);
-
 
 </script>
 
@@ -31,13 +28,13 @@ console.log(transformType);
         Transform
       </div>
 
-      <div v-for="(item, index) in transformType" :key="index" class="h-34px overflow-auto cursor-default px-3 mx-2 flex flex-row justify-center items-center gap-2">
+      <div v-for="(item, index) in transformType" :key="index" class="h-34px overflow-auto cursor-default px-3 mx-2 flex flex-row items-center gap-2">
         <div class="text-lg flex justify-center items-center rounded-lg w-1/3 h-full bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
           {{item.label}}
         </div>
 
-        <div v-for="it,idx in item.value" :key="it" style="border-radius: 10px;" class=" relative w-1/3 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
-          <div class="input-label">{{idx === 0 ? 'x' : 'y'}}</div>
+        <div v-for="it,idx in item.value" :key="it" style="border-radius: 10px;" class=" relative flex-1 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
+          <div class="input-label">{{ item.value.length === 1 ? '🍔' : ( idx === 0 ? 'x' : 'y') }}</div>
           <input
             type="text"
             style="font-size:18px;outline: none;"
