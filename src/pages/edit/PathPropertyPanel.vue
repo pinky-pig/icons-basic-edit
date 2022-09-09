@@ -5,6 +5,14 @@ const props = useSvgPathStore()
 
 initMatrix(props)
 
+// const transformType = [
+//   { label:'Scale', value:[ {x:1}, {y:1}, ] },
+//   { label:'Translate', value:[ {x:1}, {y:1}, ] },
+//   { label:'Skew', value:[ {x:1}, {y:1}, ] },
+//   { label:'Rotate', value:[ {'角度':1}, ] },
+//   { label:'Transform-origin', value:[ {'center':1}, ] },
+// ]
+
 </script>
 
 <template>
@@ -64,7 +72,7 @@ initMatrix(props)
             />
         </div>
       </div>
-<ContextMenu></ContextMenu>
+
     </div>
 
   </div>
