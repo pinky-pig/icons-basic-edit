@@ -7,7 +7,8 @@ html.dark{
   /* canvas背景颜色 */
   --canvas-bg                        :#0f0f11;
   /* canvas背景颜色 */
-  --canvas-bg-imgae                  :url(~/assets/img/black-bg.png);
+  /* --canvas-bg-imgae                  :url(~/assets/img/black-bg.png); */
+  --canvas-bg-imgae                  :url(/black-bg.png);
   /* canvas文字颜色 */
   --canvas-text                      :#e5e7eb;
 
@@ -44,7 +45,8 @@ html{
   --main-background-image            :#080B1B;
   /* --main-background-image            :url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='roughpaper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03' result='noise' numOctaves='4' /%3E%3CfeDiffuseLighting in='noise' lighting-color='%23080B1B' surfaceScale='4'%3E%3CfeDistantLight azimuth='75' elevation='20' /%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23roughpaper)'/%3E%3C/svg%3E"); */
   --canvas-text                      :#FFF;
-  --canvas-bg-imgae                  :url(~/assets/img/default-bg.png);
+  /* --canvas-bg-imgae                  :url(~/assets/img/default-bg.png); */
+  --canvas-bg-imgae                  :url(/default-bg.png);
   --canvas-bg                        :#f7f7f7;
 
   /* 工具条 */
