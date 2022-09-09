@@ -18,7 +18,7 @@ import prismjs from 'vite-plugin-prismjs';
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
 
 export default defineConfig({
-  // base:'/icons-basic-edit/',
+  base:'/icons-basic-edit/',
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
