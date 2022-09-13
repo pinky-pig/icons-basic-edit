@@ -5,13 +5,23 @@ const props = useSvgPathStore()
 
 initMatrix(props)
 
-const transformType = [
-  { label:'origin', value:[ props.transformOrigin ] },
-  { label:'Scale', value:[ props.scaleX, props.scaleY ] },
-  { label:'Translate', value:[ props.translateX, props.translateY, ] },
-  { label:'Skew', value:[ props.skewX, props.skewY ] },
-  { label:'Rotate', value:[ props.rotate ] },
-]
+const transformType = reactive([
+  // { label:'origin', value:[ props.transformOrigin ] },
+  { label:'Scale', value:[
+    computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.scaleX } }),
+    computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.scaleY } })
+  ]},
+  { label:'Translate', value:[
+    computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateX } }),
+    computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateY } }),
+  ]},
+  // { label:'Skew', value:[
+  //   computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.skewX } }),
+  //   computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.skewY } }),
+  // ]},
+  // { label:'Rotate', value:[ props.rotate ] },
+])
+
 
 </script>
 
@@ -33,13 +43,13 @@ const transformType = [
           {{item.label}}
         </div>
 
-        <div v-for="it,idx in item.value" :key="it" style="border-radius: 10px;" class=" relative flex-1 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
-          <div class="input-label">{{ item.value.length === 1 ? '🍔' : ( idx === 0 ? 'x' : 'y') }}</div>
+        <div v-for="it,idx in item.value" style="border-radius: 10px;" class=" relative flex-1 h-full pl-8 pr-4 bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
+          <div class="input-label">{{ item.value.length === 1 ? ' ' : ( idx === 0 ? 'x' : 'y') }}</div>
           <input
             type="text"
             style="font-size:18px;outline: none;"
             class=" w-full h-full border-0 focus:ring-0 bg-[var(--input-bg-color)] text-[var(--input-text-color)]"
-            v-model="transformType[index]['value'][idx]"
+            v-model="transformType[index]['value'][idx].value"
             />
         </div>
       </div>
