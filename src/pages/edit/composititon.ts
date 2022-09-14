@@ -16,6 +16,7 @@ export const useComposition = (props: any, context?: any) => {
     controlPoints,
     draggedPoint,
     draggedEvt,
+    wasCanvasDragged,
   } = toRefs(props)
 
 
@@ -108,6 +109,7 @@ export const useComposition = (props: any, context?: any) => {
       draggedEvt.value = null;
     }else if (draggedEvt.value) {
       // 拖拽画布
+      wasCanvasDragged.value = true
       if (pinchToZoomValue !== null){
         const w = pinchToZoomValue.zoom * cfg.value.viewPortWidth;
         const h = pinchToZoomValue.zoom * cfg.value.viewPortHeight;
@@ -160,12 +162,16 @@ export const useComposition = (props: any, context?: any) => {
     rawPath.value = parsedPath.value.asString(4, false);
   }
   function stopDrag() {
+
+    if (!draggedPoint.value && !wasCanvasDragged.value) {
+      // 清除选中的高亮路径 -- 只有当前没有draggedPoint和画布没有被拖动
+      focusedItem.value = null;
+    }
     // 清除拖拽画布
     draggedEvt.value = null
     // 清除拖拽 dragPoint
     draggedPoint.value = null
-    // 清除选中的高亮路径
-    focusedItem.value = null
+
   }
 
   /** 缩放 */

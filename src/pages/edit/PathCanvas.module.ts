@@ -35,10 +35,11 @@ export function initSvgPath(props: any, context?: any){
 export function initEventListener(props: any, context?: any){
   onMounted(() => {
     const canvas = document.querySelector('#canvas')
-    let { draggedEvt } = toRefs(props)
+    let { draggedEvt,wasCanvasDragged } = toRefs(props)
     let { drag, stopDrag, setZoom } = useComposition(props)
     useEventListener(canvas, 'mousedown', (evt: MouseEvent) => {
       draggedEvt.value = evt
+      wasCanvasDragged.value = false
     })
     useEventListener(canvas, 'mouseup', (evt: MouseEvent) => {
       stopDrag()

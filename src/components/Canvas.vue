@@ -75,7 +75,7 @@
       :stroke-width="((props.hoveredItem == item.itemReference) ||  (props.focusedItem == item.itemReference) )? (8 * strokeWidth) : (2 * strokeWidth)"
       :stroke="props.hoveredItem == item.itemReference ? 'rgba(255,25,255,.3)' :  (props.focusedItem == item.itemReference) ? 'rgba(0, 174, 255,.3)' : 'currentColor'"
       fill="currentColor"
-      @mousedown=" e => startDrag(item,e)"
+      @mousedown.stop=" e => startDrag(item,e)"
       @mouseenter="startHover(item)"
       @mouseleave="stopHover()"
     />
@@ -90,7 +90,7 @@
       :stroke-width="((props.hoveredItem == item.itemReference) ||  (props.focusedItem == item.itemReference) )? (8 * strokeWidth) : (2 * strokeWidth)"
       :stroke="props.hoveredItem == item.itemReference ? 'rgba(255,25,255,.3)' :  (props.focusedItem == item.itemReference) ? 'rgba(0, 174, 255,.3)' : 'currentColor'"
       fill="currentColor"
-      @mousedown="e => startDrag(item,e)"
+      @mousedown.stop="e => startDrag(item,e)"
       @mouseenter="startHover(item)"
       @mouseleave="stopHover()"
     />
@@ -201,7 +201,6 @@ const parsedPath = computed(() => {
 // 将 dragPoint 传给父组件
 const emit = defineEmits(['update:draggedPoint','update:focusedItem','update:hoveredItem'])
 const startDrag = (item:SvgPoint,evt?:MouseEvent) => {
-
   // 鼠标左键
   if (evt?.buttons === 1) {
     emit('update:draggedPoint', item)

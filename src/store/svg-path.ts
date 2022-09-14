@@ -22,6 +22,7 @@ export const useSvgPathStore = defineStore({
       parsedPath: undefined,
       rawPath: kDefaultPath.value,
       draggedEvt: null,
+      wasCanvasDragged: false, // 画布是否被拖拽
 
 
       targetPoints: [],
