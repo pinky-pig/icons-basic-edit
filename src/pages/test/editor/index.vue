@@ -65,7 +65,7 @@
                 <input
                   type="text"
                   style="font-size:10px;outline: none;"
-                  class="w-full text-center bg-[var(--input-bg-color)] border-0 focus:ring-0"
+                  class="w-full text-center bg-[var(--input-bg-color)] border-0"
                   :value="value"
                   @input="v => updateCommandValue(v,item,idx)"
                   />

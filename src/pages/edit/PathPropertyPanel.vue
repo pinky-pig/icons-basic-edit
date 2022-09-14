@@ -8,8 +8,8 @@ initMatrix(props)
 const transformType = reactive([
   // { label:'origin', value:[ props.transformOrigin ] },
   { label:'Scale', value:[
-    computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.scaleX } }),
-    computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.scaleY } })
+    computed({ set(v){ props.scaleX = Number(v)}, get(){ return props.scaleX } }),
+    computed({ set(v){ props.scaleY = Number(v)}, get(){ return props.scaleY } })
   ]},
   { label:'Translate', value:[
     computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateX } }),
@@ -48,7 +48,7 @@ const transformType = reactive([
           <input
             type="text"
             style="font-size:18px;outline: none;"
-            class=" w-full h-full border-0 focus:ring-0 bg-[var(--input-bg-color)] text-[var(--input-text-color)]"
+            class=" w-full h-full border-0  bg-[var(--input-bg-color)] text-[var(--input-text-color)]"
             v-model="transformType[index]['value'][idx].value"
             />
         </div>

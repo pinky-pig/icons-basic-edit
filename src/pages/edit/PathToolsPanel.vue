@@ -22,7 +22,7 @@ let { setFocusedItemFromInput,deleteFn,canDelete,updateCommandValue,insert } =  
 
       <div>
         <textarea
-          class="w-full max-w-full min-w-full max-h-80 min-h-20 p-2 resize rounded-2xl bg-[var(--input-bg-color)] text-[var(--input-text-color)] outline-none"
+          class="w-full max-w-full min-w-full max-h-80 min-h-20 p-2 resize rounded-2xl bg-[var(--input-bg-color)] text-[var(--input-text-color)]"
           v-model="props.rawPath"
           name="" id="" cols="50" rows="8">
         </textarea>
@@ -49,7 +49,7 @@ let { setFocusedItemFromInput,deleteFn,canDelete,updateCommandValue,insert } =  
               <input
                 type="text"
                 style="font-size:10px;outline: none;"
-                class="w-full text-center border-0 focus:ring-0 bg-[var(--input-bg-color)] text-[var(--input-text-color)]"
+                class="w-full text-center border-0 bg-[var(--input-bg-color)] text-[var(--input-text-color)]"
                 :value="value"
                 @input="v => updateCommandValue(v,item,idx)"
                 />

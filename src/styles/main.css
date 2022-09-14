@@ -57,6 +57,21 @@ html.dark {
   display:none;
 }
 
+textarea{
+  outline: 2px dotted transparent;
+  outline-offset: -2px;
+  transition: outline 0.12s ease, outline-offset 0.12s ease;
+}
+
+textarea:focus{
+  outline: 2.5px dashed var(--primary-color) !important;
+  stroke-dashoffset: 12px;
+  outline-offset: 2px;
+  transition: outline 0.12s ease, outline-offset 0.12s ease;
+}
+textarea:active {
+  outline: 2px dotted transparent;
+}
 
 :root{
   --theme-filter: none;
