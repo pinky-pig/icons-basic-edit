@@ -71,10 +71,10 @@
       v-for="item in props.targetPoints"
       :cx="item.x"
       :cy="item.y"
-      :r="3 * strokeWidth"
-      :stroke-width="5 * strokeWidth"
-      stroke="currentColor"
-      fill="transparent"
+      :r="5 * strokeWidth"
+      :stroke-width="((props.hoveredItem == item.itemReference) ||  (props.focusedItem == item.itemReference) )? (8 * strokeWidth) : (2 * strokeWidth)"
+      :stroke="props.hoveredItem == item.itemReference ? 'rgba(255,25,255,.3)' :  (props.focusedItem == item.itemReference) ? 'rgba(0, 174, 255,.3)' : 'currentColor'"
+      fill="currentColor"
       @mousedown=" e => startDrag(item,e)"
       @mouseenter="startHover(item)"
       @mouseleave="stopHover()"
@@ -86,10 +86,10 @@
       v-for="item in props.controlPoints"
       :cx="item.x"
       :cy="item.y"
-      :r="3 * strokeWidth"
-      :stroke-width="5 * strokeWidth"
-      stroke="currentColor"
-      fill="transparent"
+      :r="5 * strokeWidth"
+      :stroke-width="((props.hoveredItem == item.itemReference) ||  (props.focusedItem == item.itemReference) )? (8 * strokeWidth) : (2 * strokeWidth)"
+      :stroke="props.hoveredItem == item.itemReference ? 'rgba(255,25,255,.3)' :  (props.focusedItem == item.itemReference) ? 'rgba(0, 174, 255,.3)' : 'currentColor'"
+      fill="currentColor"
       @mousedown="e => startDrag(item,e)"
       @mouseenter="startHover(item)"
       @mouseleave="stopHover()"
@@ -111,8 +111,7 @@
   </svg>
 </template>
 <script setup lang="ts">
-import { Svg, SvgControlPoint, SvgPoint } from '~/pages/editor/Svg';
-
+import { Svg, SvgControlPoint,SvgPoint } from '~/pages/edit/Svg';
 
 const props = defineProps({
   viewPortX: {
