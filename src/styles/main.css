@@ -73,6 +73,23 @@ textarea:active {
   outline: 2px dotted transparent;
 }
 
+button{
+  outline: 2px dotted transparent;
+  outline-offset: -2px;
+  transition: outline 0.12s ease, outline-offset 0.12s ease;
+}
+button:focus{
+  outline: 2.5px dashed var(--primary-color) !important;
+  stroke-dashoffset: 12px;
+  outline-offset: 2px;
+  transition: outline 0.12s ease, outline-offset 0.12s ease;
+  transform: scaleX(1.1) scaleY(1.1);
+}
+button:active {
+  outline: 2px dotted transparent;
+  transform: scaleX(1) scaleY(1);
+}
+
 :root{
   --theme-filter: none;
   --button-destructive-bg-color: #ffe3e3;

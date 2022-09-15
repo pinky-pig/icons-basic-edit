@@ -3,7 +3,7 @@
   <div
     class="z-99 w-screen h-screen p-8 flex flex-col gap-8 bg-[var(--main-background-image)]"
     >
-    <div class=" w-full h-4/5 rounded-3xl gap-8 flex flex-row justify-between">
+    <div class=" w-full h-2/3 rounded-3xl gap-8 flex flex-row justify-between">
       <div class="w-350px h-full rounded-3xl bg-[var(--tool-bg-color)] text-[var(--tool-text-color)]">
         <PathToolsPanel></PathToolsPanel>
       </div>
@@ -14,14 +14,14 @@
           ></PathCanvas>
       </div>
 
-      <div class="w-350px h-full rounded-3xl bg-[var(--tool-bg-color)] text-[var(--tool-text-color)]">
+      <div class="w-350px h-full rounded-3xl bg-[var(--tool-bg-color)] text-[var(--tool-text-color)] ">
         <PathPropertyPanel></PathPropertyPanel>
       </div>
 
     </div>
 
-    <div class=" w-full flex-1 rounded-3xl bg-[var(--animate-bg-color)]">
-
+    <div class=" w-full flex-1 rounded-3xl bg-[var(--animate-bg-color)] overflow-hidden">
+      <PathAnimatePanel></PathAnimatePanel>
     </div>
 
     <Footer class=" absolute left-[calc(50%-80px)] bottom-0"></Footer>
@@ -34,6 +34,7 @@
 import PathCanvas from "./PathCanvas.vue"
 import PathToolsPanel from "./PathToolsPanel.vue"
 import PathPropertyPanel from "./PathPropertyPanel.vue"
+import PathAnimatePanel from "./PathAnimatePanel.vue"
 
 </script>
 

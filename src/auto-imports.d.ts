@@ -221,6 +221,7 @@ declare global {
   const useStorage: typeof import('@vueuse/core')['useStorage']
   const useStorageAsync: typeof import('@vueuse/core')['useStorageAsync']
   const useStyleTag: typeof import('@vueuse/core')['useStyleTag']
+  const useSvgAnimate: typeof import('./store/svg-animate')['useSvgAnimate']
   const useSvgPathStore: typeof import('./store/svg-path')['useSvgPathStore']
   const useSvgStore: typeof import('./store/icons-property')['useSvgStore']
   const useSvgenerateStore: typeof import('./store/icon')['useSvgenerateStore']
@@ -493,6 +494,7 @@ declare module '@vue/runtime-core' {
     readonly useStorage: UnwrapRef<typeof import('@vueuse/core')['useStorage']>
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>
     readonly useStyleTag: UnwrapRef<typeof import('@vueuse/core')['useStyleTag']>
+    readonly useSvgAnimate: UnwrapRef<typeof import('./store/svg-animate')['useSvgAnimate']>
     readonly useSvgPathStore: UnwrapRef<typeof import('./store/svg-path')['useSvgPathStore']>
     readonly useSvgStore: UnwrapRef<typeof import('./store/icons-property')['useSvgStore']>
     readonly useSvgenerateStore: UnwrapRef<typeof import('./store/icon')['useSvgenerateStore']>
