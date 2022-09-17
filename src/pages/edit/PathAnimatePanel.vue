@@ -27,8 +27,6 @@
     </div>
     <!-- timeline -->
 
-
-
     <div class="w-full flex-1 px-5 min-h-100px">
       <div class="relative w-full h-full flex flex-row justify-center items-center  ">
 
@@ -40,22 +38,16 @@
         </div>
 
 
-
         <!-- 播放线 -->
         <div class="scrubber" ref="scrubber" ></div>
 
-        <!-- <svg width="50" height="300" viewbox="0 0 100 500">
-          <path fill="#2767ce" stroke="#2767ce" d="M 50 100 L 100 38 L 81 0 L 19 0 L 0 38 z"></path>
-          <rect fill="#2767ce" stroke="#2767ce" x="48" y="98" width="4" height="400"></rect>
-        </svg> -->
-
         <!-- 时间轴body -->
-        <div ref="timelineBody" class="relative w-full h-70% mt-40px rounded-xl flex flex-row justify-between" >
+        <div class="relative w-full h-70% mt-40px rounded-xl flex flex-row justify-between" >
 
           <!-- 当前轴线 -->
-          <!-- <div class="timelinePositions" >
+          <div class="timelinePositions" >
             <button class="pos" v-for="i in 101" :key="i"><b>{{i - 1}}</b></button>
-          </div> -->
+          </div>
 
           <!-- 背景 -->
           <div v-for="i in 21" :key="i">
@@ -81,50 +73,32 @@
 
 const store = useSvgAnimate()
 
+/**
+ * start paused stop(reset)
+ * scrubberAnimation 播放动画语句
+ * scrubberPositionLeft 帧线的left
+ * scrubberAnimationState 当前播放状态 running paused
+ */
+const scrubberPositionLeft = ref('0')
+const scrubberAnimationState = ref('')
+const scrubberAnimation = ref('')
 const startPlay = () => {
   store.isPlay = true
+  scrubberAnimation.value = 'scrubAnimation 5s linear infinite running'
+  scrubberAnimationState.value = 'running'
 }
 const pausePlay = () => {
   store.isPlay = false
+  scrubberAnimationState.value = 'paused'
 }
 const stopPlay = () => {
   if (store.isPlay) {
-    // 正在播放
+    // if 正在播放 $reSet
     store.isPlay = false
+    scrubberAnimation.value = ''
   }
 }
 
-const timelineBody = ref(null)
-
-const { elementX, elementY, isOutside } = useMouseInElement(timelineBody)
-
-watch(()=>[elementX.value,elementY.value],()=>{
-  if (!isOutside.value && isDraging) {
-    scrubberPositionLeft.value = elementX.value + 'px'
-  }
-})
-
-const scrubberPositionLeft = ref('0')
-let isDraging = false
-
-const startDragScrubber = () => {
-  isDraging = true
-}
-
-const stopDragScrubber = () => {
-  isDraging = false
-}
-
-const scrubber = ref(null)
-useEventListener(scrubber, 'mousedown', (evt: MouseEvent) => {
-  startDragScrubber()
-})
-useEventListener(timelineBody, 'mouseup', (evt: MouseEvent) => {
-  stopDragScrubber()
-})
-useEventListener(scrubber, 'mousemove', (evt: MouseEvent) => {
-  // drag(evt)
-})
 </script>
 
 <style lang="less" scoped>
@@ -140,6 +114,7 @@ useEventListener(scrubber, 'mousemove', (evt: MouseEvent) => {
       width: 2px;
       font-size: 0.6em;
       position: relative;
+      background: linear-gradient(360deg, currentColor, #00000000);
 
       b{
         position: absolute;
@@ -148,6 +123,7 @@ useEventListener(scrubber, 'mousemove', (evt: MouseEvent) => {
         left: 50%;
         bottom: -14px;
         margin-left: -10px;
+        top: 15px;
       }
 
       &:nth-child(even){
@@ -215,7 +191,6 @@ useEventListener(scrubber, 'mousemove', (evt: MouseEvent) => {
 
   }
 
-
   // 播放线
   .scrubber{
     width: 2px;
@@ -229,7 +204,8 @@ useEventListener(scrubber, 'mousemove', (evt: MouseEvent) => {
     margin-left: -2px;
     position: relative;
     cursor: pointer;
-    // animation: scrubAnimation 5s linear 1s infinite running;
+    animation: v-bind(scrubberAnimation);
+    animation-play-state: v-bind(scrubberAnimationState);
 
     outline: 2px dotted transparent;
     outline-offset: -2px;
@@ -253,6 +229,8 @@ useEventListener(scrubber, 'mousemove', (evt: MouseEvent) => {
     -webkit-clip-path: polygon(50% 100%, 100% 38%, 81% 0, 19% 0, 0% 38%);
     clip-path: polygon(50% 100%, 100% 38%, 81% 0, 19% 0, 0% 38%);
   }
+</style>
+<style>
   @keyframes scrubAnimation {
     0%{
       left: 0%;
