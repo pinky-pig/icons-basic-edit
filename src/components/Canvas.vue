@@ -45,6 +45,7 @@
       />
 
     <path
+      id="mainSvg"
       :stroke-width="strokeWidth"
       stroke="currentColor"
       fill="#ffffff90"

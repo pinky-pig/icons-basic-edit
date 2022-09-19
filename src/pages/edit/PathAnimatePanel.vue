@@ -71,6 +71,16 @@
 </template>
 <script setup lang="ts">
 
+// CSS animation:
+// animation-name -- 动画名字
+// animation-duration -- 持续时间
+// animation-timing-function -- 速度曲线（贝塞尔）： linear...
+// animation-delay -- 延迟时间
+// animation-iteration-count -- 播放次数 ：infinite...
+// animation-direction -- 动画方向 ： normal/reverse/alternate...
+// animation-fill-mode -- 动画不播放的时候，要应用到元素的样式 ：forwards(移动div从左到右，然后就停留在右)/backwards
+// animation-play-state -- 动画是否暂停 ： paused/running
+
 const store = useSvgAnimate()
 
 /**
@@ -99,6 +109,21 @@ const stopPlay = () => {
   }
 }
 
+
+const playGsap = () => {
+  const gsap = window.gsap
+  var tl = gsap.timeline({
+    repeat: -1,
+    yoyo: true,
+    repeatDelay: 0.3,
+    defaults: {
+      duration: 1
+    }
+  })
+  var circle = document.getElementById("mainSvg");
+  tl.to(circle, {morphSVG:"#star"}, "+=1")
+    .to(circle, {morphSVG: circle}, "+=1");
+}
 </script>
 
 <style lang="less" scoped>

@@ -4,7 +4,19 @@ export const useSvgAnimate = defineStore({
   id: 'svgAnimate',
   state: () => {
     return {
-      isPlay:false
+      isPlay:false,
+      gallery:[
+        {
+          key:0,
+          values: ''
+        }
+      ],
+      stepsData:[
+        {
+          key:0,
+          values:'',
+        }
+      ]
     }
   },
   getters: {

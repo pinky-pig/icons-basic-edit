@@ -6,7 +6,6 @@ const props = useSvgPathStore()
 initMatrix(props)
 
 const transformType = reactive([
-  // { label:'origin', value:[ props.transformOrigin ] },
   { label:'Scale', value:[
     computed({ set(v){ props.scaleX = Number(v)}, get(){ return props.scaleX } }),
     computed({ set(v){ props.scaleY = Number(v)}, get(){ return props.scaleY } })
@@ -15,11 +14,6 @@ const transformType = reactive([
     computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateX } }),
     computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateY } }),
   ]},
-  // { label:'Skew', value:[
-  //   computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.skewX } }),
-  //   computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.skewY } }),
-  // ]},
-  // { label:'Rotate', value:[ props.rotate ] },
 ])
 
 
@@ -33,7 +27,7 @@ const transformType = reactive([
     </div>
 
     <!-- command -->
-    <div class=" flex flex-col flex-auto overflow-auto gap-3">
+    <div class=" flex flex-col h-130px overflow-auto gap-3">
       <div class=" flex flex-row tracking-widest px-5 ">
         Transform
       </div>
@@ -54,6 +48,19 @@ const transformType = reactive([
         </div>
       </div>
 
+    </div>
+
+    <!-- gallery -->
+    <div class="w-full flex flex-col gap-3 px-5">
+
+      <button class="w-8 h-8">
+        <div class="w-8 h-8" i-carbon-screen> </div>
+      </button>
+
+<!--
+      <div class=" w-60px h-60px" v-for="item in 10">
+        <img src="https://unsplash.it/60/60" alt="">
+      </div> -->
     </div>
 
   </div>
