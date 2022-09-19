@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-import { initMatrix } from './PathPropertyPanel.module';
+import { initMatrix,initScreenshot } from './PathPropertyPanel.module';
 const props = useSvgPathStore()
 
 initMatrix(props)
@@ -53,7 +53,7 @@ const transformType = reactive([
     <!-- gallery -->
     <div class="w-full flex flex-col gap-3 px-5">
 
-      <button class="w-8 h-8">
+      <button class="w-8 h-8" @click="initScreenshot(props)">
         <div class="w-8 h-8" i-carbon-screen> </div>
       </button>
 

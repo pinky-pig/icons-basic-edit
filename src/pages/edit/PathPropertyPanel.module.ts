@@ -1,4 +1,5 @@
 import { useComposition } from "./composititon"
+import { StorageStore } from './storage.service'
 
 export function initMatrix(props: any, context?: any){
 
@@ -32,4 +33,12 @@ export function initMatrix(props: any, context?: any){
   return {
 
   }
+}
+
+const storage = new StorageStore()
+
+export function initScreenshot(props: any, context?: any){
+  let { rawPath,keyframeCursor } = toRefs(props)
+  storage.addPath(keyframeCursor.value, rawPath.value)
+  storage.setIsKeyframePathStatus(keyframeCursor.value, true)
 }

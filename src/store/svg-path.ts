@@ -41,6 +41,8 @@ export const useSvgPathStore = defineStore({
       history: [] as string[],
       historyCursor : -1,
       historyDisabled : false,
+      // 截屏关键帧的下标
+      keyframeCursor: 0,
 
       scaleX : 1,
       scaleY : 1,

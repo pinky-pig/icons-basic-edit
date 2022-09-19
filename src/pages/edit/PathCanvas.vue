@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { initCanvas,initSvgPath,initEventListener } from './PathCanvas.module'
+import { initCanvas,initSvgPath,initEventListener,initHistory } from './PathCanvas.module'
 import PathCanvasContextMenu from "./PathCanvasContextMenu.vue";
 
 const props = useSvgPathStore()
@@ -9,6 +9,9 @@ initCanvas(props)
 initSvgPath(props)
 // 监听拖拽
 initEventListener(props)
+// 监听编辑操作历史
+initHistory(props)
+
 
 // 监听画布面板尺寸
 const canvas = ref(null)

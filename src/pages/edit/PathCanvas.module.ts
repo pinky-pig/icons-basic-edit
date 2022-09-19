@@ -1,4 +1,7 @@
 import { useComposition } from './composititon'
+import { StorageStore } from './storage.service'
+
+const storage = new StorageStore()
 
 export function initCanvas(props: any, context?: any){
   let { cfg, canvasWidth, canvasHeight, } = toRefs(props)
@@ -49,7 +52,6 @@ export function initEventListener(props: any, context?: any){
       if (evt?.buttons === 1) {
         drag(evt)
       }
-
     })
     useEventListener(canvas, 'wheel', (evt: WheelEvent) => {
       evt.preventDefault()
@@ -57,5 +59,25 @@ export function initEventListener(props: any, context?: any){
     })
   })
 }
+
+export function initHistory(props: any, context?: any){
+  let { rawPath,history,historyCursor } = toRefs(props)
+  watch(() => rawPath.value, () => {
+    if ( rawPath.value !== history.value[historyCursor.value]) {
+      historyCursor.value ++;
+      history.value.splice(historyCursor.value, history.value.length - historyCursor.value, rawPath.value);
+      storage.addPath(null, rawPath.value);
+    }
+  },{
+    immediate:true
+  })
+}
+
+export function handleScreenshot(props: any, context?: any){
+  let { rawPath,keyframeCursor } = toRefs(props)
+  storage.addPath(keyframeCursor.value, rawPath.value)
+  storage.setIsKeyframePathStatus(keyframeCursor.value, true)
+}
+
 
 
