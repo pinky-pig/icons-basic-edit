@@ -16,6 +16,10 @@ const transformType = reactive([
   ]},
 ])
 
+const galleryList = computed(() => props.gallery)
+console.log(
+  'galleryList',galleryList
+);
 </script>
 
 <template>
@@ -57,8 +61,10 @@ const transformType = reactive([
       </button>
 
       <div class="flex flex-wrap w-full gap-3">
-        <div class=" w-60px h-60px bg-red-300" v-for="item in props.gallery">
-
+        <div class=" w-60px h-60px" v-for="item in galleryList">
+          <svg class=" w-full h-full" stroke="currentColor" fill="currentColor">
+            <path :d="item.path"></path>
+          </svg>
         </div>
       </div>
     </div>

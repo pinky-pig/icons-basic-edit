@@ -48,12 +48,7 @@ export const useSvgPathStore = defineStore({
       keyframeCursor: (storage.storedPaths.length - 2 ) || -1,
       storage: storage,
       // 关键帧数组
-      gallery: storage.storedPaths.map((i:StoredPath) => {
-        if (i.name === 'default')
-          return { key: '-1', values: kDefaultPath.value }
-        else
-          return i
-      }),
+      gallery: storage.storedPaths,
 
       scaleX : 1,
       scaleY : 1,
