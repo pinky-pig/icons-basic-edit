@@ -12,7 +12,6 @@ initEventListener(props)
 // 监听编辑操作历史
 initHistory(props)
 
-
 // 监听画布面板尺寸
 const canvas = ref(null)
 const { width, height } = useElementBounding(canvas)
@@ -60,6 +59,7 @@ const handleContextMenu = (e: MouseEvent) => {
 
     :targetPoints="props.targetPoints"
     :controlPoints="props.controlPoints"
+    :gallery="props.gallery"
     v-model:draggedPoint="props.draggedPoint"
     v-model:focusedItem="props.focusedItem"
     v-model:hoveredItem="props.hoveredItem"

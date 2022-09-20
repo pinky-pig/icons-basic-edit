@@ -17,9 +17,6 @@ const transformType = reactive([
 ])
 
 const galleryList = computed(() => props.gallery)
-console.log(
-  'galleryList',galleryList
-);
 </script>
 
 <template>

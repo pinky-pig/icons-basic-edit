@@ -109,9 +109,22 @@
         />
     </g>
 
+    <!-- 变形后的svg -->
+    <g v-for="item in props.gallery" v-show="false">
+      <path
+        :id="'galley_'+(item as StoredPath).name"
+        :stroke-width="strokeWidth"
+        stroke="currentColor"
+        fill="#ffffff90"
+        :d="(item as StoredPath).path"
+      />
+    </g>
+
+
   </svg>
 </template>
 <script setup lang="ts">
+import { StoredPath } from '~/pages/edit/storage.service';
 import { Svg, SvgControlPoint,SvgPoint } from '~/pages/edit/Svg';
 
 const props = defineProps({
@@ -173,6 +186,11 @@ const props = defineProps({
   hoveredItem: {
     type: Object || null,
     default: null
+  },
+
+  gallery: {
+    type: Array,
+    default: []
   },
 
 })
