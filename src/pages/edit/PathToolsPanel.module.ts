@@ -104,7 +104,6 @@ export function initCommand(props: any, context?: any){
     }
 
 
-
   }
 
   const setHistoryDisabled = (value: boolean) => {

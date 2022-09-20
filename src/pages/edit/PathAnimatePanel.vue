@@ -6,12 +6,12 @@
       <!-- 播放按钮 -->
       <div class="text-[var(--animate-text-color)] flex flex-row gap-4">
         <button class="rounded-full">
-          <div @click="startPlay" v-if="!store.isPlay" class=" w-8 h-8 cursor-pointer bg-green-400 animate-btn" i="carbon-play-outline" />
+          <div @click="startPlay" v-if="!props.isPlay" class=" w-8 h-8 cursor-pointer bg-green-400 animate-btn" i="carbon-play-outline" />
           <div @click="pausePlay" v-else class=" w-8 h-8 cursor-pointer bg-[#FDD352] animate-btn" i="carbon-pause-outline" />
         </button>
 
-        <button :disabled="!store.isPlay" class="animate-btn rounded-full">
-          <div @click="stopPlay" :class="!store.isPlay ? 'bg-[#E4E5EE30]' : 'bg-[#FF6168]'"  class=" w-8 h-8 cursor-pointer" i="carbon-stop-outline" />
+        <button :disabled="!props.isPlay" class="animate-btn rounded-full">
+          <div @click="stopPlay" :class="!props.isPlay ? 'bg-[#E4E5EE30]' : 'bg-[#FF6168]'"  class=" w-8 h-8 cursor-pointer" i="carbon-stop-outline" />
         </button>
       </div>
 
@@ -70,44 +70,21 @@
   </div>
 </template>
 <script setup lang="ts">
+import { initTimeline } from './PathAnimatePanel.module'
 
-// CSS animation:
-// animation-name -- 动画名字
-// animation-duration -- 持续时间
-// animation-timing-function -- 速度曲线（贝塞尔）： linear...
-// animation-delay -- 延迟时间
-// animation-iteration-count -- 播放次数 ：infinite...
-// animation-direction -- 动画方向 ： normal/reverse/alternate...
-// animation-fill-mode -- 动画不播放的时候，要应用到元素的样式 ：forwards(移动div从左到右，然后就停留在右)/backwards
-// animation-play-state -- 动画是否暂停 ： paused/running
-
-const store = useSvgAnimate()
-
-/**
- * start paused stop(reset)
- * scrubberAnimation 播放动画语句
- * scrubberPositionLeft 帧线的left
- * scrubberAnimationState 当前播放状态 running paused
- */
+const props = useSvgAnimate()
 const scrubberPositionLeft = ref('0')
 const scrubberAnimationState = ref('')
 const scrubberAnimation = ref('')
-const startPlay = () => {
-  store.isPlay = true
-  scrubberAnimation.value = 'scrubAnimation 5s linear infinite running'
-  scrubberAnimationState.value = 'running'
-}
-const pausePlay = () => {
-  store.isPlay = false
-  scrubberAnimationState.value = 'paused'
-}
-const stopPlay = () => {
-  if (store.isPlay) {
-    // if 正在播放 $reSet
-    store.isPlay = false
-    scrubberAnimation.value = ''
-  }
-}
+let {
+  startPlay,
+  pausePlay,
+  stopPlay,
+} = initTimeline(props,{
+  scrubberPositionLeft,
+  scrubberAnimationState,
+  scrubberAnimation,
+})
 
 
 const playGsap = () => {
@@ -121,9 +98,24 @@ const playGsap = () => {
     }
   })
   var circle = document.getElementById("mainSvg");
-  tl.to(circle, {morphSVG:"#star"}, "+=1")
+  tl.to(circle, {morphSVG:"#galley_0"}, "+=1")
+  tl.to(circle, {morphSVG:"#galley_1"}, "+=1")
+  tl.to(circle, {morphSVG:"#galley_2"}, "+=1")
+  tl.to(circle, {morphSVG:"#galley_3"}, "+=1")
     .to(circle, {morphSVG: circle}, "+=1");
 }
+
+
+// CSS animation:
+// animation-name -- 动画名字
+// animation-duration -- 持续时间
+// animation-timing-function -- 速度曲线（贝塞尔）： linear...
+// animation-delay -- 延迟时间
+// animation-iteration-count -- 播放次数 ：infinite...
+// animation-direction -- 动画方向 ： normal/reverse/alternate...
+// animation-fill-mode -- 动画不播放的时候，要应用到元素的样式 ：forwards(移动div从左到右，然后就停留在右)/backwards
+// animation-play-state -- 动画是否暂停 ： paused/running
+
 </script>
 
 <style lang="less" scoped>
