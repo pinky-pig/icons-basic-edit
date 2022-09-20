@@ -5,12 +5,6 @@ export const useSvgAnimate = defineStore({
   state: () => {
     return {
       isPlay:false,
-      gallery:[
-        {
-          key:0,
-          values: ''
-        }
-      ],
       stepsData:[
         {
           key:0,

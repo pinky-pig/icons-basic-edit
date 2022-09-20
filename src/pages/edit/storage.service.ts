@@ -3,7 +3,6 @@ export class StoredPath {
   path = '';
   creationDate: Date = new Date();
   changeDate: Date = new Date();
-  isKeyframePath: Boolean = false;
 }
 
 export class StorageStore{
@@ -16,7 +15,7 @@ export class StorageStore{
     return this.getPath(name) !== undefined;
   }
 
-  getPath(name: string | null = null): StoredPath | undefined {
+  getPath(name: string | null = 'default'): StoredPath | undefined {
     return this.storedPaths.find(it => it.name === name);
   }
 
@@ -52,13 +51,6 @@ export class StorageStore{
       });
       this.storedPaths = parsed;
     }
-  }
-
-  setIsKeyframePathStatus(name: string, status: boolean){
-    let path = this.getPath(name)
-    if (path)
-      path.isKeyframePath = status
-    this.save();
   }
 
   save() {

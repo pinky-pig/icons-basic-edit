@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { SvgItem } from '~/pages/edit/Svg'
-import { StorageStore } from '~/pages/edit/storage.service'
+import { StorageStore, StoredPath } from '~/pages/edit/storage.service'
 
 export const kDefaultPath = ref(
 //   `M 4 8 L 10 1 L 13 0 L 12 3 L 5 9 C 6 10 6 11 7 10 C 7 11 8 12 7 12 A 1.42 1.42 0 0 1 6 13 `
@@ -11,6 +11,8 @@ export const kDefaultPath = ref(
 export const useSvgPathStore = defineStore({
   id: 'svgPathStore',
   state: () => {
+
+    let storage = new StorageStore()
     return {
       canvasWidth: 100 as number,
       canvasHeight: 100 as number,
@@ -22,7 +24,7 @@ export const useSvgPathStore = defineStore({
       },
       strokeWidth: 0 as number,
       parsedPath: undefined,
-      rawPath: kDefaultPath.value,
+      rawPath: storage.getPath()?.path || kDefaultPath.value,
       draggedEvt: null,
       wasCanvasDragged: false, // 画布是否被拖拽
 
@@ -42,9 +44,16 @@ export const useSvgPathStore = defineStore({
       history: [] as string[],
       historyCursor : -1,
       historyDisabled : false,
-      // 截屏关键帧的下标
-      keyframeCursor: -1,
-      storage: new StorageStore(),
+      // 截屏关键帧的下标 因为数组中有个 default ，所有要-1 ，默认 keyframeCursor++ ，所有 -2
+      keyframeCursor: (storage.storedPaths.length - 2 ) || -1,
+      storage: storage,
+      // 关键帧数组
+      gallery: storage.storedPaths.map((i:StoredPath) => {
+        if (i.name === 'default')
+          return { key: '-1', values: kDefaultPath.value }
+        else
+          return i
+      }),
 
       scaleX : 1,
       scaleY : 1,

@@ -16,7 +16,6 @@ const transformType = reactive([
   ]},
 ])
 
-
 </script>
 
 <template>
@@ -57,10 +56,11 @@ const transformType = reactive([
         <div class="w-8 h-8" i-carbon-screen> </div>
       </button>
 
-<!--
-      <div class=" w-60px h-60px" v-for="item in 10">
-        <img src="https://unsplash.it/60/60" alt="">
-      </div> -->
+      <div class="flex flex-wrap w-full gap-3">
+        <div class=" w-60px h-60px bg-red-300" v-for="item in props.gallery">
+
+        </div>
+      </div>
     </div>
 
   </div>

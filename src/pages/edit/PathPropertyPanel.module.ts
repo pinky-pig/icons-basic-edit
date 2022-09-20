@@ -38,5 +38,4 @@ export function initScreenshot(props: any, context?: any){
   let { rawPath,keyframeCursor,storage } = toRefs(props)
   keyframeCursor.value ++;
   storage.value.addPath(keyframeCursor.value, rawPath.value)
-  storage.value.setIsKeyframePathStatus(keyframeCursor.value, true)
 }
