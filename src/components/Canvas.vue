@@ -110,13 +110,13 @@
     </g>
 
     <!-- 变形后的svg -->
-    <g v-for="item in props.gallery" v-show="false">
+    <g v-for="item in props.stepsData" v-show="false">
       <path
-        :id="'galley_'+(item as StoredPath).name"
+        :id="'galley_'+(item as stepsType).values.name"
         :stroke-width="strokeWidth"
         stroke="currentColor"
         fill="#ffffff90"
-        :d="(item as StoredPath).path"
+        :d="(item as stepsType).values.path"
       />
     </g>
 
@@ -126,6 +126,7 @@
 <script setup lang="ts">
 import { StoredPath } from '~/pages/edit/storage.service';
 import { Svg, SvgControlPoint,SvgPoint } from '~/pages/edit/Svg';
+import { stepsType } from '~/store/svg-animate';
 
 const props = defineProps({
   viewPortX: {
@@ -188,7 +189,7 @@ const props = defineProps({
     default: null
   },
 
-  gallery: {
+  stepsData: {
     type: Array,
     default: []
   },

@@ -50,11 +50,11 @@
           </div>
 
           <!-- Step Markers -->
-          <div class="timeline-marker" v-for="(item, index) in props.stepsData" :style="'left: ' + (item.key - 1) + '%'">
+          <div class="timeline-marker" v-for="(item, index) in props.stepsData" :style="'left: ' + (item.animate_key - 1) + '%'">
             <n-popover trigger="hover">
               <template #trigger>
                 <button>
-                  <b>{{item.key - 1}}</b>
+                  <b>{{item.animate_key - 1}}</b>
                 </button>
               </template>
               <svg class=" w-8 h-8" stroke="currentColor" fill="currentColor">
@@ -109,24 +109,6 @@ const {
   dragleave,
 } = useDragKeyframeToAnimate(props)
 
-
-const playGsap = () => {
-  const gsap = window.gsap
-  var tl = gsap.timeline({
-    repeat: -1,
-    yoyo: true,
-    repeatDelay: 0.3,
-    defaults: {
-      duration: 1
-    }
-  })
-  var circle = document.getElementById("mainSvg");
-  tl.to(circle, {morphSVG:"#galley_0"}, "+=1")
-  tl.to(circle, {morphSVG:"#galley_1"}, "+=1")
-  tl.to(circle, {morphSVG:"#galley_2"}, "+=1")
-  tl.to(circle, {morphSVG:"#galley_3"}, "+=1")
-    .to(circle, {morphSVG: circle}, "+=1");
-}
 
 
 // CSS animation:

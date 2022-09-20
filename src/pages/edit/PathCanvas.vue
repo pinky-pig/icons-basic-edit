@@ -42,6 +42,9 @@ const handleContextMenu = (e: MouseEvent) => {
 }
 
 
+const store = useSvgAnimate()
+
+
 </script>
 
 <template>
@@ -59,7 +62,7 @@ const handleContextMenu = (e: MouseEvent) => {
 
     :targetPoints="props.targetPoints"
     :controlPoints="props.controlPoints"
-    :gallery="props.gallery"
+    :stepsData="store.stepsData"
     v-model:draggedPoint="props.draggedPoint"
     v-model:focusedItem="props.focusedItem"
     v-model:hoveredItem="props.hoveredItem"

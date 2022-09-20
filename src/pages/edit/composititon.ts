@@ -230,7 +230,7 @@ export const useDragKeyframeToAnimate = (props: any, context?: any) => {
     // var pattern = /\s*;\s*/
     let number = event.target.className.match(/pos_(\S*)/)[1]
     stepsData.value.push({
-      key: number,
+      animate_key: number,
       values: data
     })
   }

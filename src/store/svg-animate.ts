@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { StoredPath } from '~/pages/edit/storage.service'
 
 export interface stepsType {
-  key: number,
+  animate_key: number,
   values: StoredPath
 }
 export const useSvgAnimate = defineStore({
