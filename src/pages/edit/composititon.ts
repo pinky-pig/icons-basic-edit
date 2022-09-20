@@ -2,6 +2,7 @@ import { MaybeElement, MaybeElementRef } from "@vueuse/core";
 import { browserComputePathBoundingBox } from "./PathCanvas.help";
 import { Point, Svg } from "./Svg";
 
+// svg 编辑的方法
 export const useComposition = (props: any, context?: any) => {
   let {
     cfg,
@@ -203,6 +204,42 @@ export const useComposition = (props: any, context?: any) => {
     stopDrag,
     setZoom,
     afterModelChange,
+  }
+}
+
+
+// 拖拽动画的方法
+export const useDragKeyframeToAnimate = (props: any, context?: any) => {
+  let { isDraggingKeyframe } = toRefs(props)
+
+
+
+  function dragStartKeyframe(event): void{
+    event.dataTransfer.setData("SvgData", event.target.innerHTML)
+    isDraggingKeyframe.value = true
+  }
+
+  const allowDrop = (event) => {
+    event.preventDefault()
+  }
+  const drop = (event) => {
+    event.preventDefault();
+    const data = event.dataTransfer.getData("SvgData")
+    isDraggingKeyframe.value = false
+  }
+  const dragenter = (event) => {
+    event.target.style.opacity = 1
+  }
+  const dragleave = (event) => {
+    event.target.style.opacity = 0
+  }
+
+  return {
+    dragStartKeyframe,
+    allowDrop,
+    drop,
+    dragenter,
+    dragleave,
   }
 }
 

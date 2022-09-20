@@ -33,7 +33,3 @@ export function initTimeline(props: any, context?: any) {
   }
 
 }
-
-export function dragKeyframeToTimelineBody(props: any, context?: any){
-
-}

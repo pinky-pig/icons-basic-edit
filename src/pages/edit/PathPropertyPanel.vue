@@ -1,28 +1,3 @@
-
-<script setup lang="ts">
-import { initMatrix,initScreenshot } from './PathPropertyPanel.module';
-const props = useSvgPathStore()
-
-initMatrix(props)
-
-const transformType = reactive([
-  { label:'Scale', value:[
-    computed({ set(v){ props.scaleX = Number(v)}, get(){ return props.scaleX } }),
-    computed({ set(v){ props.scaleY = Number(v)}, get(){ return props.scaleY } })
-  ]},
-  { label:'Translate', value:[
-    computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateX } }),
-    computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateY } }),
-  ]},
-])
-
-const galleryList = computed(() => props.gallery)
-
-const handleDragStart = (e) => {
-  console.log(e)
-}
-</script>
-
 <template>
   <div class="w-full h-full flex flex-col">
     <!-- All path data -->
@@ -62,8 +37,8 @@ const handleDragStart = (e) => {
       </button>
 
       <div class="w-full gap-3 grid grid-cols-4">
-        <div @dragstart="handleDragStart" class=" w-60px h-60px rounded-md bg-[var(--input-bg-color)] text-[var(--input-text-color)]" v-for="item in galleryList">
-          <svg draggable class=" w-full h-full" stroke="currentColor" fill="currentColor">
+        <div @dragstart="dragStartKeyframe" draggable="true" v-for="item in props.gallery" class=" w-60px h-60px rounded-md bg-[var(--input-bg-color)] text-[var(--input-text-color)]" >
+          <svg class=" w-full h-full" stroke="currentColor" fill="currentColor">
             <path :d="item.path"></path>
           </svg>
         </div>
@@ -73,6 +48,29 @@ const handleDragStart = (e) => {
 
   </div>
 </template>
+
+<script setup lang="ts">
+  import { initMatrix,initScreenshot } from './PathPropertyPanel.module';
+  import { useDragKeyframeToAnimate } from './composititon'
+  const props = useSvgPathStore()
+
+  initMatrix(props)
+
+  const transformType = reactive([
+    { label:'Scale', value:[
+      computed({ set(v){ props.scaleX = Number(v)}, get(){ return props.scaleX } }),
+      computed({ set(v){ props.scaleY = Number(v)}, get(){ return props.scaleY } })
+    ]},
+    { label:'Translate', value:[
+      computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateX } }),
+      computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateY } }),
+    ]},
+  ])
+
+  const store = useSvgAnimate()
+  const { dragStartKeyframe } = useDragKeyframeToAnimate(store)
+
+</script>
 <style>
 .input-label{
   color: var(--input-text-color);
@@ -83,4 +81,19 @@ const handleDragStart = (e) => {
   left: 10px;
   top: 5px;
 }
+#draggable {
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    background: white;
+  }
+
+  .dropzone {
+    width: 200px;
+    height: 20px;
+    background: blueviolet;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
 </style>

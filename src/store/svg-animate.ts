@@ -5,6 +5,7 @@ export const useSvgAnimate = defineStore({
   state: () => {
     return {
       isPlay:false,
+      isDraggingKeyframe:false,
       stepsData:[
         {
           key:0,

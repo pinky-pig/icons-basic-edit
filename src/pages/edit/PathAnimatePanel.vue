@@ -42,12 +42,22 @@
         <div class="scrubber" ref="scrubber" ></div>
 
         <!-- 时间轴body -->
-        <div class="relative w-full h-70% mt-40px rounded-xl flex flex-row justify-between" >
+        <div @drop="drop" @dragover="allowDrop" class="relative w-full h-70% mt-40px rounded-xl flex flex-row justify-between" >
 
-          <!-- 当前轴线 -->
-          <div class="timelinePositions" >
+          <!-- 100条线 -->
+          <div v-if="props.isDraggingKeyframe" @dragenter="dragenter" @dragleave="dragleave" class="timelinePositions" >
             <button class="pos" v-for="i in 101" :key="i"><b>{{i - 1}}</b></button>
           </div>
+
+          <!-- Step Markers -->
+          <button class="timeline-marker z-20" v-for="(value, key) in 5" >
+            <n-popover trigger="hover">
+              <template #trigger>
+                <b>{{key}}</b>
+              </template>
+              <span>或许不想知道你的花园长得咋样</span>
+            </n-popover>
+          </button>
 
           <!-- 背景 -->
           <div v-for="i in 21" :key="i">
@@ -71,12 +81,13 @@
 </template>
 <script setup lang="ts">
 import { initTimeline } from './PathAnimatePanel.module'
+import { useDragKeyframeToAnimate } from './composititon'
 
 const props = useSvgAnimate()
 const scrubberPositionLeft = ref('0')
 const scrubberAnimationState = ref('')
 const scrubberAnimation = ref('')
-let {
+const {
   startPlay,
   pausePlay,
   stopPlay,
@@ -85,6 +96,14 @@ let {
   scrubberAnimationState,
   scrubberAnimation,
 })
+
+// 初始化拖拽方法
+const {
+  allowDrop,
+  drop,
+  dragenter,
+  dragleave,
+} = useDragKeyframeToAnimate(props)
 
 
 const playGsap = () => {
@@ -158,8 +177,8 @@ const playGsap = () => {
     z-index: 101;
     width: 100%;
     height: 90%;
-    width: calc(100% - 22px);
-    margin: 0 11px 5px 11px;
+    width: calc(100% + 10px);
+    margin: 0 0px 5px -5px;
 
     .pos{
       margin: 0;
@@ -246,6 +265,54 @@ const playGsap = () => {
     -webkit-clip-path: polygon(50% 100%, 100% 38%, 81% 0, 19% 0, 0% 38%);
     clip-path: polygon(50% 100%, 100% 38%, 81% 0, 19% 0, 0% 38%);
   }
+
+
+  .timeline-marker{
+    width: 8px;
+    height: 60px;
+    background-color: green;
+    position: absolute;
+    top: 10px;
+    left: 10%;
+    border-radius: calc(10 / 3);
+    z-index: 50;
+    // box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    // transition: var(--transition);
+    padding: 0;
+    margin: 0 0 0 -4px;
+    // font-family: var(--sans);
+
+    b{
+      background-color: red;
+      margin-left: -7px;
+      width: 22px;
+      height: 22px;
+      border-radius: calc(10 / 2);
+      text-align: center;
+      color: white;
+      font-size: 0.7em;
+      line-height: 22px;
+      font-weight: 700;
+    }
+
+    &.active{
+      background-color: orange;
+      b{
+        background-color: lightblue;
+      }
+    }
+
+    &:hover{
+      height: 70px;
+      top: 5px;
+      cursor: pointer;
+    }
+  }
+
 </style>
 <style>
   @keyframes scrubAnimation {
