@@ -46,18 +46,22 @@
 
           <!-- 100条线 -->
           <div v-if="props.isDraggingKeyframe" @dragenter="dragenter" @dragleave="dragleave" class="timelinePositions" >
-            <button class="pos" v-for="i in 101" :key="i"><b>{{i - 1}}</b></button>
+            <button class="pos" :class="'pos_'+i" v-for="i in 101" :key="i"><b>{{i - 1}}</b></button>
           </div>
 
           <!-- Step Markers -->
-          <button class="timeline-marker z-20" v-for="(value, key) in 5" >
+          <div class="timeline-marker" v-for="(item, index) in props.stepsData" :style="'left: ' + (item.key - 1) + '%'">
             <n-popover trigger="hover">
               <template #trigger>
-                <b>{{key}}</b>
+                <button>
+                  <b>{{item.key - 1}}</b>
+                </button>
               </template>
-              <span>或许不想知道你的花园长得咋样</span>
+              <svg class=" w-8 h-8" stroke="currentColor" fill="currentColor">
+                <path :d="item.values.path"></path>
+              </svg>
             </n-popover>
-          </button>
+          </div>
 
           <!-- 背景 -->
           <div v-for="i in 21" :key="i">
@@ -269,7 +273,7 @@ const playGsap = () => {
 
   .timeline-marker{
     width: 8px;
-    height: 60px;
+    height: 72%;
     background-color: green;
     position: absolute;
     top: 10px;
@@ -307,8 +311,8 @@ const playGsap = () => {
     }
 
     &:hover{
-      height: 70px;
-      top: 5px;
+      // height: 90%;
+      // top: 5px;
       cursor: pointer;
     }
   }

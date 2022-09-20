@@ -1,22 +1,20 @@
 import { defineStore } from 'pinia'
+import { StoredPath } from '~/pages/edit/storage.service'
 
+export interface stepsType {
+  key: number,
+  values: StoredPath
+}
 export const useSvgAnimate = defineStore({
   id: 'svgAnimate',
   state: () => {
     return {
-      isPlay:false,
-      isDraggingKeyframe:false,
-      stepsData:[
-        {
-          key:0,
-          values:'',
-        }
-      ]
+      isPlay: false,
+      isDraggingKeyframe: false,
+      stepsData: [] as stepsType[],
     }
   },
-  getters: {
-
-  },
+  getters: { },
   actions: {
     /** 重置状态 */
     resetSvgStore() {

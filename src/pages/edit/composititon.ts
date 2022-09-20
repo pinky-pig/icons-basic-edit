@@ -210,12 +210,11 @@ export const useComposition = (props: any, context?: any) => {
 
 // 拖拽动画的方法
 export const useDragKeyframeToAnimate = (props: any, context?: any) => {
-  let { isDraggingKeyframe } = toRefs(props)
+  let { isDraggingKeyframe,stepsData } = toRefs(props)
 
 
-
-  function dragStartKeyframe(event): void{
-    event.dataTransfer.setData("SvgData", event.target.innerHTML)
+  function dragStartKeyframe(event,item): void{
+    event.dataTransfer.setData("SvgData", JSON.stringify(item))
     isDraggingKeyframe.value = true
   }
 
@@ -224,8 +223,16 @@ export const useDragKeyframeToAnimate = (props: any, context?: any) => {
   }
   const drop = (event) => {
     event.preventDefault();
-    const data = event.dataTransfer.getData("SvgData")
+    const data = JSON.parse(event.dataTransfer.getData("SvgData"))
     isDraggingKeyframe.value = false
+
+    // 匹配模式：匹配一个分号及紧接其前后所有可能出现的连续的不可见符号。
+    // var pattern = /\s*;\s*/
+    let number = event.target.className.match(/pos_(\S*)/)[1]
+    stepsData.value.push({
+      key: number,
+      values: data
+    })
   }
   const dragenter = (event) => {
     event.target.style.opacity = 1

@@ -37,7 +37,7 @@
       </button>
 
       <div class="w-full gap-3 grid grid-cols-4">
-        <div @dragstart="dragStartKeyframe" draggable="true" v-for="item in props.gallery" class=" w-60px h-60px rounded-md bg-[var(--input-bg-color)] text-[var(--input-text-color)]" >
+        <div @dragstart="v => dragStartKeyframe(v,item)" draggable="true" v-for="item in props.gallery" class=" w-60px h-60px rounded-md bg-[var(--input-bg-color)] text-[var(--input-text-color)]" >
           <svg class=" w-full h-full" stroke="currentColor" fill="currentColor">
             <path :d="item.path"></path>
           </svg>
