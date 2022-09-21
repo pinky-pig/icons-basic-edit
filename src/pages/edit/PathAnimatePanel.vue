@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full h-full">
+  <div class="flex flex-col w-full h-full text-[var(--animate-bg-text-color)]">
     <!-- top -->
     <div class="top w-full h-14 flex flex-row items-center justify-between px-4">
 
