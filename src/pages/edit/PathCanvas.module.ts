@@ -64,7 +64,7 @@ export function initHistory(props: any, context?: any){
     if ( rawPath.value !== history.value[historyCursor.value]) {
       historyCursor.value ++;
       history.value.splice(historyCursor.value, history.value.length - historyCursor.value, rawPath.value);
-      storage.value.addPath('default', rawPath.value);
+      storage.value.addPath('current', rawPath.value);
     }
   },{
     immediate:true

@@ -11,7 +11,26 @@ export const useSvgAnimate = defineStore({
     return {
       isPlay: false,
       isDraggingKeyframe: false,
-      stepsData: [] as stepsType[],
+      stepsData: [
+        // {
+        //   animate_key:0,
+        //   values:{
+        //     name:'0',
+        //     path: kDefaultPath.value,
+        //     creationDate: new Date(),
+        //     changeDate: new Date(),
+        //   }
+        // },
+        // {
+        //   animate_key:100,
+        //   values:{
+        //     name:'100',
+        //     path: kDefaultPath.value,
+        //     creationDate: new Date(),
+        //     changeDate: new Date(),
+        //   }
+        // }
+      ] as stepsType[],
     }
   },
   getters: { },
@@ -19,6 +38,12 @@ export const useSvgAnimate = defineStore({
     /** 重置状态 */
     resetSvgStore() {
       this.$reset()
+    },
+
+    /** 插入动画步骤数据 */
+    addStepsData(obj:stepsType){
+      this.stepsData.push(obj)
+      this.stepsData.sort((a,b) => a.animate_key - b.animate_key )
     },
   },
 })

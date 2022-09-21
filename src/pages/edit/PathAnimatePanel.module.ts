@@ -28,20 +28,29 @@ export function initTimeline(props: any, context?: any) {
     }
   }
 
-  const playGsap = () => {
-    const gsap = window.gsap
-    const tl = gsap.timeline({
-      repeat: -1,
-      yoyo: true,
-      repeatDelay: 0.3,
-      defaults: {
-        duration: 1
-      }
-    })
+  const gsap = window.gsap
+  const tl = gsap.timeline({
+    repeat: -1,
+    yoyo: false,
+    // repeatDelay: 0.3,
+    defaults: {
+      duration: 0
+    },
+    // onComplete:onComplete,
+    // onRepeat:onRepeat,
+  })
 
+  const playGsap = () => {
+    debugger
     const mainSvg = document.getElementById("mainSvg")
     stepsData.value?.forEach((i:stepsType) => {
-      tl.to(mainSvg, {morphSVG:`#galley_${i.values.name}`}, "+=1")
+      console.log(i.animate_key * 5 / 100);
+      tl.to(mainSvg, {
+        morphSVG:`#galley_${i.values.name}`,
+        duration: i.animate_key * 5 / 100, // 整个时间轴的动画是 5s
+        delay: 0,
+      },
+      "+=1")
     })
     tl.to(mainSvg, {morphSVG: mainSvg}, "+=1")
 

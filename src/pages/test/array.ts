@@ -18,4 +18,4 @@ const obj = Array.from(Array(100).keys(), (item,index)=>{return {url,idx:item}})
 })
 
 // 筛选数组
-let arr =  new Array(10).fill({url}).filter( (i:any) => i.url)
+let arr1 =  new Array(10).fill({url}).filter( (i:any) => i.url)

@@ -15,7 +15,7 @@ export class StorageStore{
     return this.getPath(name) !== undefined;
   }
 
-  getPath(name: string = 'default'): StoredPath | undefined {
+  getPath(name: string = 'current'): StoredPath | undefined {
     return this.storedPaths.find(it => it.name === name);
   }
 
@@ -24,7 +24,7 @@ export class StorageStore{
     this.save();
   }
 
-  addPath(name: string = 'default', path: string) {
+  addPath(name: string = 'current', path: string) {
     let p = this.getPath(name);
     if (!p) {
       p = new StoredPath();

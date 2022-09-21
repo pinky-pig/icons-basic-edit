@@ -211,6 +211,7 @@ export const useComposition = (props: any, context?: any) => {
 // 拖拽动画的方法
 export const useDragKeyframeToAnimate = (props: any, context?: any) => {
   let { isDraggingKeyframe,stepsData } = toRefs(props)
+  let { addStepsData } = props
 
 
   function dragStartKeyframe(event,item): void{
@@ -229,8 +230,8 @@ export const useDragKeyframeToAnimate = (props: any, context?: any) => {
     // 匹配模式：匹配一个分号及紧接其前后所有可能出现的连续的不可见符号。
     // var pattern = /\s*;\s*/
     let number = event.target.className.match(/pos_(\S*)/)[1]
-    stepsData.value.push({
-      animate_key: number,
+    props.addStepsData({
+      animate_key: Number(number),
       values: data
     })
   }

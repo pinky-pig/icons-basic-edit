@@ -46,15 +46,15 @@
 
           <!-- 100条线 -->
           <div v-if="props.isDraggingKeyframe" @dragenter="dragenter" @dragleave="dragleave" class="timelinePositions" >
-            <button class="pos" :class="'pos_'+i" v-for="i in 101" :key="i"><b>{{i - 1}}</b></button>
+            <button class="pos" :class="'pos_'+(i-1)" v-for="i in 101" :key="i"><b>{{i - 1}}</b></button>
           </div>
 
           <!-- Step Markers -->
-          <div class="timeline-marker" v-for="(item, index) in props.stepsData" :style="'left: ' + (item.animate_key - 1) + '%'">
+          <div class="timeline-marker" v-for="(item, index) in props.stepsData" :style="'left: ' + item.animate_key + '%'">
             <n-popover trigger="hover">
               <template #trigger>
                 <button>
-                  <b>{{item.animate_key - 1}}</b>
+                  <b>{{item.animate_key}}</b>
                 </button>
               </template>
               <svg class=" w-8 h-8" stroke="currentColor" fill="currentColor">
