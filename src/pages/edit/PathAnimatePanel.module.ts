@@ -21,14 +21,20 @@ export function initTimeline(props: any, context?: any) {
   const tl = gsap.timeline({
     repeat: -1,
     yoyo: false,
-    // repeatDelay: 0.3,
     defaults: {
       duration: 0
     },
+    // repeatDelay: 0.3,
     // onComplete:onComplete,
     // onRepeat:onRepeat,
   })
 
+  // 如果状态被改成 stop ， 停止动画
+  watch(() => isPlay.value,(v1) => {
+    if (v1 == 'stop') {
+      stopPlay()
+    }
+  })
 
   const startPlay = () => {
     scrubberAnimation.value = 'scrubAnimation 5s linear infinite running'
@@ -57,12 +63,10 @@ export function initTimeline(props: any, context?: any) {
     tl.paused(!tl.paused())
   }
   const stopPlay = () => {
-    if (isPlay.value === 'running') {
-      // if 正在播放 $reSet
-      isPlay.value = 'stop'
-      scrubberAnimation.value = ''
-      tl.progress(0).clear(true)
-    }
+    // if 正在播放 $reSet
+    isPlay.value = 'stop'
+    scrubberAnimation.value = ''
+    tl.progress(0).clear(true)
   }
 
 

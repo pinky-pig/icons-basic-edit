@@ -18,7 +18,7 @@
       <!-- 操作按钮 -->
 
       <div class="mr-10 text-[var(--animate-text-color)] flex flex-row gap-4">
-        <button class="rounded-full">
+        <button class="rounded-full" @click="props.resetSvgStore()">
           <div class=" w-6 h-6 cursor-pointer bg-[#E4E5EE] animate-btn" i="carbon-trash-can" />
         </button>
       </div>
@@ -53,7 +53,7 @@
           <div class="timeline-marker" v-for="(item, index) in props.stepsData" :style="'left: ' + item.animate_key + '%'">
             <n-popover trigger="hover">
               <template #trigger>
-                <button>
+                <button class="w-full h-full">
                   <b>{{item.animate_key}}</b>
                 </button>
               </template>
@@ -130,7 +130,7 @@ const {
   }
   // 时间条
   .timelineTicks{
-    @apply absolute w-full top-0 left-0 flex flex-row justify-between;
+    @apply absolute w-full top-0 left-0 flex flex-row justify-between select-none;
     .tick{
       height: 10px;
       width: 2px;

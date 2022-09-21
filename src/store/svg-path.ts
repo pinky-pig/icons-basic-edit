@@ -12,7 +12,8 @@ export const useSvgPathStore = defineStore({
   id: 'svgPathStore',
   state: () => {
 
-    let storage = new StorageStore()
+    const storage = new StorageStore()
+
     return {
       canvasWidth: 100 as number,
       canvasHeight: 100 as number,

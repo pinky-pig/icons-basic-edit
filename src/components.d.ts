@@ -7,6 +7,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Canvas: typeof import('./components/Canvas.vue')['default']
     Collapse: typeof import('./components/Collapse.vue')['default']
+    ContentDropMenu: typeof import('./components/ContentDropMenu.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
     CPopselect: typeof import('./components/CPopselect.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']

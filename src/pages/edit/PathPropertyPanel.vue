@@ -37,7 +37,7 @@
       </button>
 
       <div class="w-full gap-3 grid grid-cols-4">
-        <div @dragstart="v => dragStartKeyframe(v,item)" draggable="true" v-for="item in props.gallery" class=" w-60px h-60px rounded-md bg-[var(--input-bg-color)] text-[var(--input-text-color)]" >
+        <div @contextmenu="v => handleGalleryContextMenu(v,item)" @dragstart="v => dragStartKeyframe(v,item)" draggable="true" v-for="item in props.gallery" class=" w-60px h-60px rounded-md bg-[var(--input-bg-color)] text-[var(--input-text-color)]" >
           <svg class=" w-full h-full" stroke="currentColor" fill="currentColor">
             <path :d="item.path"></path>
           </svg>
@@ -46,29 +46,44 @@
       </div>
     </div>
 
+    <ContentDropMenu
+      :x="xRef"
+      :y="yRef"
+      v-model:showDropdownRef="showDropdownRef"
+      @d="handleDeleteGallery"
+      ></ContentDropMenu>
+
   </div>
 </template>
 
 <script setup lang="ts">
-  import { initMatrix,initScreenshot } from './PathPropertyPanel.module';
-  import { useDragKeyframeToAnimate } from './composititon'
-  const props = useSvgPathStore()
+import { initMatrix,initScreenshot,initContentDropMenu } from './PathPropertyPanel.module';
+import { useDragKeyframeToAnimate } from './composititon'
+const props = useSvgPathStore()
 
-  initMatrix(props)
+// 初始化变形命令
+initMatrix(props)
+const transformType = reactive([
+  { label:'Scale', value:[
+    computed({ set(v){ props.scaleX = Number(v)}, get(){ return props.scaleX } }),
+    computed({ set(v){ props.scaleY = Number(v)}, get(){ return props.scaleY } })
+  ]},
+  { label:'Translate', value:[
+    computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateX } }),
+    computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateY } }),
+  ]},
+])
 
-  const transformType = reactive([
-    { label:'Scale', value:[
-      computed({ set(v){ props.scaleX = Number(v)}, get(){ return props.scaleX } }),
-      computed({ set(v){ props.scaleY = Number(v)}, get(){ return props.scaleY } })
-    ]},
-    { label:'Translate', value:[
-      computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateX } }),
-      computed({ set(v){ props.scaleX = Number(v) }, get(){ return props.translateY } }),
-    ]},
-  ])
+// 初始化拖拽
+const store = useSvgAnimate()
+const { dragStartKeyframe } = useDragKeyframeToAnimate(store)
 
-  const store = useSvgAnimate()
-  const { dragStartKeyframe } = useDragKeyframeToAnimate(store)
+// 初始化右键菜单删除
+const showDropdownRef = ref(false)
+const xRef = ref(0)
+const yRef = ref(0)
+let { handleGalleryContextMenu,handleDeleteGallery } = initContentDropMenu(props,{showDropdownRef,xRef,yRef})
+
 
 </script>
 <style>
