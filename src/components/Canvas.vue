@@ -46,6 +46,7 @@
 
     <path
       id="mainSvg"
+      v-show="!isPlay"
       :stroke-width="strokeWidth"
       stroke="currentColor"
       fill="#ffffff90"
@@ -109,6 +110,17 @@
         />
     </g>
 
+    <!-- 原始的svg -->
+    <g v-show="isPlay">
+      <path
+        id="galley_default"
+        :stroke-width="strokeWidth"
+        stroke="currentColor"
+        fill="#ffffff90"
+        :d="kDefaultPath"
+      />
+    </g>
+
     <!-- 变形后的svg -->
     <g v-for="item in props.stepsData" v-show="false">
       <path
@@ -119,6 +131,8 @@
         :d="(item as stepsType).values.path"
       />
     </g>
+
+
 
 
   </svg>
@@ -192,6 +206,10 @@ const props = defineProps({
   stepsData: {
     type: Array,
     default: []
+  },
+  isPlay: {
+    type: Boolean,
+    default: false
   },
 
 })

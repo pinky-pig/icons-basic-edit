@@ -9,25 +9,8 @@ export function initTimeline(props: any, context?: any) {
     scrubberAnimation,
   } = toRefs(context)
 
-  const startPlay = () => {
-    isPlay.value = true
-    scrubberAnimation.value = 'scrubAnimation 5s linear infinite running'
-    scrubberAnimationState.value = 'running'
 
-    playGsap()
-  }
-  const pausePlay = () => {
-    isPlay.value = false
-    scrubberAnimationState.value = 'paused'
-  }
-  const stopPlay = () => {
-    if (isPlay.value) {
-      // if 正在播放 $reSet
-      isPlay.value = false
-      scrubberAnimation.value = ''
-    }
-  }
-
+  // https://greensock.com/docs/v3/GSAP/Timeline
   const gsap = window.gsap
   const tl = gsap.timeline({
     repeat: -1,
@@ -40,25 +23,40 @@ export function initTimeline(props: any, context?: any) {
     // onRepeat:onRepeat,
   })
 
-  const playGsap = () => {
-    debugger
-    const mainSvg = document.getElementById("mainSvg")
-    stepsData.value?.forEach((i:stepsType) => {
-      console.log(i.animate_key * 5 / 100);
-      tl.to(mainSvg, {
-        morphSVG:`#galley_${i.values.name}`,
-        duration: i.animate_key * 5 / 100, // 整个时间轴的动画是 5s
-        delay: 0,
-      },
-      "+=1")
-    })
-    tl.to(mainSvg, {morphSVG: mainSvg}, "+=1")
 
-    // tl.to(mainSvg, {morphSVG:"#galley_0"}, "+=1")
-    // tl.to(mainSvg, {morphSVG:"#galley_1"}, "+=1")
-    // tl.to(mainSvg, {morphSVG:"#galley_2"}, "+=1")
-    // tl.to(mainSvg, {morphSVG:"#galley_3"}, "+=1")
-    // tl.to(mainSvg, {morphSVG: mainSvg}, "+=1")
+  const startPlay = () => {
+    isPlay.value = true
+    scrubberAnimation.value = 'scrubAnimation 5s linear infinite running'
+    scrubberAnimationState.value = 'running'
+
+    playGsapAnimation()
+  }
+  const pausePlay = () => {
+    isPlay.value = false
+    scrubberAnimationState.value = 'paused'
+    tl.pause()
+  }
+  const stopPlay = () => {
+    if (isPlay.value) {
+      // if 正在播放 $reSet
+      isPlay.value = false
+      scrubberAnimation.value = ''
+      tl.progress(0).clear(true)
+    }
+  }
+
+  const playGsapAnimation = () => {
+    const galley_default = document.getElementById("galley_default")
+    // reset tl
+    tl.progress(0).clear(true)
+    stepsData.value?.forEach((i:stepsType,idx:number) => {
+      console.log((i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 5 / 100);
+      tl.to(galley_default, {
+        morphSVG:`#galley_${i.values.name}`,
+        duration: (i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 5 / 100, // 整个时间轴的动画是 5s ，间隔两两相减
+        delay: 0,
+      })
+    })
   }
 
   return {

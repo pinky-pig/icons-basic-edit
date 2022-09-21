@@ -62,6 +62,7 @@ const store = useSvgAnimate()
 
     :targetPoints="props.targetPoints"
     :controlPoints="props.controlPoints"
+    :isPlay="store.isPlay"
     :stepsData="store.stepsData"
     v-model:draggedPoint="props.draggedPoint"
     v-model:focusedItem="props.focusedItem"

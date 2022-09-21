@@ -12,24 +12,24 @@ export const useSvgAnimate = defineStore({
       isPlay: false,
       isDraggingKeyframe: false,
       stepsData: [
-        // {
-        //   animate_key:0,
-        //   values:{
-        //     name:'0',
-        //     path: kDefaultPath.value,
-        //     creationDate: new Date(),
-        //     changeDate: new Date(),
-        //   }
-        // },
-        // {
-        //   animate_key:100,
-        //   values:{
-        //     name:'100',
-        //     path: kDefaultPath.value,
-        //     creationDate: new Date(),
-        //     changeDate: new Date(),
-        //   }
-        // }
+        {
+          animate_key:0,
+          values:{
+            name:'default',
+            path: kDefaultPath.value,
+            creationDate: new Date(),
+            changeDate: new Date(),
+          }
+        },
+        {
+          animate_key:100,
+          values:{
+            name:'default',
+            path: kDefaultPath.value,
+            creationDate: new Date(),
+            changeDate: new Date(),
+          }
+        }
       ] as stepsType[],
     }
   },
