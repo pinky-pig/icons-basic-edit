@@ -42,6 +42,23 @@ export function initTimeline(props: any, context?: any) {
     scrubberAnimation.value = 'scrubAnimation 5s linear infinite running'
     scrubberAnimationState.value = 'running'
 
+    // playGSAP()
+    playAnime()
+  }
+
+  const pausePlay = () => {
+    isPlay.value = 'paused'
+    scrubberAnimationState.value = 'paused'
+    tl.paused(!tl.paused())
+  }
+  const stopPlay = () => {
+    // if 正在播放 $reSet
+    isPlay.value = 'stop'
+    scrubberAnimation.value = ''
+    tl.progress(0).clear(true)
+  }
+
+  const playGSAP = () => {
     const galley_default = document.getElementById("galley_default")
     if (isPlay.value === 'paused') {
       tl.paused(!tl.paused())
@@ -58,18 +75,65 @@ export function initTimeline(props: any, context?: any) {
     isPlay.value = 'running'
   }
 
-  const pausePlay = () => {
-    isPlay.value = 'paused'
-    scrubberAnimationState.value = 'paused'
-    tl.paused(!tl.paused())
-  }
-  const stopPlay = () => {
-    // if 正在播放 $reSet
-    isPlay.value = 'stop'
-    scrubberAnimation.value = ''
-    tl.progress(0).clear(true)
-  }
 
+  const playAnime = () => {
+    isPlay.value = 'running'
+
+    let pathsSetup = stepsData.value.map((i:stepsType,idx:number) => {
+      return {
+        path: i.values.path,
+        duration: (i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 5 / 100,
+      }
+    })
+
+
+    const anime = window.anime
+    var timeline = anime.timeline({
+      autoplay: true,
+      direction: "alternate",
+      loop: true
+    });
+
+
+    if (isPlay.value === 'paused') {
+      // tl.paused(!tl.paused())
+    }else if(isPlay.value === 'stop'){
+      stepsData.value?.forEach((i:stepsType,idx:number) => {
+        timeline.add({
+          targets: "#galley_default",
+          d: {
+            value: [
+              stepsData.value[1].values.path
+            ],
+            duration: 1500,
+            easing: "easeInOutQuad"
+          },
+          offset: 0
+        })
+
+      })
+    }
+    isPlay.value = 'running'
+
+
+
+    timeline
+      .add({
+        targets: "#galley_default",
+        d: {
+          value: [
+            stepsData.value[1].values.path
+          ],
+          duration: 1500,
+          easing: "easeInOutQuad"
+        },
+        offset: 0
+      })
+
+
+
+
+  }
 
   return {
     scrubberPositionLeft,

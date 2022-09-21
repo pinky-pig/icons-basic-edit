@@ -1,6 +1,7 @@
 interface Window {
   gsap:any,
   DrawSVGPlugin:any,
+  anime:any,
 }
 
 /** 通用类型 */
