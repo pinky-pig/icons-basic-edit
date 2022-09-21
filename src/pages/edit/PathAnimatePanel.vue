@@ -6,12 +6,12 @@
       <!-- 播放按钮 -->
       <div class="text-[var(--animate-text-color)] flex flex-row gap-4">
         <button class="rounded-full">
-          <div @click="startPlay" v-if="!props.isPlay" class=" w-8 h-8 cursor-pointer bg-green-400 animate-btn" i="carbon-play-outline" />
+          <div @click="startPlay" v-if="props.isPlay !== 'running'" class=" w-8 h-8 cursor-pointer bg-green-400 animate-btn" i="carbon-play-outline" />
           <div @click="pausePlay" v-else class=" w-8 h-8 cursor-pointer bg-[#FDD352] animate-btn" i="carbon-pause-outline" />
         </button>
 
-        <button :disabled="!props.isPlay" class="animate-btn rounded-full">
-          <div @click="stopPlay" :class="!props.isPlay ? 'bg-[#E4E5EE30]' : 'bg-[#FF6168]'"  class=" w-8 h-8 cursor-pointer" i="carbon-stop-outline" />
+        <button :disabled="props.isPlay === 'stop'" class="animate-btn rounded-full">
+          <div @click="stopPlay" :class="props.isPlay === 'stop' ? 'bg-[#E4E5EE30]' : 'bg-[#FF6168]'"  class=" w-8 h-8 cursor-pointer" i="carbon-stop-outline" />
         </button>
       </div>
 

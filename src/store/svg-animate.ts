@@ -9,7 +9,7 @@ export const useSvgAnimate = defineStore({
   id: 'svgAnimate',
   state: () => {
     return {
-      isPlay: false,
+      isPlay: 'stop', // running paused stop
       isDraggingKeyframe: false,
       stepsData: [
         {

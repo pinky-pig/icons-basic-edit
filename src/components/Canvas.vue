@@ -46,7 +46,7 @@
 
     <path
       id="mainSvg"
-      v-show="!isPlay"
+      v-show="isPlay === 'stop'"
       :stroke-width="strokeWidth"
       stroke="currentColor"
       fill="#ffffff90"
@@ -68,6 +68,7 @@
     />
 
     <circle
+      v-show="isPlay === 'stop'"
       class="target cursor-pointer "
       :style="{color: props.hoveredItem == item.itemReference ? 'rgb(255, 25, 255)' :  (props.focusedItem == item.itemReference) ? 'rgb(0, 174, 255)' :''}"
       v-for="item in props.targetPoints"
@@ -83,6 +84,7 @@
     />
 
     <circle
+      v-show="isPlay === 'stop'"
       class="control cursor-pointer "
       :style="{color: props.hoveredItem == item.itemReference ? 'rgb(255, 25, 255)' :  (props.focusedItem == item.itemReference) ? 'rgb(0, 174, 255)' :''}"
       v-for="item in props.controlPoints"
@@ -111,7 +113,7 @@
     </g>
 
     <!-- 原始的svg -->
-    <g v-show="isPlay">
+    <g v-show="isPlay !== 'stop'">
       <path
         id="galley_default"
         :stroke-width="strokeWidth"
@@ -131,9 +133,6 @@
         :d="(item as stepsType).values.path"
       />
     </g>
-
-
-
 
   </svg>
 </template>
@@ -208,8 +207,8 @@ const props = defineProps({
     default: []
   },
   isPlay: {
-    type: Boolean,
-    default: false
+    type: String,
+    default: 'stop'
   },
 
 })
