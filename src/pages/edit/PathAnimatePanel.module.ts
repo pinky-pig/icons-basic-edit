@@ -1,4 +1,6 @@
+import { Ref } from "vue"
 import { stepsType } from "~/store/svg-animate"
+import { StoredPath } from "./storage.service"
 // GSAP Timeline: https://greensock.com/docs/v3/GSAP/Timeline
 
 // isPlay 默认情况下是 stop , 点击播放是 running ， 暂停是 paused
@@ -46,7 +48,6 @@ export function initTimeline(props: any, context?: any) {
     }else if(isPlay.value === 'stop'){
       tl.progress(0).clear(true)
       stepsData.value?.forEach((i:stepsType,idx:number) => {
-        console.log((i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 5 / 100);
         tl.to(galley_default, {
           morphSVG:`#galley_${i.values.name}`,
           duration: (i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 5 / 100, // 整个时间轴的动画是 5s ，间隔两两相减
@@ -79,4 +80,34 @@ export function initTimeline(props: any, context?: any) {
     stopPlay,
   }
 
+}
+
+
+export function initMarkerContentDropMenu(props: any, context?: any){
+  let { stepsData } = toRefs(props)
+  let { showDropdownRef , xRef , yRef } = toRefs(context)
+  const current:Ref<stepsType | null> = ref(null)
+
+  const handleMarkerContextMenu = (e: MouseEvent,item :stepsType) => {
+    e.preventDefault()
+    showDropdownRef.value = false
+    nextTick().then(() => {
+      showDropdownRef.value = true
+      xRef.value = e.clientX
+      yRef.value = e.clientY
+      current.value = item
+    })
+  }
+
+  const handleDeleteGallery = () => {
+    if (current.value){
+      stepsData.value = stepsData.value.filter(it => it.animate_key !== (current.value as stepsType).animate_key)
+      showDropdownRef.value = false
+    }
+  }
+
+  return {
+    handleMarkerContextMenu,
+    handleDeleteGallery
+  }
 }

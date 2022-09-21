@@ -16,17 +16,14 @@
       </div>
 
       <!-- 操作按钮 -->
-
       <div class="mr-10 text-[var(--animate-text-color)] flex flex-row gap-4">
         <button class="rounded-full" @click="props.resetSvgStore()">
           <div class=" w-6 h-6 cursor-pointer bg-[#E4E5EE] animate-btn" i="carbon-trash-can" />
         </button>
       </div>
-
-
     </div>
-    <!-- timeline -->
 
+    <!-- timeline body-->
     <div class="w-full flex-1 px-5 min-h-100px">
       <div class="relative w-full h-full flex flex-row justify-center items-center  ">
 
@@ -36,7 +33,6 @@
             <b>{{(i*5) - 5}}%</b>
           </div>
         </div>
-
 
         <!-- 播放线 -->
         <div class="scrubber" ref="scrubber" ></div>
@@ -53,7 +49,7 @@
           <div class="timeline-marker" v-for="(item, index) in props.stepsData" :style="'left: ' + item.animate_key + '%'">
             <n-popover trigger="hover">
               <template #trigger>
-                <button class="w-full h-full">
+                <button class="w-full h-full" @contextmenu="v => handleMarkerContextMenu(v,item)">
                   <b>{{item.animate_key}}</b>
                 </button>
               </template>
@@ -75,6 +71,13 @@
             </svg>
           </div>
 
+          <!-- 右键删除 -->
+          <ContentDropMenu
+            :x="xRef"
+            :y="yRef"
+            v-model:showDropdownRef="showDropdownRef"
+            @d="handleDeleteGallery"
+            ></ContentDropMenu>
 
         </div>
       </div>
@@ -84,7 +87,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { initTimeline } from './PathAnimatePanel.module'
+import { initTimeline,initMarkerContentDropMenu } from './PathAnimatePanel.module'
 import { useDragKeyframeToAnimate } from './composititon'
 
 const props = useSvgAnimate()
@@ -108,6 +111,12 @@ const {
   dragenter,
   dragleave,
 } = useDragKeyframeToAnimate(props)
+
+// 初始化删除 marker
+const showDropdownRef = ref(false)
+const xRef = ref(0)
+const yRef = ref(0)
+let { handleMarkerContextMenu,handleDeleteGallery } = initMarkerContentDropMenu(props,{showDropdownRef,xRef,yRef})
 
 
 
