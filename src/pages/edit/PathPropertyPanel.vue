@@ -38,7 +38,12 @@
 
       <div class="w-full gap-3 grid grid-cols-4">
         <div @contextmenu="v => handleGalleryContextMenu(v,item)" @dragstart="v => dragStartKeyframe(v,item)" draggable="true" v-for="item in props.gallery" class=" w-60px h-60px rounded-md bg-[var(--input-bg-color)] text-[var(--input-text-color)]" >
-          <svg class=" w-full h-full" stroke="currentColor" fill="currentColor">
+          <svg
+            :viewBox="updateKeySvgViewBox(item.path)"
+            class=" w-full h-full"
+            stroke="currentColor"
+            fill="currentColor"
+            >
             <path :d="item.path"></path>
           </svg>
         </div>
@@ -59,6 +64,7 @@
 <script setup lang="ts">
 import { initMatrix,initScreenshot,initContentDropMenu } from './PathPropertyPanel.module';
 import { useDragKeyframeToAnimate } from './composititon'
+import { browserComputePathBoundingBox } from './PathCanvas.help';
 const props = useSvgPathStore()
 
 // 初始化变形命令
@@ -84,7 +90,28 @@ const xRef = ref(0)
 const yRef = ref(0)
 let { handleGalleryContextMenu,handleDeleteGallery } = initContentDropMenu(props,{showDropdownRef,xRef,yRef})
 
-
+const updateKeySvgViewBox = (path:string) => {
+  debugger
+  // 1.计算 svg 包含所有元素后的坐标
+  const bbox = browserComputePathBoundingBox(path);
+  let w = bbox.width + 2;
+  let h = bbox.height + 2;
+  // 2.放置 svg container 的高宽比
+  const k = 60 / 60 // height / width
+  // 3. 比较 container 的高宽比 和 svg 的高宽比，确定以那种比例放大
+  if (k < h / w) {
+    // 说明容器的高宽比例 < svg 的高宽比。形象的说明是: 容器是矮胖的， svg 是高瘦的。
+    // 将高瘦的放进矮胖的，要想显示完全，那么就要以 高 等比例缩放。
+    const c = 60 / h
+    h = h * c
+    w = w * c
+  }else{
+    const c = 60 / w
+    w = w * c
+    h = h * c
+  }
+  return `${bbox.x - 1} ${bbox.y - 1} ${w} ${h}`
+}
 </script>
 <style>
 .input-label{

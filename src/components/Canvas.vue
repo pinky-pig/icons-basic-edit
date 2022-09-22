@@ -139,7 +139,6 @@
   </svg>
 </template>
 <script setup lang="ts">
-import { StoredPath } from '~/pages/edit/storage.service';
 import { Svg, SvgControlPoint,SvgPoint } from '~/pages/edit/Svg';
 import { stepsType } from '~/store/svg-animate';
 
