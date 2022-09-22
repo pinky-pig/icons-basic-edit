@@ -54,6 +54,7 @@
     />
 
     <path
+      v-show="isPlay === 'stop'"
       stroke="rgb(0, 174, 255)"
       fill="none"
       :d="focusedItemPath"
@@ -61,6 +62,7 @@
     />
 
     <path
+      v-show="isPlay === 'stop'"
       stroke="rgb(255, 25, 255)"
       fill="none"
       :d="hoveredItemPath"
