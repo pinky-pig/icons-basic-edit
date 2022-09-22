@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" href="/icons-basic-edit/pwa-192x192.png">
+  <link rel="mask-icon" href="/icons-basic-edit/safari-pinned-tab.svg" color="#00aba9">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <script>
+    (function () {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      const setting = localStorage.getItem('vueuse-color-scheme') || 'auto'
+      if (setting === 'dark' || (prefersDark && setting !== 'light'))
+        document.documentElement.classList.toggle('dark', true)
+    })()
+  </script>
+
+  <!-- Anime -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script> -->
+
+  <script type="module" crossorigin src="/icons-basic-edit/assets/index.12dd4ed4.js"></script>
+  <link rel="stylesheet" href="/icons-basic-edit/assets/index.3e9b5174.css">
+<link rel="manifest" href="/icons-basic-edit/manifest.webmanifest"></head>
+<body class="font-sans">
+  <div id="app"></div>
+  
+</body>
+</html>
