@@ -49,9 +49,9 @@
           <div class="timeline-marker" v-for="(item, index) in props.stepsData" :style="'left: ' + item.animate_key + '%'">
             <n-popover trigger="hover">
               <template #trigger>
-                <button class="w-full h-full" @contextmenu="v => handleMarkerContextMenu(v,item)">
-                  <b>{{item.animate_key}}</b>
-                </button>
+                <div class="w-full h-full" @contextmenu="v => handleMarkerContextMenu(v,item)">
+                  <span>{{item.animate_key}}</span>
+                </div>
               </template>
               <svg class=" w-8 h-8" stroke="currentColor" fill="currentColor">
                 <path :d="item.values.path"></path>
@@ -264,34 +264,33 @@ let { handleMarkerContextMenu,handleDeleteGallery } = initMarkerContentDropMenu(
 
   .timeline-marker{
     width: 8px;
-    height: 72%;
-    background-color: green;
+    height: 93%;
+    border-radius: 10px;
+    background-color: var(--animate-marker-bg-color);
     position: absolute;
-    top: 10px;
     left: 10%;
     border-radius: calc(10 / 3);
     z-index: 50;
-    // box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    // transition: var(--transition);
     padding: 0;
-    margin: 0 0 0 -4px;
-    // font-family: var(--sans);
+    margin: 0 0 0 -5px;
 
-    b{
-      background-color: red;
-      margin-left: -7px;
-      width: 22px;
+    span{
+      background-color: var(--animate-marker-text-bg-color);
+      width: 24px;
       height: 22px;
-      border-radius: calc(10 / 2);
+      border-radius: 5px;
       text-align: center;
       color: white;
       font-size: 0.7em;
       line-height: 22px;
       font-weight: 700;
+      position: absolute;
+      top: 40%;
+      left: -8px;
     }
 
     &.active{

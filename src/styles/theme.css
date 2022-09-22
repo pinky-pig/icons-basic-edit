@@ -36,6 +36,8 @@ html.dark{
   --animate-text-color               :#191d20;
   --animate-bg-text-color            :#374151;
   --box-shadow-color                 :#08080890;
+  --animate-marker-bg-color          :#2c404c;
+  --animate-marker-text-bg-color     :#384956;
 
   /* 输入框的背景颜色 */
   --input-bg-color                   :#2a2e31;
@@ -76,6 +78,9 @@ html{
   --animate-text-color              :#FFF;
   --animate-bg-text-color           :#374151;
   --box-shadow-color                :#00000090;
+  --animate-marker-bg-color         :#4782a6;
+  --animate-marker-text-bg-color    :#723887;
+
 
 
   --input-bg-color                   :#22233E;
