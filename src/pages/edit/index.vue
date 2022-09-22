@@ -1,7 +1,7 @@
 <template>
 <n-config-provider :theme="naiveUIDarkTheme" :theme-overrides="naiveUIThemeOverrides" >
   <div
-    class="z-99 w-screen h-screen p-8 flex flex-col gap-8 bg-[var(--main-background-image)]"
+    class="app-wrapper z-99 w-screen h-screen p-8 flex flex-col gap-8 bg-[var(--main-background-image)]"
     >
     <div class=" w-full h-2/3 rounded-3xl gap-8 flex flex-row justify-between">
       <div class="w-350px h-full rounded-3xl bg-[var(--tool-bg-color)] text-[var(--tool-text-color)]">
@@ -37,7 +37,11 @@ import PathPropertyPanel from "./PathPropertyPanel.vue"
 import PathAnimatePanel from "./PathAnimatePanel.vue"
 
 </script>
-
+<style scoped>
+  .app-wrapper{
+    background-image: url("http://zhongguose.com/img/texture.png")
+  }
+</style>
 <route lang="yaml">
   name: edit
   meta:
