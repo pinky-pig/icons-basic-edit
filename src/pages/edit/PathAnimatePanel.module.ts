@@ -1,7 +1,8 @@
 import { Ref } from "vue"
 import { stepsType } from "~/store/svg-animate"
-import { StoredPath } from "./storage.service"
+import anime from 'animejs/lib/anime.js'
 // GSAP Timeline: https://greensock.com/docs/v3/GSAP/Timeline
+// Anime Timeline: https://www.animejs.cn/documentation/#TLParamsInheritance
 
 // isPlay 默认情况下是 stop , 点击播放是 running ， 暂停是 paused
 // 按钮 Play 的状态是 show: isPlay == stop || isPlay == paused
@@ -11,6 +12,8 @@ import { StoredPath } from "./storage.service"
 // stop: 显示 编辑（ path 和 point 和 line ） ，隐藏 原始的
 // paused && running : 隐藏 编辑（ path 和 point 和 line ） ，显示原始的
 
+// Anime.js 有个坑是不能 reset timeline 上的动画
+
 export function initTimeline(props: any, context?: any) {
   let { isPlay,stepsData } = toRefs(props)
   let {
@@ -19,18 +22,6 @@ export function initTimeline(props: any, context?: any) {
     scrubberAnimation,
   } = toRefs(context)
 
-  const gsap = window.gsap
-  const tl = gsap.timeline({
-    repeat: -1,
-    yoyo: false,
-    defaults: {
-      duration: 0
-    },
-    // repeatDelay: 0.3,
-    // onComplete:onComplete,
-    // onRepeat:onRepeat,
-  })
-
   // 如果状态被改成 stop ， 停止动画
   watch(() => isPlay.value,(v1) => {
     if (v1 == 'stop') {
@@ -38,101 +29,67 @@ export function initTimeline(props: any, context?: any) {
     }
   })
 
+
   const startPlay = () => {
     scrubberAnimation.value = 'scrubAnimation 5s linear infinite running'
     scrubberAnimationState.value = 'running'
 
-    // playGSAP()
     playAnime()
   }
 
   const pausePlay = () => {
     isPlay.value = 'paused'
     scrubberAnimationState.value = 'paused'
-    tl.paused(!tl.paused())
+    tl.pause(true)
   }
   const stopPlay = () => {
     // if 正在播放 $reSet
     isPlay.value = 'stop'
     scrubberAnimation.value = ''
-    tl.progress(0).clear(true)
+
+    tl.pause()
+    tl.seek(0)
+
   }
 
-  const playGSAP = () => {
-    const galley_default = document.getElementById("galley_default")
-    if (isPlay.value === 'paused') {
-      tl.paused(!tl.paused())
-    }else if(isPlay.value === 'stop'){
-      tl.progress(0).clear(true)
+  let tl = anime.timeline({
+    targets: '#galley_default',
+    autoplay: false,
+    direction: "normal",
+    loop: true
+  })
+
+  const playAnime = () => {
+    if(isPlay.value === 'paused'){
+      tl.play()
+    }else{
+      tl = anime.timeline({
+        targets: '#galley_default',
+        autoplay: false,
+        direction: "normal",
+        loop: true
+      })
+
       stepsData.value?.forEach((i:stepsType,idx:number) => {
-        tl.to(galley_default, {
-          morphSVG:`#galley_${i.values.name}`,
-          duration: (i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 5 / 100, // 整个时间轴的动画是 5s ，间隔两两相减
+        // 默认第一个，所以 default 不需要添加动画
+        if (idx == 0) return
+        // 没有设置 targets ，是因为在初始化 timeline 的时候设置了，这里可以继承过来
+        tl.add({
+          d: {
+            value: [
+              stepsData.value[idx].values.path
+            ],
+            duration: (i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 50,  // (i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 5 / 100, // 整个时间轴的动画是 5s ，间隔两两相减
+            easing: "linear"
+          },
+          offset: 0,
           delay: 0,
         })
       })
+      tl.play()
     }
+
     isPlay.value = 'running'
-  }
-
-
-  const playAnime = () => {
-    isPlay.value = 'running'
-
-    let pathsSetup = stepsData.value.map((i:stepsType,idx:number) => {
-      return {
-        path: i.values.path,
-        duration: (i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 5 / 100,
-      }
-    })
-
-
-    const anime = window.anime
-    var timeline = anime.timeline({
-      autoplay: true,
-      direction: "alternate",
-      loop: true
-    });
-
-
-    if (isPlay.value === 'paused') {
-      // tl.paused(!tl.paused())
-    }else if(isPlay.value === 'stop'){
-      stepsData.value?.forEach((i:stepsType,idx:number) => {
-        timeline.add({
-          targets: "#galley_default",
-          d: {
-            value: [
-              stepsData.value[1].values.path
-            ],
-            duration: 1500,
-            easing: "easeInOutQuad"
-          },
-          offset: 0
-        })
-
-      })
-    }
-    isPlay.value = 'running'
-
-
-
-    timeline
-      .add({
-        targets: "#galley_default",
-        d: {
-          value: [
-            stepsData.value[1].values.path
-          ],
-          duration: 1500,
-          easing: "easeInOutQuad"
-        },
-        offset: 0
-      })
-
-
-
-
   }
 
   return {
