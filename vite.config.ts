@@ -94,7 +94,7 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
       manifest: {
         name: 'Svge',
-        short_name: 'Vitesse',
+        short_name: 'Icons Basic Edit',
         theme_color: '#ffffff',
         icons: [
           {
