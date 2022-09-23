@@ -77,5 +77,46 @@ export function handleScreenshot(props: any, context?: any){
   storage.value.setIsKeyframePathStatus(keyframeCursor.value, true)
 }
 
+export function initRedoUndo(props: any, context?: any){
+
+  let {
+    rawPath,
+    history,
+    historyCursor,
+    storage,
+    historyDisabled
+  } = toRefs(props)
+  let { reloadPath } = useComposition(props)
+
+  const canUndo = (): boolean => {
+    return historyCursor.value > 0
+  }
+  const undo = () => {
+    if (canUndo()) {
+      historyDisabled.value = true;
+      historyCursor.value --;
+      reloadPath(history.value[historyCursor.value]);
+      historyDisabled.value = false;
+    }
+  }
+
+  const canRedo = (): boolean => {
+    return historyCursor.value < history.value.length - 1
+  }
+
+  const redo = () => {
+    if (canRedo()) {
+      historyDisabled.value = true;
+      historyCursor.value ++;
+      reloadPath(history.value[historyCursor.value]);
+      historyDisabled.value = false;
+    }
+  }
+
+  return{
+    redo,
+    undo
+  }
+}
 
 
