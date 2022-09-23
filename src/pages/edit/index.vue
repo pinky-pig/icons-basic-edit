@@ -38,9 +38,9 @@ import PathAnimatePanel from "./PathAnimatePanel.vue"
 
 </script>
 <style scoped>
-  .app-wrapper{
-    background-image: url("http://zhongguose.com/img/texture.png")
-  }
+.app-wrapper{
+  background-image: url("http://zhongguose.com/img/texture.png")
+}
 </style>
 <route lang="yaml">
   name: edit
