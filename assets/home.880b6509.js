@@ -1,1 +1,0 @@
-import{_ as t,c as o,b as r,o as c,r as a}from"./index.575f4d7e.js";const n={},s={class:"text-center text-gray-700 dark:text-gray-200"};function _(m,i){const e=a("RouterView");return c(),o("main",s,[r(e)])}var f=t(n,[["render",_]]);export{f as default};
