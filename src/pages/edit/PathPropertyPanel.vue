@@ -1,12 +1,12 @@
 <template>
   <div class="w-full h-full flex flex-col select-none">
     <!-- All path data -->
-    <div class=" flex flex-col items-start p-5">
+    <div class=" flex flex-col items-start p-5 flex-grow-0 flex-shrink-0">
       <div class=" text-xl  tracking-widest"> 属性 </div>
     </div>
 
     <!-- command -->
-    <div class=" flex flex-col h-130px overflow-auto gap-3">
+    <div class=" flex flex-col h-130px overflow-auto gap-3 flex-grow-0 flex-shrink-0">
       <div class=" flex flex-row tracking-widest px-5 ">
         Transform
       </div>
@@ -30,9 +30,9 @@
     </div>
 
     <!-- gallery -->
-    <div class="w-full flex flex-col gap-3 px-5">
+    <div class="w-full flex flex-col gap-3 px-5 py-2 flex-1 overflow-hidden">
 
-      <button class="w-8 h-8" @click="initScreenshot(props)">
+      <button class="w-8 h-8 mb-2 flex-shrink-0 flex-grow-0" @click="initScreenshot(props)">
         <svg
           viewBox="0 0 1025 1024"
           class="w-8 h-8"
@@ -43,7 +43,7 @@
         </svg>
       </button>
 
-      <div class="w-full gap-3 grid grid-cols-4 cursor-move ">
+      <div class="flex-1 w-full gap-3 grid grid-cols-4 cursor-move overflow-auto">
         <div
           @contextmenu="v => handleGalleryContextMenu(v,item)"
           @dragstart="v => dragStartKeyframe(v,item)"
@@ -59,8 +59,6 @@
             <path :d="item.path"></path>
           </svg>
         </div>
-
-
       </div>
     </div>
 
