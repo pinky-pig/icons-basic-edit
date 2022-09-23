@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex flex-col">
+  <div class="w-full h-full flex flex-col select-none">
     <!-- All path data -->
     <div class=" flex flex-col items-start p-5">
       <div class=" text-xl  tracking-widest"> 属性 </div>
@@ -40,7 +40,7 @@
         <div
           @contextmenu="v => handleGalleryContextMenu(v,item)"
           @dragstart="v => dragStartKeyframe(v,item)"
-          draggable="true"
+          :draggable="store.isPlay === 'stop'"
           v-for="item in props.gallery"
           class="p-2 w-60px h-60px rounded-md bg-[var(--input-bg-color)] text-[var(--input-text-color)]" >
           <svg
