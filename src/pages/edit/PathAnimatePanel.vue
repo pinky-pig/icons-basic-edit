@@ -74,7 +74,7 @@
                   <rect y="5" width="5" height="5" fill="currentColor" rx="5"></rect>
                 </pattern>
               </defs>
-              <rect id="canvas" width="5" height="100%" fill="url(#rect)" />
+              <rect width="5" height="100%" fill="url(#rect)" />
             </svg>
           </div>
 
