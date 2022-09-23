@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     Counter: typeof import('./components/Counter.vue')['default']
     CPopselect: typeof import('./components/CPopselect.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
+    NotOptimized: typeof import('./components/NotOptimized.vue')['default']
     PreviewCode: typeof import('./components/PreviewCode.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
