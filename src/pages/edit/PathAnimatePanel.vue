@@ -17,9 +17,16 @@
 
       <!-- 操作按钮 -->
       <div class=" text-[var(--animate-text-color)] flex flex-row gap-4">
-        <button class="rounded-full" @click="props.resetSvgStore()">
-          <div class=" w-6 h-6 cursor-pointer bg-[#E4E5EE] animate-btn" i="carbon-trash-can" />
-        </button>
+
+        <n-tooltip placement="top" trigger="hover">
+          <template #trigger>
+            <button class="rounded-full" @click="props.resetSvgStore()">
+              <div class=" w-6 h-6 cursor-pointer bg-[#E4E5EE] animate-btn" i="carbon-trash-can" />
+            </button>
+          </template>
+          <span> 清除 Timeline 上已添加的变形</span>
+        </n-tooltip>
+
       </div>
     </div>
 

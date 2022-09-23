@@ -33,10 +33,17 @@
     <div class="w-full flex flex-col gap-3 px-5">
 
       <button class="w-8 h-8" @click="initScreenshot(props)">
-        <div class="w-8 h-8" i-carbon-screen> </div>
+        <svg
+          viewBox="0 0 1025 1024"
+          class="w-8 h-8"
+          style="fill: #fff;transform: rotate(315deg);"
+          >
+          <path d="M803.542 582.057a218.871 218.871 0 0 0-147.834 57.917L547.872 486.381 853.46 50.238a31.999 31.999 0 0 0-51.838-36.479L509.154 429.743 216.046 13.759a31.999 31.999 0 0 0-52.478 36.479l305.908 435.503L364.84 634.855a221.111 221.111 0 1 0 43.198 49.918l100.796-143.355L614.11 691.172a219.831 219.831 0 1 0 189.752-109.115zM221.805 958.042A156.154 156.154 0 1 1 377.96 802.208a156.154 156.154 0 0 1-156.154 155.834z m581.737 0a156.154 156.154 0 1 1 156.154-155.834 156.154 156.154 0 0 1-156.154 155.834z" >
+          </path>
+        </svg>
       </button>
 
-      <div class="w-full gap-3 grid grid-cols-4">
+      <div class="w-full gap-3 grid grid-cols-4 cursor-move ">
         <div
           @contextmenu="v => handleGalleryContextMenu(v,item)"
           @dragstart="v => dragStartKeyframe(v,item)"
@@ -52,6 +59,7 @@
             <path :d="item.path"></path>
           </svg>
         </div>
+
 
       </div>
     </div>
