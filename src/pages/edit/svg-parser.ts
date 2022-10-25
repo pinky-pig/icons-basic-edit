@@ -7,11 +7,11 @@
  * 4.可双向选择，列表 <=> 画布
  * 5.可编辑路径
  */
-const kCommandTypeRegex = /^[\t\n\f\r ]*([MLHVZCSQTAmlhvzcsqta])[\t\n\f\r ]*/;
-const kFlagRegex = /^[01]/;
-const kNumberRegex = /^[+-]?(([0-9]*\.[0-9]+)|([0-9]+\.)|([0-9]+))([eE][+-]?[0-9]+)?/;
-const kCoordinateRegex = kNumberRegex;
-const kCommaWsp = /^(([\t\n\f\r ]+,?[\t\n\f\r ]*)|(,[\t\n\f\r ]*))/;
+const kCommandTypeRegex = /^[\t\n\f\r ]*([MLHVZCSQTAmlhvzcsqta])[\t\n\f\r ]*/
+const kFlagRegex = /^[01]/
+const kNumberRegex = /^[+-]?(([0-9]*\.[0-9]+)|([0-9]+\.)|([0-9]+))([eE][+-]?[0-9]+)?/
+const kCoordinateRegex = kNumberRegex
+const kCommaWsp = /^(([\t\n\f\r ]+,?[\t\n\f\r ]*)|(,[\t\n\f\r ]*))/
 
 const kGrammar: { [key: string]: RegExp[] } = {
   M: [kCoordinateRegex, kCoordinateRegex],
@@ -24,7 +24,7 @@ const kGrammar: { [key: string]: RegExp[] } = {
   Q: [kCoordinateRegex, kCoordinateRegex, kCoordinateRegex, kCoordinateRegex],
   T: [kCoordinateRegex, kCoordinateRegex],
   A: [kNumberRegex, kNumberRegex, kCoordinateRegex, kFlagRegex, kFlagRegex, kCoordinateRegex, kCoordinateRegex],
-};
+}
 
 export class SvgParser {
   /**
@@ -51,28 +51,29 @@ export class SvgParser {
           cursor += match[0].length
           // 匹配空格换行等符号，移动指针下标
           const ws = path.slice(cursor).match(kCommaWsp)
-          if (ws !== null) {
+          if (ws !== null)
             cursor += ws[0].length
-          }
-        } else if (component.length === 1) {
+        }
+        else if (component.length === 1) {
           return [cursor, components]
-        } else {
-          throw new Error('malformed path (first error at ' + cursor + ')')
+        }
+        else {
+          throw new Error(`malformed path (first error at ${cursor})`)
         }
       }
       components.push(component)
-      if (expectedRegexList.length === 0) {
+      if (expectedRegexList.length === 0)
         return [cursor, components]
-      }
-      if (type === 'm') {
+
+      if (type === 'm')
         type = 'l'
-      }
-      if (type === 'M') {
+
+      if (type === 'M')
         type = 'L'
-      }
     }
-    throw new Error('malformed path (first error at ' + cursor + ')')
+    throw new Error(`malformed path (first error at ${cursor})`)
   }
+
   /**
    * 将 path 遍历 slice ，匹配对应的命令。
    * match(kCommandTypeRegex) 匹配命令，SvgParser.components 将其数字筛选出来
@@ -80,7 +81,7 @@ export class SvgParser {
    * @returns 转换后的路径
    */
   public static parse(path: string): string[][] {
-    let cursor = 0  // 当前的指针在全部的 path 的下标
+    let cursor = 0 // 当前的指针在全部的 path 的下标
     let tokens: string[][] = []
     while (cursor < path.length) {
       const match = path.slice(cursor).match(kCommandTypeRegex)
@@ -91,11 +92,11 @@ export class SvgParser {
         cursor = componentList[0]
         // tokens 数组，路径数组 -- [['M', '4', '8'],['L', '10', '1']]
         tokens = [...tokens, ...componentList[1]]
-      } else {
-        throw new Error('malformed path (first error at ' + cursor + ')')
+      }
+      else {
+        throw new Error(`malformed path (first error at ${cursor})`)
       }
     }
     return tokens
   }
-
 }
