@@ -1,78 +1,36 @@
-<template>
-  <div class=" flex flex-col w-full h-full bg-[#F5F6F6] dark:bg-[#222] overflow-hidden">
-    <ContainerComponent class=" w-150px h-200px min-h-200px mx-auto my-4 "></ContainerComponent>
-    <div class=" flex-1 flex flex-col p-5 border-t border-gray-300 select-none">
-
-      <div class=" mb-44px" v-for="item in propertyList">
-        <div class="flex flex-row justify-between mb-16px text-1.25rem">
-          <div>{{ item.label }}</div>
-          <div>{{ item.value }} px</div>
-        </div>
-        <Slide v-model="item.value" :min="item.min" :max="item.max"></Slide>
-      </div>
-
-
-      <div class=" mb-44px">
-        <div class="flex flex-row mb-16px text-1.25rem">
-          <div>Color</div>
-        </div>
-        <div class="flex flex-row mb-16px text-1.25rem" >
-          <input class="border-0 outline-none w-40px h-30px cursor-pointer" type="color" v-model="inputColor"  />
-        </div>
-
-      </div>
-
-      <div class=" flex flex-row ">
-        <div @click="animate"
-          class=" bg-[rgba(50,138,255,.1)] inline-block font-bold py-2 px-4 rounded-md mb-4 text-sm cursor-pointer ">
-          Stroke Animate
-        </div>
-      </div>
-
-
-    </div>
-
-
-    <SvgCode class=" w-full h-60 flex flex-col justify-end items-end"></SvgCode>
-
-  </div>
-</template>
 <script setup lang="ts">
-import { ContainerComponent } from '~/components/StarportSvg'
 import SvgCode from './SvgCode.md'
+import { ContainerComponent } from '~/components/StarportSvg'
+import { symbolFn } from '~/utils/common'
 
 // 用法见./vue3Gsap。md
 const gsap = window.gsap
 const DrawSVGPlugin = window.DrawSVGPlugin
-gsap.registerPlugin(DrawSVGPlugin);
+gsap.registerPlugin(DrawSVGPlugin)
 
 const animate = () => {
-  let pathArr = document.querySelector('#wholeSvg')?.childNodes[0].childNodes as any
+  const pathArr = document.querySelector('#wholeSvg')?.childNodes[0].childNodes as any
   for (const item of pathArr) {
-    if (item.attributes.fill.value != 'none') {
+    if (item.attributes.fill.value !== 'none')
       item.setAttribute('fill', 'transparent')
-    }
-    item.setAttribute('class', 'path-animate')
 
+    item.setAttribute('class', 'path-animate')
   }
 
-  let tl = gsap.timeline({ repeat: 0, yoyo: true, onComplete: onCompleteHandler })
+  const tl = gsap.timeline({ repeat: 0, yoyo: true, onComplete: onCompleteHandler })
   tl.fromTo(
     '.path-animate',
-    { drawSVG: "0%" },
-    { duration: 2, drawSVG: "100%", stagger: 0.1 },
+    { drawSVG: '0%' },
+    { duration: 2, drawSVG: '100%', stagger: 0.1 },
   )
 
   function onCompleteHandler(e: any) {
     for (const item of pathArr) {
-      if (item.attributes.fill.value != 'none') {
+      if (item.attributes.fill.value !== 'none')
         item.setAttribute('fill', 'currentColor')
-      }
     }
   }
-
 }
-
 
 /**
  * 1.size => scale
@@ -93,7 +51,7 @@ const propertyList = ref([
     label: 'Stroke',
     value: 1,
     min: 0.5,
-    max: 3.5
+    max: 3.5,
   },
 ])
 
@@ -109,3 +67,38 @@ watch(() => inputColor.value, (v1) => {
   storeSvg.stokeColor = v1
 })
 </script>
+
+<template>
+  <div class=" flex flex-col w-full h-full bg-[#F5F6F6] dark:bg-[#222] overflow-hidden">
+    <ContainerComponent class=" w-150px h-200px min-h-200px mx-auto my-4 " />
+    <div class=" flex-1 flex flex-col p-5 border-t border-gray-300 select-none">
+      <div v-for="item in propertyList" :key="symbolFn(item)" class=" mb-44px">
+        <div class="flex flex-row justify-between mb-16px text-1.25rem">
+          <div>{{ item.label }}</div>
+          <div>{{ item.value }} px</div>
+        </div>
+        <Slide v-model="item.value" :min="item.min" :max="item.max" />
+      </div>
+
+      <div class=" mb-44px">
+        <div class="flex flex-row mb-16px text-1.25rem">
+          <div>Color</div>
+        </div>
+        <div class="flex flex-row mb-16px text-1.25rem">
+          <input v-model="inputColor" class="border-0 outline-none w-40px h-30px cursor-pointer" type="color">
+        </div>
+      </div>
+
+      <div class=" flex flex-row ">
+        <div
+          class=" bg-[rgba(50,138,255,.1)] inline-block font-bold py-2 px-4 rounded-md mb-4 text-sm cursor-pointer "
+          @click="animate"
+        >
+          Stroke Animate
+        </div>
+      </div>
+    </div>
+
+    <SvgCode class=" w-full h-60 flex flex-col justify-end items-end" />
+  </div>
+</template>

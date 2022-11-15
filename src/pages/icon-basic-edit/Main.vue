@@ -1,38 +1,8 @@
-<template>
-  <div class="py-4 w-full h-full flex flex-col justify-between items-center dark:bg-[#222]">
-    <!-- name -->
-    <div class=" text-3xl text-[#374151] dark:text-[#e5e7eb]"> &nbsp; {{ store.svgObj.name }}&nbsp; </div>
-
-
-    <div class="relative" :style="{fontSize:storeSvg.size}" style="font-size:192px">
-      <svg :style="{ width: `calc(192px * ${wrapperSize})`, height: `calc(192px * ${wrapperSize})`,transform:`scale(${wrapperScale})` }">
-        <UseSvgBorder id="shadowSvg" :path="svgBorderPath" :viewBox="viewBox"></UseSvgBorder>
-        <svg id="wholeSvg" :style="{strokeWidth:`${wrapperStrokeWidth}`,color:`${wrapperStrokeColor}`}" class="absolute" ref="box" xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em"
-          preserveAspectRatio="xMidYMid meet" :viewBox=viewBox>
-          <g fill="none" stroke="currentColor" v-html="store.svgObj.body">
-          </g>
-        </svg>
-      </svg>
-
-
-    </div>
-
-    <!-- 控制画布大小 -->
-    <!-- <input type="range" min="1" max="3" v-model="wrapperSize" /> -->
-
-    <Footer></Footer>
-
-    <ProxyComponent></ProxyComponent>
-
-  </div>
-</template>
 <script setup lang="ts">
-import { MaybeElementRef } from '@vueuse/core';
+import type { MaybeElementRef } from '@vueuse/core'
 import { UseSvgBorder } from './Svg'
 
 import { ProxyComponent } from '~/components/StarportSvg'
-
 
 const store = useSvgenerateStore()
 const storeSvg = useSvgStore()
@@ -66,25 +36,50 @@ const mouseInElement = (target?: MaybeElementRef) => {
   onClickOutside(el, () => svgBorderPath.value = '')
 }
 
-
 onMounted(() => {
   mouseInElement(box)
 })
-
 
 // 控制画布的尺寸
 const wrapperSize = ref(1)
 // 画布放大scale
 const wrapperScale = computed(() => {
   return (storeSvg.size / 192).toFixed(1)
-}) 
+})
 const wrapperStrokeWidth = computed(() => {
   return storeSvg.stokeWidth
-}) 
+})
 const wrapperStrokeColor = computed(() => {
   return storeSvg.stokeColor
-}) 
-
-
+})
 </script>
+
+<template>
+  <div class="py-4 w-full h-full flex flex-col justify-between items-center dark:bg-[#222]">
+    <!-- name -->
+    <div class=" text-3xl text-[#374151] dark:text-[#e5e7eb]">
+&nbsp; {{ store.svgObj.name }}&nbsp;
+    </div>
+
+    <div class="relative" :style="{ fontSize: storeSvg.size }" style="font-size:192px">
+      <svg :style="{ width: `calc(192px * ${wrapperSize})`, height: `calc(192px * ${wrapperSize})`, transform: `scale(${wrapperScale})` }">
+        <UseSvgBorder id="shadowSvg" :path="svgBorderPath" :viewBox="viewBox" />
+        <svg
+          id="wholeSvg" ref="box" :style="{ strokeWidth: `${wrapperStrokeWidth}`, color: `${wrapperStrokeColor}` }" class="absolute" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em"
+          preserveAspectRatio="xMidYMid meet" :viewBox="viewBox"
+        >
+          <g fill="none" stroke="currentColor" v-html="store.svgObj.body" />
+        </svg>
+      </svg>
+    </div>
+
+    <!-- 控制画布大小 -->
+    <!-- <input type="range" min="1" max="3" v-model="wrapperSize" /> -->
+
+    <Footer />
+
+    <ProxyComponent />
+  </div>
+</template>
 
