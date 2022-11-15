@@ -1,9 +1,9 @@
 import {
-  create,
   NBreadcrumb,
   NBreadcrumbItem,
   NButton,
   NCard,
+  NCarousel,
   NCheckbox,
   NColorPicker,
   NConfigProvider,
@@ -27,29 +27,29 @@ import {
   NList,
   NListItem,
   NLoadingBarProvider,
-  NModal,
   NMenu,
   NMessageProvider,
+  NModal,
   NNotificationProvider,
   NPopover,
+  NPopselect,
   NScrollbar,
   NSelect,
   NSpace,
+  NSpin,
   NStatistic,
   NSwitch,
-  NSpin,
-  NTabs,
   NTabPane,
+  NTabs,
   NTag,
   NThing,
   NTimeline,
   NTimelineItem,
   NTooltip,
-  NCarousel,
-  NPopselect,
   NTreeSelect,
+  create,
 } from 'naive-ui'
-import { UserModule } from '~/types'
+import type { UserModule } from '~/types'
 
 export const install: UserModule = ({ app }) => {
   const naive = create({
@@ -101,7 +101,7 @@ export const install: UserModule = ({ app }) => {
       NTooltip,
       NCarousel,
       NPopselect,
-      NTreeSelect
+      NTreeSelect,
     ],
   })
 

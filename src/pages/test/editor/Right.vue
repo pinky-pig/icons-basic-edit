@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 
 </script>
@@ -13,17 +12,16 @@
       </div>
 
       <div class="flex-1 w-full overflow-auto">
-        <slot name="path"></slot>
-        <slot name="command"></slot>
+        <slot name="path" />
+        <slot name="command" />
       </div>
     </div>
 
     <div class="shadow-xl w-full h-[80px] mt-6 p-3 rounded-2xl bg-[var(--panel-bg-color)] text-[var(--panel-text-color)]">
       <div class="w-full h-full rounded-xl overflow-y-hidden">
-        <slot name="button"></slot>
+        <slot name="button" />
       </div>
     </div>
-
   </div>
 </template>
 

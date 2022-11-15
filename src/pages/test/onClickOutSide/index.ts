@@ -1,4 +1,5 @@
-import { ConfigurableWindow, defaultWindow, MaybeElementRef } from '@vueuse/core'
+import type { ConfigurableWindow, MaybeElementRef } from '@vueuse/core'
+import { defaultWindow } from '@vueuse/core'
 import { ref } from 'vue-demi'
 
 export interface OnClickOutsideOptions extends ConfigurableWindow {

@@ -9,16 +9,16 @@
 export type Fn = () => void
 
 /** ctrl + z / ctrl + y */
-export function undoFn(listener:Fn) {
-  const { Ctrl_Z} = useMagicKeys()
+export function undoFn(listener: Fn) {
+  const { Ctrl_Z } = useMagicKeys()
   const stopWatch = watch(Ctrl_Z, (v) => {
     if (v)
       listener()
   })
   return stopWatch
 }
-export function redoFn(listener:Fn) {
-  const { Ctrl_Y} = useMagicKeys()
+export function redoFn(listener: Fn) {
+  const { Ctrl_Y } = useMagicKeys()
   const stopWatch = watch(Ctrl_Y, (v) => {
     if (v)
       listener()
