@@ -1,6 +1,5 @@
-import { createStarport } from "~/composables/Starport";
-import SvgBox from "./SvgBox.vue";
+import SvgBox from './SvgBox.vue'
+import { createStarport } from '~/composables/Starport'
 
-export const { ProxyComponent, ContainerComponent} = createStarport(SvgBox)
-
+export const { ProxyComponent, ContainerComponent } = createStarport(SvgBox)
 

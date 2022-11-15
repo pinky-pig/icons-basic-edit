@@ -1,12 +1,13 @@
+<script setup lang="ts">
+
+</script>
+
 <template>
   <div class="disclaimer">
     未适配手机端
   </div>
 </template>
-<script setup lang="ts">
 
-
-</script>
 <style lang="less" scoped>
 .disclaimer{
   width: 100%;
@@ -17,5 +18,4 @@
   z-index: 999999999;
   display: none;
 }
-
 </style>

@@ -1,3 +1,24 @@
+<script lang="ts" setup>
+import { StoredPath } from '~/pages/edit/storage.service'
+
+interface PropsType {
+  x: Number
+  y: Number
+  showDropdownRef: Boolean
+}
+defineProps<PropsType>()
+const emit = defineEmits(['update:showDropdownRef', 'd'])
+const options = [
+  { label: 'delete', key: 'delete' },
+]
+const onClickoutside = () => {
+  emit('update:showDropdownRef', false)
+}
+const handleSelect = () => {
+  emit('d', true)
+}
+</script>
+
 <template>
   <n-dropdown
     placement="bottom-start"
@@ -10,23 +31,3 @@
     @select="handleSelect"
   />
 </template>
-
-<script lang="ts" setup>import { StoredPath } from '~/pages/edit/storage.service';
-
-interface PropsType{
-  x:Number,
-  y:Number,
-  showDropdownRef:Boolean,
-}
-defineProps<PropsType>()
-const options = [
-  { label: 'delete', key: 'delete' }
-]
-const emit = defineEmits(['update:showDropdownRef','d'])
-const onClickoutside = () => {
-  emit('update:showDropdownRef', false)
-}
-const handleSelect = () => {
-  emit('d', true)
-}
-</script>

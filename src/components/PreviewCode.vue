@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import Prism from 'prismjs';
+import Prism from 'prismjs'
 const props = defineProps({
   code: {
     type: String,
-    default: ''
+    default: '',
   },
   type: {
     type: String,
-    default: 'html'
-  }
+    default: 'html',
+  },
 })
 </script>
 
 <template>
   <pre class="w-full">
-    <code :class="'language-'+ type" v-html="Prism.highlight(props.code, Prism.languages[props.type], props.type)"></code>
+    <code :class="`language-${type}`" v-html="Prism.highlight(props.code, Prism.languages[props.type], props.type)" />
   </pre>
 </template>
 

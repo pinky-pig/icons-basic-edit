@@ -1,31 +1,32 @@
-<template>
-  <!-- <input class="rangeMain " v-model="value" type="range" name="volume" :min="props.min" :max="props.max"> -->
-  <input class="rangeMain " v-model="sliderValue" type="range" name="volume" :min="props.min" :max="props.max">
-</template>
 <script setup lang="ts">
 const props = defineProps({
   value: {
     type: Number,
-    default: 1
+    default: 1,
   },
   min: {
     type: Number,
-    default: 1
+    default: 1,
   },
   max: {
     type: Number,
-    default: 50
-  }
+    default: 50,
+  },
 })
 
-const sliderValue = props.value
 const emit = defineEmits(['update:value'])
 
-watch(() => sliderValue,(v1,v2)=>{
+const sliderValue = props.value
+watch(() => sliderValue, (v1, v2) => {
   emit('update:value', v1)
 })
-
 </script>
+
+<template>
+  <!-- <input class="rangeMain " v-model="value" type="range" name="volume" :min="props.min" :max="props.max"> -->
+  <input v-model="sliderValue" class="rangeMain " type="range" name="volume" :min="props.min" :max="props.max">
+</template>
+
 <style scoped>
 .rangeMain {
   @apply dark:bg-[#e5e7eb];
