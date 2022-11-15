@@ -29,7 +29,7 @@
   "workbench.colorTheme": "Default Dark+",
   "workbench.editor.closeOnFileDelete": true,
   "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.tabCloseButton": "left",
+  "workbench.editor.tabCloseButton": "right",
   "workbench.editor.limit.enabled": true,
   "workbench.editor.limit.perEditorGroup": true,
   "workbench.editor.limit.value": 5,
@@ -249,5 +249,5 @@
   "cSpell.words": [
     "posi",
     "tbdz"
-  ],
+  ]
 }

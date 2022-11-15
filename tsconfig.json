@@ -23,9 +23,9 @@
     ],
     "paths": {
       "~/*": ["src/*"]
-    },
+    }
   },
-  "exclude": ["dist", "node_modules", "cypress","server"],
+  "exclude": ["dist", "node_modules", "cypress", "server"],
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
@@ -34,6 +34,6 @@
     "src/typings/**/*.d.ts",
     "vite.config.*",
     "components.d.ts",
-    "auto-imports.d.ts",
+    "auto-imports.d.ts"
   ]
 }
