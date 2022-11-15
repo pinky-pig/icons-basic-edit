@@ -1,13 +1,12 @@
 import { useComposition } from './composititon'
 
-
-export function initCanvas(props: any, context?: any){
-  let { cfg, canvasWidth, canvasHeight, } = toRefs(props)
-  let { updateViewPort,zoomAuto } = useComposition(props)
+export function initCanvas(props: any, context?: any) {
+  const { cfg, canvasWidth, canvasHeight } = toRefs(props)
+  const { updateViewPort, zoomAuto } = useComposition(props)
   onMounted(() => {
     setTimeout(() => {
-      zoomAuto();
-    }, 0);
+      zoomAuto()
+    }, 0)
   })
   watch([canvasHeight, canvasWidth], () => {
     updateViewPort(
@@ -15,29 +14,29 @@ export function initCanvas(props: any, context?: any){
       cfg.value.viewPortY,
       cfg.value.viewPortWidth,
       null,
-      true
+      true,
     )
   })
 }
 
-export function initSvgPath(props: any, context?: any){
-  let { rawPath } = toRefs(props)
-  let { reloadPath } = useComposition(props)
+export function initSvgPath(props: any, context?: any) {
+  const { rawPath } = toRefs(props)
+  const { reloadPath } = useComposition(props)
   onMounted(() => {
     setTimeout(() => {
-      openPath(rawPath.value, '');
-    }, 0);
+      openPath(rawPath.value, '')
+    }, 0)
   })
   function openPath(newPath: string, name: string): void {
-    reloadPath(newPath, true);
+    reloadPath(newPath, true)
   }
 }
 
-export function initEventListener(props: any, context?: any){
+export function initEventListener(props: any, context?: any) {
   onMounted(() => {
     const canvas = document.querySelector('#canvas')
-    let { draggedEvt,wasCanvasDragged } = toRefs(props)
-    let { drag, stopDrag, setZoom } = useComposition(props)
+    const { draggedEvt, wasCanvasDragged } = toRefs(props)
+    const { drag, stopDrag, setZoom } = useComposition(props)
     useEventListener(canvas, 'mousedown', (evt: MouseEvent) => {
       draggedEvt.value = evt
       wasCanvasDragged.value = false
@@ -47,9 +46,8 @@ export function initEventListener(props: any, context?: any){
     })
     useEventListener(canvas, 'mousemove', (evt: MouseEvent) => {
       // 鼠标左键
-      if (evt?.buttons === 1) {
+      if (evt?.buttons === 1)
         drag(evt)
-      }
     })
     useEventListener(canvas, 'wheel', (evt: WheelEvent) => {
       evt.preventDefault()
@@ -58,45 +56,44 @@ export function initEventListener(props: any, context?: any){
   })
 }
 
-export function initHistory(props: any, context?: any){
-  let { rawPath,history,historyCursor,storage } = toRefs(props)
+export function initHistory(props: any, context?: any) {
+  const { rawPath, history, historyCursor, storage } = toRefs(props)
   watch(() => rawPath.value, () => {
-    if ( rawPath.value !== history.value[historyCursor.value]) {
-      historyCursor.value ++;
-      history.value.splice(historyCursor.value, history.value.length - historyCursor.value, rawPath.value);
-      storage.value.addPath(storage.value.storedPaths.length ==0 ? 'default' : 'current', rawPath.value);
+    if (rawPath.value !== history.value[historyCursor.value]) {
+      historyCursor.value++
+      history.value.splice(historyCursor.value, history.value.length - historyCursor.value, rawPath.value)
+      storage.value.addPath(storage.value.storedPaths.length === 0 ? 'default' : 'current', rawPath.value)
     }
-  },{
-    immediate:true
+  }, {
+    immediate: true,
   })
 }
 
-export function handleScreenshot(props: any, context?: any){
-  let { rawPath,keyframeCursor,storage } = toRefs(props)
+export function handleScreenshot(props: any, context?: any) {
+  const { rawPath, keyframeCursor, storage } = toRefs(props)
   storage.value.addPath(keyframeCursor.value, rawPath.value)
   storage.value.setIsKeyframePathStatus(keyframeCursor.value, true)
 }
 
-export function initRedoUndo(props: any, context?: any){
-
-  let {
+export function initRedoUndo(props: any, context?: any) {
+  const {
     rawPath,
     history,
     historyCursor,
     storage,
-    historyDisabled
+    historyDisabled,
   } = toRefs(props)
-  let { reloadPath } = useComposition(props)
+  const { reloadPath } = useComposition(props)
 
   const canUndo = (): boolean => {
     return historyCursor.value > 0
   }
   const undo = () => {
     if (canUndo()) {
-      historyDisabled.value = true;
-      historyCursor.value --;
-      reloadPath(history.value[historyCursor.value]);
-      historyDisabled.value = false;
+      historyDisabled.value = true
+      historyCursor.value--
+      reloadPath(history.value[historyCursor.value])
+      historyDisabled.value = false
     }
   }
 
@@ -106,17 +103,16 @@ export function initRedoUndo(props: any, context?: any){
 
   const redo = () => {
     if (canRedo()) {
-      historyDisabled.value = true;
-      historyCursor.value ++;
-      reloadPath(history.value[historyCursor.value]);
-      historyDisabled.value = false;
+      historyDisabled.value = true
+      historyCursor.value++
+      reloadPath(history.value[historyCursor.value])
+      historyDisabled.value = false
     }
   }
 
-  return{
+  return {
     redo,
-    undo
+    undo,
   }
 }
-
 

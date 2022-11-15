@@ -1,102 +1,7 @@
-<template>
-  <div class="flex flex-col w-full h-full text-[var(--animate-bg-text-color)]">
-    <!-- top -->
-    <div class="top w-full h-14 flex flex-row items-center justify-between px-4">
-
-      <!-- 播放按钮 -->
-      <div class="text-[var(--animate-text-color)] flex flex-row gap-4">
-        <button class="rounded-full">
-          <div @click="startPlay" v-if="props.isPlay !== 'running'" class=" w-8 h-8 cursor-pointer bg-green-400 animate-btn" i="carbon-play-outline" />
-          <div @click="pausePlay" v-else class=" w-8 h-8 cursor-pointer bg-[#FDD352] animate-btn" i="carbon-pause-outline" />
-        </button>
-
-        <button :disabled="props.isPlay === 'stop'" class="animate-btn rounded-full">
-          <div @click="stopPlay" :class="props.isPlay === 'stop' ? 'bg-[#E4E5EE30]' : 'bg-[#FF6168]'"  class=" w-8 h-8 cursor-pointer" i="carbon-stop-outline" />
-        </button>
-      </div>
-
-      <!-- 操作按钮 -->
-      <div class=" text-[var(--animate-text-color)] flex flex-row gap-4">
-
-        <n-tooltip placement="top" trigger="hover">
-          <template #trigger>
-            <button class="rounded-full" @click="props.resetSvgStore()">
-              <div class=" w-6 h-6 cursor-pointer bg-[#E4E5EE] animate-btn" i="carbon-trash-can" />
-            </button>
-          </template>
-          <span> 清除 Timeline 上已添加的变形</span>
-        </n-tooltip>
-
-      </div>
-    </div>
-
-    <!-- timeline body-->
-    <div class="w-full flex-1 px-5 min-h-100px">
-      <div class="relative w-full h-full flex flex-row justify-center items-center  ">
-
-        <!-- 时间轴范围 -->
-        <div class="timelineTicks" >
-          <div class="tick" v-for="i in 21" :key="i">
-            <b>{{(i*5) - 5}}%</b>
-          </div>
-        </div>
-
-        <!-- 播放线 -->
-        <div class="scrubber" ref="scrubber" ></div>
-
-        <!-- 时间轴body -->
-        <div @drop="drop" @dragover="allowDrop" class="relative w-full h-70% mt-40px rounded-xl flex flex-row justify-between" >
-
-          <!-- 100条线 -->
-          <div v-if="props.isDraggingKeyframe" @dragenter="dragenter" @dragleave="dragleave" class="timelinePositions" >
-            <button class="pos" :class="'pos_'+(i-1)" v-for="i in 101" :key="i"><b>{{i - 1}}</b></button>
-          </div>
-
-          <!-- Step Markers -->
-          <div class="timeline-marker" v-for="(item, index) in props.stepsData" :style="'left: ' + item.animate_key + '%'">
-            <n-popover trigger="hover">
-              <template #trigger>
-                <div class="w-full h-full" @contextmenu="v => handleMarkerContextMenu(v,item)">
-                  <span>{{item.animate_key}}</span>
-                </div>
-              </template>
-              <svg class=" w-8 h-8" stroke="currentColor" fill="currentColor">
-                <path :d="item.values.path"></path>
-              </svg>
-            </n-popover>
-          </div>
-
-          <!-- 背景 -->
-          <div v-for="i in 21" :key="i">
-            <svg width="5" height="100%">
-              <defs>
-                <pattern id="rect" patternUnits="userSpaceOnUse" width="5" height="40">
-                  <rect y="5" width="5" height="5" fill="currentColor" rx="5"></rect>
-                </pattern>
-              </defs>
-              <rect width="5" height="100%" fill="url(#rect)" />
-            </svg>
-          </div>
-
-          <!-- 右键删除 -->
-          <ContentDropMenu
-            :x="xRef"
-            :y="yRef"
-            v-model:showDropdownRef="showDropdownRef"
-            @d="handleDeleteGallery"
-            ></ContentDropMenu>
-
-        </div>
-      </div>
-
-
-    </div>
-  </div>
-</template>
 <script setup lang="ts">
-import { initTimeline,initMarkerContentDropMenu } from './PathAnimatePanel.module'
+import { initMarkerContentDropMenu, initTimeline } from './PathAnimatePanel.module'
 import { useDragKeyframeToAnimate } from './composititon'
-
+import { symbolFn } from '~/utils/common'
 const props = useSvgAnimate()
 const scrubberPositionLeft = ref('0')
 const scrubberAnimationState = ref('')
@@ -105,7 +10,7 @@ const {
   startPlay,
   pausePlay,
   stopPlay,
-} = initTimeline(props,{
+} = initTimeline(props, {
   scrubberPositionLeft,
   scrubberAnimationState,
   scrubberAnimation,
@@ -123,9 +28,7 @@ const {
 const showDropdownRef = ref(false)
 const xRef = ref(0)
 const yRef = ref(0)
-let { handleMarkerContextMenu,handleDeleteGallery } = initMarkerContentDropMenu(props,{showDropdownRef,xRef,yRef})
-
-
+const { handleMarkerContextMenu, handleDeleteGallery } = initMarkerContentDropMenu(props, { showDropdownRef, xRef, yRef })
 
 // CSS animation:
 // animation-name -- 动画名字
@@ -136,8 +39,97 @@ let { handleMarkerContextMenu,handleDeleteGallery } = initMarkerContentDropMenu(
 // animation-direction -- 动画方向 ： normal/reverse/alternate...
 // animation-fill-mode -- 动画不播放的时候，要应用到元素的样式 ：forwards(移动div从左到右，然后就停留在右)/backwards
 // animation-play-state -- 动画是否暂停 ： paused/running
-
 </script>
+
+<template>
+  <div class="flex flex-col w-full h-full text-[var(--animate-bg-text-color)]">
+    <!-- top -->
+    <div class="top w-full h-14 flex flex-row items-center justify-between px-4">
+      <!-- 播放按钮 -->
+      <div class="text-[var(--animate-text-color)] flex flex-row gap-4">
+        <button class="rounded-full">
+          <div v-if="props.isPlay !== 'running'" class=" w-8 h-8 cursor-pointer bg-green-400 animate-btn" i="carbon-play-outline" @click="startPlay" />
+          <div v-else class=" w-8 h-8 cursor-pointer bg-[#FDD352] animate-btn" i="carbon-pause-outline" @click="pausePlay" />
+        </button>
+
+        <button :disabled="props.isPlay === 'stop'" class="animate-btn rounded-full">
+          <div :class="props.isPlay === 'stop' ? 'bg-[#E4E5EE30]' : 'bg-[#FF6168]'" class=" w-8 h-8 cursor-pointer" i="carbon-stop-outline" @click="stopPlay" />
+        </button>
+      </div>
+
+      <!-- 操作按钮 -->
+      <div class=" text-[var(--animate-text-color)] flex flex-row gap-4">
+        <n-tooltip placement="top" trigger="hover">
+          <template #trigger>
+            <button class="rounded-full" @click="props.resetSvgStore()">
+              <div class=" w-6 h-6 cursor-pointer bg-[#E4E5EE] animate-btn" i="carbon-trash-can" />
+            </button>
+          </template>
+          <span> 清除 Timeline 上已添加的变形</span>
+        </n-tooltip>
+      </div>
+    </div>
+
+    <!-- timeline body -->
+    <div class="w-full flex-1 px-5 min-h-100px">
+      <div class="relative w-full h-full flex flex-row justify-center items-center  ">
+        <!-- 时间轴范围 -->
+        <div class="timelineTicks">
+          <div v-for="i in 21" :key="i" class="tick">
+            <b>{{ (i * 5) - 5 }}%</b>
+          </div>
+        </div>
+
+        <!-- 播放线 -->
+        <div ref="scrubber" class="scrubber" />
+
+        <!-- 时间轴body -->
+        <div class="relative w-full h-70% mt-40px rounded-xl flex flex-row justify-between" @drop="drop" @dragover="allowDrop">
+          <!-- 100条线 -->
+          <div v-if="props.isDraggingKeyframe" class="timelinePositions" @dragenter="dragenter" @dragleave="dragleave">
+            <button v-for="i in 101" :key="i" class="pos" :class="`pos_${i - 1}`">
+              <b>{{ i - 1 }}</b>
+            </button>
+          </div>
+
+          <!-- Step Markers -->
+          <div v-for="(item, index) in props.stepsData" :key="symbolFn(index)" class="timeline-marker" :style="`left: ${item.animate_key}%`">
+            <n-popover trigger="hover">
+              <template #trigger>
+                <div class="w-full h-full" @contextmenu="v => handleMarkerContextMenu(v, item)">
+                  <span>{{ item.animate_key }}</span>
+                </div>
+              </template>
+              <svg class=" w-8 h-8" stroke="currentColor" fill="currentColor">
+                <path :d="item.values.path" />
+              </svg>
+            </n-popover>
+          </div>
+
+          <!-- 背景 -->
+          <div v-for="i in 21" :key="i">
+            <svg width="5" height="100%">
+              <defs>
+                <pattern id="rect" patternUnits="userSpaceOnUse" width="5" height="40">
+                  <rect y="5" width="5" height="5" fill="currentColor" rx="5" />
+                </pattern>
+              </defs>
+              <rect width="5" height="100%" fill="url(#rect)" />
+            </svg>
+          </div>
+
+          <!-- 右键删除 -->
+          <ContentDropMenu
+            v-model:showDropdownRef="showDropdownRef"
+            :x="xRef"
+            :y="yRef"
+            @d="handleDeleteGallery"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style lang="less" scoped>
   // 按钮
@@ -268,7 +260,6 @@ let { handleMarkerContextMenu,handleDeleteGallery } = initMarkerContentDropMenu(
     clip-path: polygon(50% 100%, 100% 38%, 81% 0, 19% 0, 0% 38%);
   }
 
-
   .timeline-marker{
     width: 8px;
     height: 93%;
@@ -313,8 +304,8 @@ let { handleMarkerContextMenu,handleDeleteGallery } = initMarkerContentDropMenu(
       cursor: pointer;
     }
   }
-
 </style>
+
 <style>
   @keyframes scrubAnimation {
     0%{

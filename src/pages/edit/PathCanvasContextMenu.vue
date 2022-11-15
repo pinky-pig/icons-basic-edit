@@ -1,64 +1,47 @@
-<template>
-  <n-dropdown
-  placement="bottom-start"
-  trigger="manual"
-  :x="x"
-  :y="y"
-  :options="options"
-  :show="showDropdownRef"
-  :on-clickoutside="onClickoutside"
-  @select="handleSelect">
-</n-dropdown>
-
-
-</template>
-
 <script lang="ts" setup>
-import { initContextMenuCommand } from "./PathCanvasContextMenu.module";
-const props = useSvgPathStore()
+import { initContextMenuCommand } from './PathCanvasContextMenu.module'
 defineProps({
-  x:{
-    type:Number,
+  x: {
+    type: Number,
   },
-  y:{
-    type:Number,
+  y: {
+    type: Number,
   },
-  showDropdownRef:{
-    type:Boolean,
+  showDropdownRef: {
+    type: Boolean,
   },
 })
+const emit = defineEmits(['update:showDropdownRef', 'D', 'M', 'L', 'V', 'H', 'C', 'S', 'Q', 'T', 'A', 'Z'])
+const props = useSvgPathStore()
 const insertLabel = {
-  'M':'Move to',
-  'L':'Line to',
-  'V':'Vertical Line to',
-  'H':'Horizontal Line to',
-  'C':'Curve to',
-  'S':'Shorthand Curve to',
-  'Q':'Quadratic Bezier Curve to',
-  'T':'Shorthand Quadratic Bezier Curve to',
-  'A':'Elliptical Arc',
-  'Z':'Close Path',
+  M: 'Move to',
+  L: 'Line to',
+  V: 'Vertical Line to',
+  H: 'Horizontal Line to',
+  C: 'Curve to',
+  S: 'Shorthand Curve to',
+  Q: 'Quadratic Bezier Curve to',
+  T: 'Shorthand Quadratic Bezier Curve to',
+  A: 'Elliptical Arc',
+  Z: 'Close Path',
 }
-
-
 
 type insertType = 'D' | 'M' | 'L' | 'V' | 'H' | 'C' | 'S' | 'Q' | 'T' | 'A' | 'Z'
 
-const { deleteFn,insert,canDelete } = initContextMenuCommand(props)
+const { deleteFn, insert, canDelete } = initContextMenuCommand(props)
 
 const canDeleteType = computed(() => canDelete(props.focusedItem))
-const emit = defineEmits(['update:showDropdownRef','D' , 'M' , 'L' , 'V' , 'H' , 'C' , 'S' , 'Q' , 'T' , 'A' , 'Z'])
 const handleSelect = (key: insertType) => {
   switch (key) {
     case 'D':
       deleteFn(props.focusedItem)
       emit('update:showDropdownRef', false)
-      break;
+      break
 
     default:
-      insert(key,props.focusedItem,false)
+      insert(key, props.focusedItem, false)
       emit('update:showDropdownRef', false)
-      break;
+      break
   }
 }
 
@@ -66,41 +49,49 @@ const onClickoutside = () => {
   emit('update:showDropdownRef', false)
 }
 
-
-
 const options = ref(
   [
-   {
-     label: '新增',
-     icon() { return h('div', { i: 'carbon-add', class:' text-base' }) },
-     key: 'add',
-     children: [
-       { label: insertLabel['M'] , key: 'M' , disabled: false , icon() { return h('div', {}, 'M' ) },},
-       { label: insertLabel['L'] , key: 'L' , disabled: false , icon() { return h('div', {}, 'L' ) },},
-       { label: insertLabel['V'] , key: 'V' , disabled: false , icon() { return h('div', {}, 'V' ) },},
-       { label: insertLabel['H'] , key: 'H' , disabled: false , icon() { return h('div', {}, 'H' ) },},
-       { label: insertLabel['C'] , key: 'C' , disabled: false , icon() { return h('div', {}, 'C' ) },},
-       { label: insertLabel['S'] , key: 'S' , disabled: true  , icon() { return h('div', {}, 'S' ) },},
-       { label: insertLabel['Q'] , key: 'Q' , disabled: false , icon() { return h('div', {}, 'Q' ) },},
-       { label: insertLabel['T'] , key: 'T' , disabled: false , icon() { return h('div', {}, 'T' ) },},
-       { label: insertLabel['A'] , key: 'A' , disabled: false , icon() { return h('div', {}, 'A' ) },},
-       { label: insertLabel['Z'] , key: 'Z' , disabled: false , icon() { return h('div', {}, 'Z' ) },},
-     ]
-   },
-   {
-     type: 'divider',
-     key: 'd1'
-   },
-   {
-     label: '删除',
-     icon() { return h('div', { i: 'carbon-trash-can', }) },
-     key: 'D',
-     disabled: !canDeleteType
-   },
- ]
+    {
+      label: '新增',
+      icon() { return h('div', { i: 'carbon-add', class: ' text-base' }) },
+      key: 'add',
+      children: [
+        { label: insertLabel.M, key: 'M', disabled: false, icon() { return h('div', {}, 'M') } },
+        { label: insertLabel.L, key: 'L', disabled: false, icon() { return h('div', {}, 'L') } },
+        { label: insertLabel.V, key: 'V', disabled: false, icon() { return h('div', {}, 'V') } },
+        { label: insertLabel.H, key: 'H', disabled: false, icon() { return h('div', {}, 'H') } },
+        { label: insertLabel.C, key: 'C', disabled: false, icon() { return h('div', {}, 'C') } },
+        { label: insertLabel.S, key: 'S', disabled: true, icon() { return h('div', {}, 'S') } },
+        { label: insertLabel.Q, key: 'Q', disabled: false, icon() { return h('div', {}, 'Q') } },
+        { label: insertLabel.T, key: 'T', disabled: false, icon() { return h('div', {}, 'T') } },
+        { label: insertLabel.A, key: 'A', disabled: false, icon() { return h('div', {}, 'A') } },
+        { label: insertLabel.Z, key: 'Z', disabled: false, icon() { return h('div', {}, 'Z') } },
+      ],
+    },
+    {
+      type: 'divider',
+      key: 'd1',
+    },
+    {
+      label: '删除',
+      icon() { return h('div', { i: 'carbon-trash-can' }) },
+      key: 'D',
+      disabled: !canDeleteType,
+    },
+  ],
 )
-
 </script>
 
-
+<template>
+  <n-dropdown
+    placement="bottom-start"
+    trigger="manual"
+    :x="x"
+    :y="y"
+    :options="options"
+    :show="showDropdownRef"
+    :on-clickoutside="onClickoutside"
+    @select="handleSelect"
+  />
+</template>
 

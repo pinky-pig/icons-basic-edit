@@ -4,6 +4,7 @@ import Header from './Header.vue'
 import Left from './Left.vue'
 import type { Point, SvgControlPoint, SvgItem, SvgPoint } from './Svg'
 import { Svg } from './Svg'
+import { symbolFn } from '~/utils/common'
 
 const canvasWidth = ref(100)
 const canvasHeight = ref(100)
@@ -325,7 +326,6 @@ const deleteFn = (item: SvgItem) => {
   parsedPath.value.delete(item)
   afterModelChange()
 }
-const symbolFn = key => Symbol(key)
 </script>
 
 <template>

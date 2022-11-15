@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import type { SvgControlPoint, SvgPoint } from '~/pages/edit/Svg'
 import { stepsType } from '~/store/svg-animate'
+import { symbolFn } from '~/utils/common'
 
 const props = defineProps({
   viewPortX: {
@@ -130,8 +131,6 @@ const hoveredItemPath = computed(() => {
   else
     return
 })
-
-const symbolFn = key => Symbol(key)
 
 // M = moveto(M X,Y) ：将画笔移动到指定的坐标位置
 // L = lineto(L X,Y) ：画直线到指定的坐标位置

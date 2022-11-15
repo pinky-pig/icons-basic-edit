@@ -1,6 +1,6 @@
-import { Ref } from "vue"
-import { stepsType } from "~/store/svg-animate"
+import type { Ref } from 'vue'
 import anime from 'animejs/lib/anime.js'
+import type { stepsType } from '~/store/svg-animate'
 // GSAP Timeline: https://greensock.com/docs/v3/GSAP/Timeline
 // Anime Timeline: https://www.animejs.cn/documentation/#TLParamsInheritance
 
@@ -15,20 +15,25 @@ import anime from 'animejs/lib/anime.js'
 // Anime.js 有个坑是不能 reset timeline 上的动画
 
 export function initTimeline(props: any, context?: any) {
-  let { isPlay,stepsData } = toRefs(props)
-  let {
+  const { isPlay, stepsData } = toRefs(props)
+  const {
     scrubberPositionLeft,
     scrubberAnimationState,
     scrubberAnimation,
   } = toRefs(context)
 
   // 如果状态被改成 stop ， 停止动画
-  watch(() => isPlay.value,(v1) => {
-    if (v1 == 'stop') {
+  watch(() => isPlay.value, (v1) => {
+    if (v1 === 'stop')
       stopPlay()
-    }
   })
 
+  let tl = anime.timeline({
+    targets: '#galley_default',
+    autoplay: false,
+    direction: 'normal',
+    loop: true,
+  })
 
   const startPlay = () => {
     scrubberAnimation.value = 'scrubAnimation 5s linear infinite running'
@@ -49,38 +54,32 @@ export function initTimeline(props: any, context?: any) {
 
     tl.pause()
     tl.seek(0)
-
   }
 
-  let tl = anime.timeline({
-    targets: '#galley_default',
-    autoplay: false,
-    direction: "normal",
-    loop: true
-  })
-
   const playAnime = () => {
-    if(isPlay.value === 'paused'){
+    if (isPlay.value === 'paused') {
       tl.play()
-    }else{
+    }
+    else {
       tl = anime.timeline({
         targets: '#galley_default',
         autoplay: false,
-        direction: "normal",
-        loop: true
+        direction: 'normal',
+        loop: true,
       })
 
-      stepsData.value?.forEach((i:stepsType,idx:number) => {
+      stepsData.value?.forEach((i: stepsType, idx: number) => {
         // 默认第一个，所以 default 不需要添加动画
-        if (idx == 0) return
+        if (idx === 0)
+          return
         // 没有设置 targets ，是因为在初始化 timeline 的时候设置了，这里可以继承过来
         tl.add({
           d: {
             value: [
-              stepsData.value[idx].values.path
+              stepsData.value[idx].values.path,
             ],
-            duration: (i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 50,  // (i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 5 / 100, // 整个时间轴的动画是 5s ，间隔两两相减
-            easing: "linear"
+            duration: (i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 50, // (i.animate_key - stepsData.value[idx - 1]?.animate_key || 0) * 5 / 100, // 整个时间轴的动画是 5s ，间隔两两相减
+            easing: 'linear',
           },
           offset: 0,
           delay: 0,
@@ -100,16 +99,14 @@ export function initTimeline(props: any, context?: any) {
     pausePlay,
     stopPlay,
   }
-
 }
 
+export function initMarkerContentDropMenu(props: any, context?: any) {
+  const { stepsData } = toRefs(props)
+  const { showDropdownRef, xRef, yRef } = toRefs(context)
+  const current: Ref<stepsType | null> = ref(null)
 
-export function initMarkerContentDropMenu(props: any, context?: any){
-  let { stepsData } = toRefs(props)
-  let { showDropdownRef , xRef , yRef } = toRefs(context)
-  const current:Ref<stepsType | null> = ref(null)
-
-  const handleMarkerContextMenu = (e: MouseEvent,item :stepsType) => {
+  const handleMarkerContextMenu = (e: MouseEvent, item: stepsType) => {
     e.preventDefault()
     showDropdownRef.value = false
     nextTick().then(() => {
@@ -121,7 +118,7 @@ export function initMarkerContentDropMenu(props: any, context?: any){
   }
 
   const handleDeleteGallery = () => {
-    if (current.value){
+    if (current.value) {
       stepsData.value = stepsData.value.filter(it => it.animate_key !== (current.value as stepsType).animate_key)
       showDropdownRef.value = false
     }
@@ -129,6 +126,6 @@ export function initMarkerContentDropMenu(props: any, context?: any){
 
   return {
     handleMarkerContextMenu,
-    handleDeleteGallery
+    handleDeleteGallery,
   }
 }
