@@ -36,7 +36,6 @@ const props = defineProps({
   },
 
   parsedPath: {
-    type: Object || String,
     default: '',
   },
 
@@ -56,12 +55,12 @@ const props = defineProps({
   },
 
   focusedItem: {
-    type: Object || null,
+    type: Object,
     default: null,
   },
 
   hoveredItem: {
-    type: Object || null,
+    type: Object,
     default: null,
   },
 
