@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import type { SvgItem } from '~/pages/edit/Svg'
-import { StorageStore, StoredPath } from '~/pages/edit/storage.service'
+import { StorageStore } from '~/pages/edit/storage.service'
 
 export const kDefaultPath = ref(
 //   `M 4 8 L 10 1 L 13 0 L 12 3 L 5 9 C 6 10 6 11 7 10 C 7 11 8 12 7 12 A 1.42 1.42 0 0 1 6 13 `

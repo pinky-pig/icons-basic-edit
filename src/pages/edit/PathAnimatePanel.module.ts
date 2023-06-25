@@ -42,12 +42,12 @@ export function initTimeline(props: any, context?: any) {
     playAnime()
   }
 
-  const pausePlay = () => {
+  function pausePlay() {
     isPlay.value = 'paused'
     scrubberAnimationState.value = 'paused'
     tl.pause(true)
   }
-  const stopPlay = () => {
+  function stopPlay() {
     // if 正在播放 $reSet
     isPlay.value = 'stop'
     scrubberAnimation.value = ''
@@ -56,7 +56,7 @@ export function initTimeline(props: any, context?: any) {
     tl.seek(0)
   }
 
-  const playAnime = () => {
+  function playAnime() {
     if (isPlay.value === 'paused') {
       tl.play()
     }

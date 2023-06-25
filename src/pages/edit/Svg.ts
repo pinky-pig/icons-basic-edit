@@ -276,12 +276,10 @@ export abstract class SvgItem {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public refreshAbsoluteControlPoints(_origin: Point, _previous: SvgItem | null) {
     this.absoluteControlPoints = []
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public resetControlPoints(_previousTarget: SvgItem) {
   }
 
@@ -520,7 +518,7 @@ class HorizontalLineTo extends SvgItem {
 }
 class VerticalLineTo extends SvgItem {
   static readonly key = 'V'
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   public translate(_x: number, y: number, _force = false) {
     if (!this.relative)
       this.values[0] += y

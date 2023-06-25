@@ -22,7 +22,6 @@ useHead({
 </script>
 
 <template>
-
   <suspense>
     <RouterView />
   </suspense>

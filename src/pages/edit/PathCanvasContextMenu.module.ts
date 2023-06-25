@@ -1,7 +1,7 @@
 import { useComposition } from './composititon'
 import { Point, SvgItem } from './Svg'
 
-export function initContextMenuCommand(props: any, context?: any) {
+export function initContextMenuCommand(props: any, _context?: any) {
   const {
     focusedItem,
     parsedPath,
@@ -86,7 +86,7 @@ export function initContextMenuCommand(props: any, context?: any) {
     }
   }
 
-  const setHistoryDisabled = (value: boolean) => {
+  function setHistoryDisabled(value: boolean) {
     historyDisabled.value = value
     if (!value) {
       // pushHistory();

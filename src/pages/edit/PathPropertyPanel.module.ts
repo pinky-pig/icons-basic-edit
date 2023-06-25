@@ -2,7 +2,7 @@ import type { Ref } from 'vue'
 import { useComposition } from './composititon'
 import type { StoredPath } from './storage.service'
 
-export function initMatrix(props: any, context?: any) {
+export function initMatrix(props: any, _context?: any) {
   const { parsedPath } = toRefs(props)
 
   const { afterModelChange } = useComposition(props)
@@ -34,7 +34,7 @@ export function initMatrix(props: any, context?: any) {
   }
 }
 
-export function initScreenshot(props: any, context?: any) {
+export function initScreenshot(props: any, _context?: any) {
   const { rawPath, keyframeCursor, storage } = toRefs(props)
   keyframeCursor.value++
   storage.value.addPath(keyframeCursor.value, rawPath.value)

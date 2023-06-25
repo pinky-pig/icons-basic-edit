@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Teleport, h } from 'vue'
 import type { DefineComponent, Ref } from 'vue'
 
@@ -23,7 +24,7 @@ export const createStarport = (component: DefineComponent<{}, {}, any>) => {
 
   /** 创建Container组件，目的是为了占位（给其赋ref，将其坐标拿出来） */
   const ContainerComponent = defineComponent({
-    setup(props, ctx) {
+    setup(_props, ctx) {
       // 在组件卸载之前，将变量 isFly 重置
       onUnmounted(() => {
         isFly.value = true
@@ -35,13 +36,16 @@ export const createStarport = (component: DefineComponent<{}, {}, any>) => {
 
   /** 创建Proxy组件，将传入的组件，用一层div包住渲染，再在其div上移动，移动到 container的位置后，通过teleport传到其dom */
   const ProxyComponent = defineComponent({
-    setup(props, ctx) {
+    setup(_props, _ctx) {
       // 起点的位置
       const storeSvg = useSvgStore()
       const startLeft: Ref<any> = ref()
       const startTop: Ref<any> = ref()
 
-      watch(() => storeSvg.selectedSvgDom, (v1, v2) => {
+      // 是否有动画。设置起点的时候不需要，起点到终点的时候需要
+      const hasTransition = ref(false)
+
+      watch(() => storeSvg.selectedSvgDom, (v1, _v2) => {
         if (v1) {
           const { top, left } = useElementBounding(v1)
           startTop.value = top.value
@@ -61,9 +65,6 @@ export const createStarport = (component: DefineComponent<{}, {}, any>) => {
           })
         }
       })
-
-      // 是否有动画。设置起点的时候不需要，起点到终点的时候需要
-      const hasTransition = ref(false)
 
       const getStyle = $computed(() => {
         return {

@@ -1,6 +1,6 @@
 import { useComposition } from './composititon'
 
-export function initCanvas(props: any, context?: any) {
+export function initCanvas(props: any, _context?: any) {
   const { cfg, canvasWidth, canvasHeight } = toRefs(props)
   const { updateViewPort, zoomAuto } = useComposition(props)
   onMounted(() => {
@@ -19,7 +19,7 @@ export function initCanvas(props: any, context?: any) {
   })
 }
 
-export function initSvgPath(props: any, context?: any) {
+export function initSvgPath(props: any, _context?: any) {
   const { rawPath } = toRefs(props)
   const { reloadPath } = useComposition(props)
   onMounted(() => {
@@ -27,12 +27,12 @@ export function initSvgPath(props: any, context?: any) {
       openPath(rawPath.value, '')
     }, 0)
   })
-  function openPath(newPath: string, name: string): void {
+  function openPath(newPath: string, _name: string): void {
     reloadPath(newPath, true)
   }
 }
 
-export function initEventListener(props: any, context?: any) {
+export function initEventListener(props: any, _context?: any) {
   onMounted(() => {
     const canvas = document.querySelector('#canvas')
     const { draggedEvt, wasCanvasDragged } = toRefs(props)
@@ -41,7 +41,7 @@ export function initEventListener(props: any, context?: any) {
       draggedEvt.value = evt
       wasCanvasDragged.value = false
     })
-    useEventListener(canvas, 'mouseup', (evt: MouseEvent) => {
+    useEventListener(canvas, 'mouseup', (_evt: MouseEvent) => {
       stopDrag()
     })
     useEventListener(canvas, 'mousemove', (evt: MouseEvent) => {
@@ -56,7 +56,7 @@ export function initEventListener(props: any, context?: any) {
   })
 }
 
-export function initHistory(props: any, context?: any) {
+export function initHistory(props: any, _context?: any) {
   const { rawPath, history, historyCursor, storage } = toRefs(props)
   watch(() => rawPath.value, () => {
     if (rawPath.value !== history.value[historyCursor.value]) {
@@ -69,18 +69,16 @@ export function initHistory(props: any, context?: any) {
   })
 }
 
-export function handleScreenshot(props: any, context?: any) {
+export function handleScreenshot(props: any, _context?: any) {
   const { rawPath, keyframeCursor, storage } = toRefs(props)
   storage.value.addPath(keyframeCursor.value, rawPath.value)
   storage.value.setIsKeyframePathStatus(keyframeCursor.value, true)
 }
 
-export function initRedoUndo(props: any, context?: any) {
+export function initRedoUndo(props: any, _context?: any) {
   const {
-    rawPath,
     history,
     historyCursor,
-    storage,
     historyDisabled,
   } = toRefs(props)
   const { reloadPath } = useComposition(props)

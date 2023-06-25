@@ -1,7 +1,7 @@
 import { useComposition } from './composititon'
 import { Point, SvgItem } from './Svg'
 
-export function initPath(props: any, context?: any) {
+export function initPath(props: any, _context?: any) {
   const { commandList, parsedPath } = toRefs(props)
   watch(() => parsedPath.value, () => {
     commandList.value = parsedPath.value.path
@@ -17,7 +17,7 @@ export function initPath(props: any, context?: any) {
   })
 }
 
-export function initCommand(props: any, context?: any) {
+export function initCommand(props: any, _context?: any) {
   const {
     focusedItem,
     parsedPath,
@@ -102,7 +102,7 @@ export function initCommand(props: any, context?: any) {
     }
   }
 
-  const setHistoryDisabled = (value: boolean) => {
+  function setHistoryDisabled(value: boolean) {
     historyDisabled.value = value
     if (!value) {
       // pushHistory();

@@ -35,37 +35,37 @@ export default defineConfig({
     transformerDirectives(),
     transformerVariantGroup(),
   ],
-  theme:{
+  theme: {
     extend: {
       colors: {
-        primary: 'var(--primary-color)',
+        'primary': 'var(--primary-color)',
         'primary-hover': 'var(--primary-color-hover)',
         'primary-pressed': 'var(--primary-color-pressed)',
         'primary-active': 'var(--primary-color-active)',
-        info: 'var(--info-color)',
+        'info': 'var(--info-color)',
         'info-hover': 'var(--info-color-hover)',
         'info-pressed': 'var(--info-color-pressed)',
         'info-active': 'var(--info-color-active)',
-        success: 'var(--success-color)',
+        'success': 'var(--success-color)',
         'success-hover': 'var(--success-color-hover)',
         'success-pressed': 'var(--success-color-pressed)',
         'success-active': 'var(--success-color-active)',
-        warning: 'var(--warning-color)',
+        'warning': 'var(--warning-color)',
         'warning-hover': 'var(--warning-color-hover)',
         'warning-pressed': 'var(--warning-color-pressed)',
         'warning-active': 'var(--warning-color-active)',
-        error: 'var(--error-color)',
+        'error': 'var(--error-color)',
         'error-hover': 'var(--error-color-hover)',
         'error-pressed': 'var(--error-color-pressed)',
-        'error-active': 'var(--error-color-active)'
+        'error-active': 'var(--error-color-active)',
       },
       backgroundColor: {
-        dark: '#18181c',
-        'dark-base': '#101014'
+        'dark': '#18181c',
+        'dark-base': '#101014',
       },
       textColor: {
         'black-base': '#333639',
-        'white-base': 'rgba(255, 255, 255, 0.82)'
+        'white-base': 'rgba(255, 255, 255, 0.82)',
       },
       transitionProperty: [
         'width',
@@ -75,9 +75,9 @@ export default defineConfig({
         'padding-left',
         'border-color',
         'right',
-        'fill'
-      ]
-    }
+        'fill',
+      ],
+    },
   },
   safelist: 'prose prose-sm m-auto text-left'.split(' '),
 })

@@ -20,6 +20,6 @@ import { isDark } from '~/composables'
 ```
 
 ```ts
-let url = 'https://unsplash.it/40/40'
+const url = 'https://unsplash.it/40/40'
 new Array(9).fill('')
 ```
