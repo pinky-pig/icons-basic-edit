@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { MaybeElement, MaybeElementRef } from '@vueuse/core'
 import { browserComputePathBoundingBox } from './PathCanvas.help'
-import type { Point } from './Svg'
-import { Svg } from './Svg'
+import type { Point } from '~/Svg'
+import { Svg } from '~/Svg'
 
 // svg 编辑的方法
 export const useComposition = (props: any, context?: any) => {

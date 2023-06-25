@@ -2,7 +2,6 @@
 import { initContentDropMenu, initMatrix, initScreenshot } from './PathPropertyPanel.module'
 import { useDragKeyframeToAnimate } from './composititon'
 import { browserComputePathBoundingBox } from './PathCanvas.help'
-import { symbolFn } from '~/utils/common'
 
 const props = useSvgPathStore()
 

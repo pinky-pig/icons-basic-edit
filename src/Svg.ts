@@ -1,4 +1,4 @@
-import { SvgParser } from './svg-parser'
+import { SvgParser } from '~/compiler/svgCompiler'
 
 export class Svg {
   path: SvgItem[]

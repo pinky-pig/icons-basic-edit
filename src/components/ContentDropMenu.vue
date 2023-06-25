@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { StoredPath } from '~/pages/edit/storage.service'
-
 interface PropsType {
   x: Number
   y: Number

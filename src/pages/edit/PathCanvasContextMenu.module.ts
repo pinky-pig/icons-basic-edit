@@ -1,5 +1,5 @@
 import { useComposition } from './composititon'
-import { Point, SvgItem } from './Svg'
+import { Point, SvgItem } from '~/Svg'
 
 export function initContextMenuCommand(props: any, _context?: any) {
   const {

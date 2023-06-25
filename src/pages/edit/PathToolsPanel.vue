@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { initCommand, initPath } from './PathToolsPanel.module'
-import { symbolFn } from '~/utils/common'
 
 const props = useSvgPathStore()
 

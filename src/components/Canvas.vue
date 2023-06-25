@@ -2,7 +2,6 @@
 <script setup lang="ts">
 import type { SvgControlPoint, SvgPoint } from '~/pages/edit/Svg'
 import { stepsType } from '~/store/svg-animate'
-import { symbolFn } from '~/utils/common'
 
 const props = defineProps({
   viewPortX: {
