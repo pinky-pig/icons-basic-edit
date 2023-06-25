@@ -1,6 +1,5 @@
 import type { Ref } from 'vue'
-import { useComposition } from './composititon'
-import type { StoredPath } from './storage.service'
+import type { StoredPath } from '~/Storage'
 
 export function initMatrix(props: any, _context?: any) {
   const { parsedPath } = toRefs(props)

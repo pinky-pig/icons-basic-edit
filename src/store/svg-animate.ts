@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { StoredPath } from '~/pages/edit/storage.service'
+import type { StoredPath } from '~/Storage'
 
 export interface stepsType {
   animate_key: number

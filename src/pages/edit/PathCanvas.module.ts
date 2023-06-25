@@ -1,5 +1,3 @@
-import { useComposition } from './composititon'
-
 export function initCanvas(props: any, _context?: any) {
   const { cfg, canvasWidth, canvasHeight } = toRefs(props)
   const { updateViewPort, zoomAuto } = useComposition(props)

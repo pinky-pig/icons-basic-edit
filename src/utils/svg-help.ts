@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { MaybeElement, MaybeElementRef } from '@vueuse/core'
-import { browserComputePathBoundingBox } from './PathCanvas.help'
 import type { Point } from '~/Svg'
 import { Svg } from '~/Svg'
 
@@ -248,3 +247,21 @@ export const useDragKeyframeToAnimate = (props: any, context?: any) => {
   }
 }
 
+/**
+ * 计算当前svg的box
+ * @param path Svg
+ */
+export function browserComputePathBoundingBox(path) {
+  const svgNS = 'http://www.w3.org/2000/svg'
+  const svgEl = document.createElementNS(svgNS, 'svg')
+  svgEl.style.position = 'absolute'
+  svgEl.style.width = '0px'
+  svgEl.style.height = '0px'
+  const pathEl = document.createElementNS(svgNS, 'path')
+  pathEl.setAttributeNS(null, 'd', path)
+  svgEl.appendChild(pathEl)
+  document.body.appendChild(svgEl)
+  const result = pathEl.getBBox()
+  svgEl.remove()
+  return result
+}

@@ -1,4 +1,3 @@
-import { useComposition } from './composititon'
 import { Point, SvgItem } from '~/Svg'
 
 export function initPath(props: any, _context?: any) {

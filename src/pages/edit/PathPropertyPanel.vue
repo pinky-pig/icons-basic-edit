@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { initContentDropMenu, initMatrix, initScreenshot } from './PathPropertyPanel.module'
-import { useDragKeyframeToAnimate } from './composititon'
-import { browserComputePathBoundingBox } from './PathCanvas.help'
 
 const props = useSvgPathStore()
 

@@ -1,6 +1,6 @@
 <!-- eslint-disable no-useless-return -->
 <script setup lang="ts">
-import type { SvgControlPoint, SvgPoint } from '~/pages/edit/Svg'
+import type { SvgControlPoint, SvgPoint } from '~/Svg'
 import { stepsType } from '~/store/svg-animate'
 
 const props = defineProps({
