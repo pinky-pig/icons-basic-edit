@@ -52,7 +52,8 @@ declare global {
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const initCanvas: typeof import('./logic/Main')['initCanvas']
-  const initCanvasSize: typeof import('./logic/Main')['initCanvasSize']
+  const initCanvasSize: typeof import('./logic/Watch')['initCanvasSize']
+  const initCommand: typeof import('./logic/Command')['initCommand']
   const initEventListener: typeof import('./logic/Main')['initEventListener']
   const initHistory: typeof import('./logic/Main')['initHistory']
   const initRedoUndo: typeof import('./logic/Main')['initRedoUndo']
@@ -382,7 +383,8 @@ declare module 'vue' {
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly initCanvas: UnwrapRef<typeof import('./logic/Main')['initCanvas']>
-    readonly initCanvasSize: UnwrapRef<typeof import('./logic/Main')['initCanvasSize']>
+    readonly initCanvasSize: UnwrapRef<typeof import('./logic/Watch')['initCanvasSize']>
+    readonly initCommand: UnwrapRef<typeof import('./logic/Command')['initCommand']>
     readonly initEventListener: UnwrapRef<typeof import('./logic/Main')['initEventListener']>
     readonly initHistory: UnwrapRef<typeof import('./logic/Main')['initHistory']>
     readonly initRedoUndo: UnwrapRef<typeof import('./logic/Main')['initRedoUndo']>
@@ -697,7 +699,8 @@ declare module '@vue/runtime-core' {
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly initCanvas: UnwrapRef<typeof import('./logic/Main')['initCanvas']>
-    readonly initCanvasSize: UnwrapRef<typeof import('./logic/Main')['initCanvasSize']>
+    readonly initCanvasSize: UnwrapRef<typeof import('./logic/Watch')['initCanvasSize']>
+    readonly initCommand: UnwrapRef<typeof import('./logic/Command')['initCommand']>
     readonly initEventListener: UnwrapRef<typeof import('./logic/Main')['initEventListener']>
     readonly initHistory: UnwrapRef<typeof import('./logic/Main')['initHistory']>
     readonly initRedoUndo: UnwrapRef<typeof import('./logic/Main')['initRedoUndo']>
