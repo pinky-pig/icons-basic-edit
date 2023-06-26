@@ -8,7 +8,7 @@ main()
 // 监听画布面板尺寸
 const { canvasRef } = storeToRefs(props)
 onMounted(() => {
-  initCanvasSize(props)
+  initWatchCanvasSize(props)
 })
 
 /** 鼠标hover上才能打开 右键菜单 */

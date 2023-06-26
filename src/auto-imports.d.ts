@@ -54,10 +54,13 @@ declare global {
   const initCanvas: typeof import('./logic/Main')['initCanvas']
   const initCanvasSize: typeof import('./logic/Watch')['initCanvasSize']
   const initCommand: typeof import('./logic/Command')['initCommand']
+  const initCommandSize: typeof import('./logic/Watch')['initCommandSize']
   const initEventListener: typeof import('./logic/Main')['initEventListener']
   const initHistory: typeof import('./logic/Main')['initHistory']
   const initRedoUndo: typeof import('./logic/Main')['initRedoUndo']
   const initSvgPath: typeof import('./logic/Main')['initSvgPath']
+  const initWatchCanvasSize: typeof import('./logic/Watch')['initWatchCanvasSize']
+  const initWatchCommandSize: typeof import('./logic/Watch')['initWatchCommandSize']
   const inject: typeof import('vue')['inject']
   const isDark: typeof import('./composables/dark')['isDark']
   const isDefined: typeof import('@vueuse/core')['isDefined']
@@ -383,12 +386,13 @@ declare module 'vue' {
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly initCanvas: UnwrapRef<typeof import('./logic/Main')['initCanvas']>
-    readonly initCanvasSize: UnwrapRef<typeof import('./logic/Watch')['initCanvasSize']>
     readonly initCommand: UnwrapRef<typeof import('./logic/Command')['initCommand']>
     readonly initEventListener: UnwrapRef<typeof import('./logic/Main')['initEventListener']>
     readonly initHistory: UnwrapRef<typeof import('./logic/Main')['initHistory']>
     readonly initRedoUndo: UnwrapRef<typeof import('./logic/Main')['initRedoUndo']>
     readonly initSvgPath: UnwrapRef<typeof import('./logic/Main')['initSvgPath']>
+    readonly initWatchCanvasSize: UnwrapRef<typeof import('./logic/Watch')['initWatchCanvasSize']>
+    readonly initWatchCommandSize: UnwrapRef<typeof import('./logic/Watch')['initWatchCommandSize']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
@@ -699,12 +703,13 @@ declare module '@vue/runtime-core' {
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly initCanvas: UnwrapRef<typeof import('./logic/Main')['initCanvas']>
-    readonly initCanvasSize: UnwrapRef<typeof import('./logic/Watch')['initCanvasSize']>
     readonly initCommand: UnwrapRef<typeof import('./logic/Command')['initCommand']>
     readonly initEventListener: UnwrapRef<typeof import('./logic/Main')['initEventListener']>
     readonly initHistory: UnwrapRef<typeof import('./logic/Main')['initHistory']>
     readonly initRedoUndo: UnwrapRef<typeof import('./logic/Main')['initRedoUndo']>
     readonly initSvgPath: UnwrapRef<typeof import('./logic/Main')['initSvgPath']>
+    readonly initWatchCanvasSize: UnwrapRef<typeof import('./logic/Watch')['initWatchCanvasSize']>
+    readonly initWatchCommandSize: UnwrapRef<typeof import('./logic/Watch')['initWatchCommandSize']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>

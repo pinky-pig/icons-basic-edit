@@ -1,21 +1,7 @@
 <script setup lang="ts">
-import { initCommand } from '~/logic/Command'
-
 const store = useSvgPathStore()
 
-// 初始化Path
-watch(() => store.parsedPath, (v) => {
-  if (v)
-    store.commandList = (v as any).path
-})
-// 双向绑定的值和视图,focusedItem判断是视图更改还是文本更改
-watch(() => store.rawPath, (v1) => {
-  const { focusedItem } = toRefs(store)
-  if (!focusedItem.value) {
-    const { reloadPath } = useComposition(store)
-    reloadPath(v1)
-  }
-})
+initWatchCommandSize(store)
 
 const { setFocusedItemFromInput, deleteFn, canDelete, insert, setHistoryDisabled, updateCommandValue } = initCommand()
 </script>
