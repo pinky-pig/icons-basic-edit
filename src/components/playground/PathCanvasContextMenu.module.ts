@@ -58,17 +58,23 @@ export function initContextMenuCommand(props: any, _context?: any) {
         const Y = (relative ? 0 : point1.y).toString()
         switch (type.toLocaleLowerCase()) {
           case 'm': case 'l': case 't':
-            newItem = SvgItem.Make([type, X, Y]); break
+            newItem = SvgItem.Make([type, X, Y])
+            break
           case 'h':
-            newItem = SvgItem.Make([type, X]); break
+            newItem = SvgItem.Make([type, X])
+            break
           case 'v':
-            newItem = SvgItem.Make([type, Y]); break
+            newItem = SvgItem.Make([type, Y])
+            break
           case 's': case 'q':
-            newItem = SvgItem.Make([type, X, Y, X, Y]); break
+            newItem = SvgItem.Make([type, X, Y, X, Y])
+            break
           case 'c':
-            newItem = SvgItem.Make([type, X, Y, X, Y, X, Y]); break
+            newItem = SvgItem.Make([type, X, Y, X, Y, X, Y])
+            break
           case 'a':
-            newItem = SvgItem.Make([type, '1', '1', '0', '0', '0', X, Y]); break
+            newItem = SvgItem.Make([type, '1', '1', '0', '0', '0', X, Y])
+            break
           case 'z':
             newItem = SvgItem.Make([type])
         }
@@ -94,7 +100,7 @@ export function initContextMenuCommand(props: any, _context?: any) {
 
   const updateCommandValue = (v, item: SvgItem, idx: number) => {
     const val = Number(v.srcElement.value)
-    if (!isNaN(val)) {
+    if (!Number.isNaN(val)) {
       item.values[idx] = Number(val)
       parsedPath.value.refreshAbsolutePositions()
       afterModelChange()
@@ -109,4 +115,3 @@ export function initContextMenuCommand(props: any, _context?: any) {
     insert,
   }
 }
-

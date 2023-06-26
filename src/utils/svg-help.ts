@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { MaybeElement, MaybeElementRef } from '@vueuse/core'
 import type { Point } from '~/Svg'
 import { Svg } from '~/Svg'
 
 // svg 编辑的方法
-export const useComposition = (props: any, context?: any) => {
+export function useComposition(props: any, context?: any) {
   const {
     cfg,
     canvasWidth,
@@ -59,10 +58,10 @@ export const useComposition = (props: any, context?: any) => {
     if (!w || !h)
       return
 
-    cfg.value.viewPortX = parseFloat((1 * x).toPrecision(6))
-    cfg.value.viewPortY = parseFloat((1 * y).toPrecision(6))
-    cfg.value.viewPortWidth = parseFloat((1 * w).toPrecision(4))
-    cfg.value.viewPortHeight = parseFloat((1 * h).toPrecision(4))
+    cfg.value.viewPortX = Number.parseFloat((1 * x).toPrecision(6))
+    cfg.value.viewPortY = Number.parseFloat((1 * y).toPrecision(6))
+    cfg.value.viewPortWidth = Number.parseFloat((1 * w).toPrecision(4))
+    cfg.value.viewPortHeight = Number.parseFloat((1 * h).toPrecision(4))
     strokeWidth.value = cfg.value.viewPortWidth / canvasWidth.value
   }
 
@@ -99,8 +98,8 @@ export const useComposition = (props: any, context?: any) => {
     if (draggedPoint.value && parsedPath.value) {
       // 当前的鼠标位置保留小数，目的让点在格子上，因为格子的长度是1单位 decimals => n.小数；十进算术
       const decimals = 0
-      pt.x = parseFloat(pt.x.toFixed(decimals))
-      pt.y = parseFloat(pt.y.toFixed(decimals))
+      pt.x = Number.parseFloat(pt.x.toFixed(decimals))
+      pt.y = Number.parseFloat(pt.y.toFixed(decimals))
 
       // 设置当前鼠标点击的这个点的位置为鼠标的这个位置
       parsedPath.value.setLocation(draggedPoint.value, pt as Point)
@@ -206,7 +205,7 @@ export const useComposition = (props: any, context?: any) => {
 }
 
 // 拖拽动画的方法
-export const useDragKeyframeToAnimate = (props: any, context?: any) => {
+export function useDragKeyframeToAnimate(props: any, context?: any) {
   const { isDraggingKeyframe, stepsData } = toRefs(props)
   const { addStepsData } = props
 

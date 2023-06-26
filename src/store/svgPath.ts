@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { SvgItem } from '~/Svg'
+import type { Svg, SvgItem } from '~/Svg'
 import { StorageStore } from '~/Storage'
 
 export const kDefaultPath = ref(
@@ -23,16 +23,16 @@ export const useSvgPathStore = defineStore({
         viewPortHeight: 0 as number,
       },
       strokeWidth: 0 as number,
-      parsedPath: undefined,
+      parsedPath: undefined as Svg | undefined,
       rawPath: storage.getPath('default')?.path || kDefaultPath.value,
       draggedEvt: null,
       wasCanvasDragged: false, // 画布是否被拖拽
 
       targetPoints: [],
       controlPoints: [],
-      draggedPoint: null as unknown as SvgItem,
-      focusedItem: null as unknown as SvgItem,
-      hoveredItem: null as unknown as SvgItem,
+      draggedPoint: null as unknown as SvgItem | null,
+      focusedItem: null as unknown as SvgItem | null,
+      hoveredItem: null as unknown as SvgItem | null,
 
       commandList: [],
       textareaValue: '',

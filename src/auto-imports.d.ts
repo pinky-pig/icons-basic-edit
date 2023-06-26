@@ -51,7 +51,7 @@ declare global {
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
-  const kDefaultPath: typeof import('./store/svg-path')['kDefaultPath']
+  const kDefaultPath: typeof import('./store/svgPath')['kDefaultPath']
   const logicAnd: typeof import('@vueuse/core')['logicAnd']
   const logicNot: typeof import('@vueuse/core')['logicNot']
   const logicOr: typeof import('@vueuse/core')['logicOr']
@@ -258,7 +258,7 @@ declare global {
   const useStyleTag: typeof import('@vueuse/core')['useStyleTag']
   const useSupported: typeof import('@vueuse/core')['useSupported']
   const useSvgAnimate: typeof import('./store/svg-animate')['useSvgAnimate']
-  const useSvgPathStore: typeof import('./store/svg-path')['useSvgPathStore']
+  const useSvgPathStore: typeof import('./store/svgPath')['useSvgPathStore']
   const useSvgStore: typeof import('./store/icons-property')['useSvgStore']
   const useSvgenerateStore: typeof import('./store/icon')['useSvgenerateStore']
   const useSwipe: typeof import('@vueuse/core')['useSwipe']
@@ -367,7 +367,7 @@ declare module 'vue' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
-    readonly kDefaultPath: UnwrapRef<typeof import('./store/svg-path')['kDefaultPath']>
+    readonly kDefaultPath: UnwrapRef<typeof import('./store/svgPath')['kDefaultPath']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly naiveUIDarkTheme: UnwrapRef<typeof import('./composables/dark')['naiveUIDarkTheme']>
@@ -568,7 +568,7 @@ declare module 'vue' {
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>
     readonly useStyleTag: UnwrapRef<typeof import('@vueuse/core')['useStyleTag']>
     readonly useSupported: UnwrapRef<typeof import('@vueuse/core')['useSupported']>
-    readonly useSvgPathStore: UnwrapRef<typeof import('./store/svg-path')['useSvgPathStore']>
+    readonly useSvgPathStore: UnwrapRef<typeof import('./store/svgPath')['useSvgPathStore']>
     readonly useSwipe: UnwrapRef<typeof import('@vueuse/core')['useSwipe']>
     readonly useTemplateRefsList: UnwrapRef<typeof import('@vueuse/core')['useTemplateRefsList']>
     readonly useTextDirection: UnwrapRef<typeof import('@vueuse/core')['useTextDirection']>
@@ -668,7 +668,7 @@ declare module '@vue/runtime-core' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
-    readonly kDefaultPath: UnwrapRef<typeof import('./store/svg-path')['kDefaultPath']>
+    readonly kDefaultPath: UnwrapRef<typeof import('./store/svgPath')['kDefaultPath']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly naiveUIDarkTheme: UnwrapRef<typeof import('./composables/dark')['naiveUIDarkTheme']>
@@ -869,7 +869,7 @@ declare module '@vue/runtime-core' {
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>
     readonly useStyleTag: UnwrapRef<typeof import('@vueuse/core')['useStyleTag']>
     readonly useSupported: UnwrapRef<typeof import('@vueuse/core')['useSupported']>
-    readonly useSvgPathStore: UnwrapRef<typeof import('./store/svg-path')['useSvgPathStore']>
+    readonly useSvgPathStore: UnwrapRef<typeof import('./store/svgPath')['useSvgPathStore']>
     readonly useSwipe: UnwrapRef<typeof import('@vueuse/core')['useSwipe']>
     readonly useTemplateRefsList: UnwrapRef<typeof import('@vueuse/core')['useTemplateRefsList']>
     readonly useTextDirection: UnwrapRef<typeof import('@vueuse/core')['useTextDirection']>
