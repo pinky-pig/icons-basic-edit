@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import PathCanvasContextMenu from './ContextMenu.vue'
-import { initCanvas, initEventListener, initHistory, initRedoUndo, initSvgPath } from './PathCanvas.module'
+import { initCanvas, initEventListener, initHistory, initRedoUndo, initSvgPath } from './index.module'
 
 const props = useSvgPathStore()
 // 初始化画布
