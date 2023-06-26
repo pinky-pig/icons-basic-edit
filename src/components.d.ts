@@ -7,9 +7,11 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AllPathData: typeof import('./components/playground/ToolsPanel/AllPathData.vue')['default']
     Canvas: typeof import('./components/Canvas.vue')['default']
     CCollapse: typeof import('./components/ui/CCollapse.vue')['default']
     Collapse: typeof import('./components/ui/Collapse.vue')['default']
+    Command: typeof import('./components/playground/ToolsPanel/Command.vue')['default']
     ContentDropMenu: typeof import('./components/ContentDropMenu.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
     CPopselect: typeof import('./components/CPopselect.vue')['default']
@@ -18,8 +20,6 @@ declare module 'vue' {
     PathCanvas: typeof import('./components/playground/PathCanvas.vue')['default']
     PathCanvasContextMenu: typeof import('./components/playground/PathCanvasContextMenu.vue')['default']
     PathPropertyPanel: typeof import('./components/playground/PathPropertyPanel.vue')['default']
-    PathToolsPanel: typeof import('./components/playground/PathToolsPanel/index.vue')['default']
-    PathTpplsPanel: typeof import('./components/playground/PathTpplsPanel/index.vue')['default']
     PreviewCode: typeof import('./components/PreviewCode.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -27,5 +27,6 @@ declare module 'vue' {
     Slide: typeof import('./components/Slide.vue')['default']
     SvgBox: typeof import('./components/SvgBox.vue')['default']
     ToolButton: typeof import('./components/ToolButton.vue')['default']
+    ToolsPanel: typeof import('./components/playground/ToolsPanel/index.vue')['default']
   }
 }

@@ -5,7 +5,7 @@
     >
       <div class=" w-full h-full rounded-3xl gap-4 flex flex-row justify-between">
         <div class="w-350px h-full rounded-3xl bg-[var(--tool-bg-color)] text-[var(--tool-text-color)]">
-          <PathToolsPanel />
+          <ToolsPanel />
         </div>
 
         <div class="flex-1 h-full rounded-3xl bg-[var(--canvas-bg)] text-[var(--canvas-text)] overflow-hidden">
@@ -37,4 +37,3 @@ meta:
   id: 3
   string: '3'
 </route>
-
