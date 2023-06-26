@@ -8,7 +8,7 @@ import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Markdown from 'vite-plugin-vue-markdown'
 import { VitePWA } from 'vite-plugin-pwa'
-import VueI18n from '@intlify/vite-plugin-vue-i18n'
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Inspect from 'vite-plugin-inspect'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Unocss from 'unocss/vite'
@@ -95,7 +95,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
       manifest: {
-        name: 'Svge',
+        name: 'SVG Path Edit',
         short_name: 'Icons Basic Edit',
         theme_color: '#ffffff',
         icons: [
@@ -123,6 +123,7 @@ export default defineConfig({
     VueI18n({
       runtimeOnly: true,
       compositionOnly: true,
+      fullInstall: true,
       include: [path.resolve(__dirname, 'locales/**')],
     }),
 
@@ -141,6 +142,11 @@ export default defineConfig({
     script: 'async',
     formatting: 'minify',
     onFinished() { generateSitemap() },
+  },
+
+  ssr: {
+    // TODO: workaround until they support native ESM
+    noExternal: ['workbox-window', /vue-i18n/],
   },
 
   // https://github.com/vitest-dev/vitest
