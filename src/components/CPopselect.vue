@@ -51,7 +51,7 @@ const options = ref(
 
 type insertType = 'D' | 'M' | 'L' | 'V' | 'H' | 'C' | 'S' | 'Q' | 'T' | 'A' | 'Z'
 
-const handleSelect = (key: insertType) => {
+function handleSelect(key: insertType) {
   emit(key, key)
 }
 </script>
@@ -70,4 +70,3 @@ const handleSelect = (key: insertType) => {
     </div>
   </n-dropdown>
 </template>
-

@@ -39,7 +39,6 @@ const props = defineProps({
   },
 
   parsedPath: {
-    default: '',
   },
 
   targetPoints: {
@@ -53,18 +52,12 @@ const props = defineProps({
   },
 
   draggedPoint: {
-    type: Object,
-    default: null,
   },
 
   focusedItem: {
-    type: Object,
-    default: null,
   },
 
   hoveredItem: {
-    type: Object,
-    default: null,
   },
 
   stepsData: {
@@ -121,7 +114,7 @@ function stopHover() {
 // svg 选中的高亮路径
 const focusedItemPath = computed(() => {
   if (props.focusedItem !== null)
-    return props.focusedItem?.asStandaloneString()
+    return (props.focusedItem as any).asStandaloneString()
   else
     return
 })
@@ -129,7 +122,7 @@ const focusedItemPath = computed(() => {
 // svg hover 的高亮路径
 const hoveredItemPath = computed(() => {
   if (props.hoveredItem !== null)
-    return props.hoveredItem?.asStandaloneString()
+    return (props.hoveredItem as any).asStandaloneString()
   else
     return
 })

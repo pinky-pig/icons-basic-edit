@@ -13,6 +13,7 @@ declare module 'vue' {
     Collapse: typeof import('./components/ui/Collapse.vue')['default']
     Command: typeof import('./components/playground/ToolsPanel/Command.vue')['default']
     ContentDropMenu: typeof import('./components/ContentDropMenu.vue')['default']
+    ContextMenu: typeof import('./components/playground/Canvas/ContextMenu.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
     CPopselect: typeof import('./components/CPopselect.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
