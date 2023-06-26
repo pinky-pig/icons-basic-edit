@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { initContentDropMenu, initMatrix, initScreenshot } from './PathPropertyPanel.module'
+import { initContentDropMenu, initMatrix, initScreenshot } from './index.module'
 
 const props = useSvgPathStore()
 

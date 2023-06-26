@@ -23,6 +23,7 @@ declare module 'vue' {
     PathCanvasT: typeof import('./components/playground/PathCanvasT/index.vue')['default']
     PathPropertyPanel: typeof import('./components/playground/PathPropertyPanel.vue')['default']
     PreviewCode: typeof import('./components/PreviewCode.vue')['default']
+    Property: typeof import('./components/playground/Property/index.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
