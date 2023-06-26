@@ -5,6 +5,7 @@ import {
   NCard,
   NCarousel,
   NCheckbox,
+  NCollapseTransition,
   NColorPicker,
   NConfigProvider,
   NDataTable,
@@ -102,6 +103,7 @@ export const install: UserModule = ({ app }) => {
       NCarousel,
       NPopselect,
       NTreeSelect,
+      NCollapseTransition,
     ],
   })
 
