@@ -61,6 +61,7 @@ declare global {
   const initSvgPath: typeof import('./logic/Main')['initSvgPath']
   const initWatchCanvasSize: typeof import('./logic/Watch')['initWatchCanvasSize']
   const initWatchCommandSize: typeof import('./logic/Watch')['initWatchCommandSize']
+  const initWatchPathOperations: typeof import('./logic/Watch')['initWatchPathOperations']
   const inject: typeof import('vue')['inject']
   const isDark: typeof import('./composables/dark')['isDark']
   const isDefined: typeof import('@vueuse/core')['isDefined']
@@ -393,6 +394,7 @@ declare module 'vue' {
     readonly initSvgPath: UnwrapRef<typeof import('./logic/Main')['initSvgPath']>
     readonly initWatchCanvasSize: UnwrapRef<typeof import('./logic/Watch')['initWatchCanvasSize']>
     readonly initWatchCommandSize: UnwrapRef<typeof import('./logic/Watch')['initWatchCommandSize']>
+    readonly initWatchPathOperations: UnwrapRef<typeof import('./logic/Watch')['initWatchPathOperations']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
@@ -710,6 +712,7 @@ declare module '@vue/runtime-core' {
     readonly initSvgPath: UnwrapRef<typeof import('./logic/Main')['initSvgPath']>
     readonly initWatchCanvasSize: UnwrapRef<typeof import('./logic/Watch')['initWatchCanvasSize']>
     readonly initWatchCommandSize: UnwrapRef<typeof import('./logic/Watch')['initWatchCommandSize']>
+    readonly initWatchPathOperations: UnwrapRef<typeof import('./logic/Watch')['initWatchPathOperations']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
