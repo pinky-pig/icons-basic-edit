@@ -9,10 +9,10 @@ const emit = defineEmits(['update:showDropdownRef', 'd'])
 const options = [
   { label: 'delete', key: 'delete' },
 ]
-const onClickoutside = () => {
+function onClickoutside() {
   emit('update:showDropdownRef', false)
 }
-const handleSelect = () => {
+function handleSelect() {
   emit('d', true)
 }
 </script>
