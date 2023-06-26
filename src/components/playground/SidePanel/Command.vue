@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Point, SvgItem } from '~/controls/Svg'
+import { Point, SvgItem } from '~/logic/Svg'
 
 const store = useSvgPathStore()
 

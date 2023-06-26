@@ -1,7 +1,7 @@
 <!-- eslint-disable no-useless-return -->
 <script setup lang="ts">
-import type { SvgControlPoint, SvgPoint } from '~/controls/Svg'
-import type { StoredPath } from '~/controls/Storage'
+import type { SvgControlPoint, SvgPoint } from '~/logic/Svg'
+import type { StoredPath } from '~/logic/Storage'
 
 interface stepsType {
   animate_key: number

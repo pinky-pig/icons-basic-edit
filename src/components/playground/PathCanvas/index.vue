@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { initCanvasSize, main } from '~/controls/Main'
+import { initCanvasSize, main } from '~/logic/Main'
 
 const props = useSvgPathStore()
 

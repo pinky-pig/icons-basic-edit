@@ -12,9 +12,15 @@ declare global {
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
   const EffectScope: typeof import('vue')['EffectScope']
+  const Point: typeof import('./logic/Svg')['Point']
+  const StorageStore: typeof import('./logic/Storage')['StorageStore']
+  const StoredPath: typeof import('./logic/Storage')['StoredPath']
+  const Svg: typeof import('./logic/Svg')['Svg']
+  const SvgControlPoint: typeof import('./logic/Svg')['SvgControlPoint']
+  const SvgPoint: typeof import('./logic/Svg')['SvgPoint']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
-  const browserComputePathBoundingBox: typeof import('./utils/svg-help')['browserComputePathBoundingBox']
+  const browserComputePathBoundingBox: typeof import('./logic/SvgHelp')['browserComputePathBoundingBox']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
   const computedEager: typeof import('@vueuse/core')['computedEager']
@@ -40,10 +46,17 @@ declare global {
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const formatNumber: typeof import('./logic/Svg')['formatNumber']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
+  const initCanvas: typeof import('./logic/Main')['initCanvas']
+  const initCanvasSize: typeof import('./logic/Main')['initCanvasSize']
+  const initEventListener: typeof import('./logic/Main')['initEventListener']
+  const initHistory: typeof import('./logic/Main')['initHistory']
+  const initRedoUndo: typeof import('./logic/Main')['initRedoUndo']
+  const initSvgPath: typeof import('./logic/Main')['initSvgPath']
   const inject: typeof import('vue')['inject']
   const isDark: typeof import('./composables/dark')['isDark']
   const isDefined: typeof import('@vueuse/core')['isDefined']
@@ -55,6 +68,7 @@ declare global {
   const logicAnd: typeof import('@vueuse/core')['logicAnd']
   const logicNot: typeof import('@vueuse/core')['logicNot']
   const logicOr: typeof import('@vueuse/core')['logicOr']
+  const main: typeof import('./logic/Main')['main']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
   const naiveUIDarkTheme: typeof import('./composables/dark')['naiveUIDarkTheme']
@@ -151,7 +165,7 @@ declare global {
   const useClipboard: typeof import('@vueuse/core')['useClipboard']
   const useCloned: typeof import('@vueuse/core')['useCloned']
   const useColorMode: typeof import('@vueuse/core')['useColorMode']
-  const useComposition: typeof import('./utils/svg-help')['useComposition']
+  const useComposition: typeof import('./logic/SvgHelp')['useComposition']
   const useConfirmDialog: typeof import('@vueuse/core')['useConfirmDialog']
   const useCounter: typeof import('@vueuse/core')['useCounter']
   const useCssModule: typeof import('vue')['useCssModule']
@@ -170,7 +184,7 @@ declare global {
   const useDevicesList: typeof import('@vueuse/core')['useDevicesList']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
-  const useDragKeyframeToAnimate: typeof import('./utils/svg-help')['useDragKeyframeToAnimate']
+  const useDragKeyframeToAnimate: typeof import('./logic/SvgHelp')['useDragKeyframeToAnimate']
   const useDraggable: typeof import('@vueuse/core')['useDraggable']
   const useDropZone: typeof import('@vueuse/core')['useDropZone']
   const useElementBounding: typeof import('@vueuse/core')['useElementBounding']
@@ -328,9 +342,15 @@ declare module 'vue' {
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly Point: UnwrapRef<typeof import('./logic/Svg')['Point']>
+    readonly StorageStore: UnwrapRef<typeof import('./logic/Storage')['StorageStore']>
+    readonly StoredPath: UnwrapRef<typeof import('./logic/Storage')['StoredPath']>
+    readonly Svg: UnwrapRef<typeof import('./logic/Svg')['Svg']>
+    readonly SvgControlPoint: UnwrapRef<typeof import('./logic/Svg')['SvgControlPoint']>
+    readonly SvgPoint: UnwrapRef<typeof import('./logic/Svg')['SvgPoint']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
-    readonly browserComputePathBoundingBox: UnwrapRef<typeof import('./utils/svg-help')['browserComputePathBoundingBox']>
+    readonly browserComputePathBoundingBox: UnwrapRef<typeof import('./logic/SvgHelp')['browserComputePathBoundingBox']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -356,10 +376,17 @@ declare module 'vue' {
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly formatNumber: UnwrapRef<typeof import('./logic/Svg')['formatNumber']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
+    readonly initCanvas: UnwrapRef<typeof import('./logic/Main')['initCanvas']>
+    readonly initCanvasSize: UnwrapRef<typeof import('./logic/Main')['initCanvasSize']>
+    readonly initEventListener: UnwrapRef<typeof import('./logic/Main')['initEventListener']>
+    readonly initHistory: UnwrapRef<typeof import('./logic/Main')['initHistory']>
+    readonly initRedoUndo: UnwrapRef<typeof import('./logic/Main')['initRedoUndo']>
+    readonly initSvgPath: UnwrapRef<typeof import('./logic/Main')['initSvgPath']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
@@ -368,6 +395,7 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly kDefaultPath: UnwrapRef<typeof import('./store/svgPath')['kDefaultPath']>
+    readonly main: UnwrapRef<typeof import('./logic/Main')['main']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly naiveUIDarkTheme: UnwrapRef<typeof import('./composables/dark')['naiveUIDarkTheme']>
@@ -462,7 +490,7 @@ declare module 'vue' {
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
     readonly useColorMode: UnwrapRef<typeof import('@vueuse/core')['useColorMode']>
-    readonly useComposition: UnwrapRef<typeof import('./utils/svg-help')['useComposition']>
+    readonly useComposition: UnwrapRef<typeof import('./logic/SvgHelp')['useComposition']>
     readonly useConfirmDialog: UnwrapRef<typeof import('@vueuse/core')['useConfirmDialog']>
     readonly useCounter: UnwrapRef<typeof import('@vueuse/core')['useCounter']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
@@ -481,7 +509,7 @@ declare module 'vue' {
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
-    readonly useDragKeyframeToAnimate: UnwrapRef<typeof import('./utils/svg-help')['useDragKeyframeToAnimate']>
+    readonly useDragKeyframeToAnimate: UnwrapRef<typeof import('./logic/SvgHelp')['useDragKeyframeToAnimate']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>
@@ -629,9 +657,15 @@ declare module '@vue/runtime-core' {
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly Point: UnwrapRef<typeof import('./logic/Svg')['Point']>
+    readonly StorageStore: UnwrapRef<typeof import('./logic/Storage')['StorageStore']>
+    readonly StoredPath: UnwrapRef<typeof import('./logic/Storage')['StoredPath']>
+    readonly Svg: UnwrapRef<typeof import('./logic/Svg')['Svg']>
+    readonly SvgControlPoint: UnwrapRef<typeof import('./logic/Svg')['SvgControlPoint']>
+    readonly SvgPoint: UnwrapRef<typeof import('./logic/Svg')['SvgPoint']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
-    readonly browserComputePathBoundingBox: UnwrapRef<typeof import('./utils/svg-help')['browserComputePathBoundingBox']>
+    readonly browserComputePathBoundingBox: UnwrapRef<typeof import('./logic/SvgHelp')['browserComputePathBoundingBox']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -657,10 +691,17 @@ declare module '@vue/runtime-core' {
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly formatNumber: UnwrapRef<typeof import('./logic/Svg')['formatNumber']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
+    readonly initCanvas: UnwrapRef<typeof import('./logic/Main')['initCanvas']>
+    readonly initCanvasSize: UnwrapRef<typeof import('./logic/Main')['initCanvasSize']>
+    readonly initEventListener: UnwrapRef<typeof import('./logic/Main')['initEventListener']>
+    readonly initHistory: UnwrapRef<typeof import('./logic/Main')['initHistory']>
+    readonly initRedoUndo: UnwrapRef<typeof import('./logic/Main')['initRedoUndo']>
+    readonly initSvgPath: UnwrapRef<typeof import('./logic/Main')['initSvgPath']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
@@ -669,6 +710,7 @@ declare module '@vue/runtime-core' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly kDefaultPath: UnwrapRef<typeof import('./store/svgPath')['kDefaultPath']>
+    readonly main: UnwrapRef<typeof import('./logic/Main')['main']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly naiveUIDarkTheme: UnwrapRef<typeof import('./composables/dark')['naiveUIDarkTheme']>
@@ -763,7 +805,7 @@ declare module '@vue/runtime-core' {
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
     readonly useColorMode: UnwrapRef<typeof import('@vueuse/core')['useColorMode']>
-    readonly useComposition: UnwrapRef<typeof import('./utils/svg-help')['useComposition']>
+    readonly useComposition: UnwrapRef<typeof import('./logic/SvgHelp')['useComposition']>
     readonly useConfirmDialog: UnwrapRef<typeof import('@vueuse/core')['useConfirmDialog']>
     readonly useCounter: UnwrapRef<typeof import('@vueuse/core')['useCounter']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
@@ -782,7 +824,7 @@ declare module '@vue/runtime-core' {
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
-    readonly useDragKeyframeToAnimate: UnwrapRef<typeof import('./utils/svg-help')['useDragKeyframeToAnimate']>
+    readonly useDragKeyframeToAnimate: UnwrapRef<typeof import('./logic/SvgHelp')['useDragKeyframeToAnimate']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>

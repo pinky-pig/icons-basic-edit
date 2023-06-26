@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Point, SvgItem } from '~/controls/Svg'
+import { Point, SvgItem } from '~/logic/Svg'
 
 defineProps({
   x: { type: Number },

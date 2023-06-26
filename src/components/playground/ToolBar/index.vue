@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { initRedoUndo } from '~/controls/Main'
+import { initRedoUndo } from '~/logic/Main'
 
 const props = useSvgPathStore()
 const { redo, undo } = initRedoUndo (props)

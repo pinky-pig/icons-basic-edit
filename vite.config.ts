@@ -1,4 +1,4 @@
-import path from 'path'
+import path from 'node:path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
@@ -54,6 +54,7 @@ export default defineConfig({
         'src/composables',
         'src/store',
         'src/utils',
+        'src/logic',
       ],
       vueTemplate: true,
     }),
