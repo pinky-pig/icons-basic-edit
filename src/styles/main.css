@@ -42,7 +42,7 @@ html.dark {
   display:none;
 }
 
-textarea{
+/* textarea{
   outline: 2px dotted transparent;
   outline-offset: -2px;
   transition: outline 0.12s ease, outline-offset 0.12s ease;
@@ -73,7 +73,7 @@ button:focus{
 button:active {
   outline: 2px dotted transparent;
   transform: scaleX(1) scaleY(1);
-}
+} */
 
 :root{
   --theme-filter: none;
