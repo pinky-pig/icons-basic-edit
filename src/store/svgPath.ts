@@ -14,6 +14,7 @@ export const useSvgPathStore = defineStore({
     const storage = new StorageStore()
 
     return {
+      canvasRef: null as null | HTMLDivElement,
       canvasWidth: 100 as number,
       canvasHeight: 100 as number,
       cfg: {

@@ -2,15 +2,9 @@
 import { Point, SvgItem } from '~/controls/Svg'
 
 defineProps({
-  x: {
-    type: Number,
-  },
-  y: {
-    type: Number,
-  },
-  showDropdownRef: {
-    type: Boolean,
-  },
+  x: { type: Number },
+  y: { type: Number },
+  showDropdownRef: { type: Boolean },
 })
 const emit = defineEmits(['update:showDropdownRef', 'D', 'M', 'L', 'V', 'H', 'C', 'S', 'Q', 'T', 'A', 'Z'])
 const store = useSvgPathStore()

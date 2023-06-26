@@ -97,9 +97,6 @@ export function initRedoUndo(store) {
   }
 }
 
-export function initWindowSize(store) {
-
-}
 export function main() {
   const store = useSvgPathStore()
 
@@ -107,4 +104,12 @@ export function main() {
   initSvgPath(store)
   initEventListener(store)
   initHistory(store)
+}
+
+export function initCanvasSize(store) {
+  const { width, height } = useElementBounding(store.canvasRef)
+  watch([width, height], () => {
+    store.canvasWidth = width.value
+    store.canvasHeight = height.value
+  })
 }
