@@ -1,6 +1,6 @@
 import type { MaybeElement, MaybeElementRef } from '@vueuse/core'
-import type { Point } from '~/Svg'
-import { Svg } from '~/Svg'
+import type { Point } from '~/controls/Svg'
+import { Svg } from '~/controls/Svg'
 
 // svg 编辑的方法
 export function useComposition(props: any, context?: any) {

@@ -1,16 +1,9 @@
 <script setup lang="ts">
-import PathCanvasContextMenu from './ContextMenu.vue'
-import { initCanvas, initEventListener, initHistory, initRedoUndo, initSvgPath } from './index.module'
+import { main } from '~/controls/Main'
 
 const props = useSvgPathStore()
-// 初始化画布
-initCanvas(props)
-// 初始化 svg 路径
-initSvgPath(props)
-// 监听拖拽
-initEventListener(props)
-// 监听编辑操作历史
-initHistory(props)
+
+main()
 
 // 监听画布面板尺寸
 const canvas = ref(null)
@@ -39,8 +32,6 @@ function handleContextMenu(e: MouseEvent) {
     })
   }
 }
-
-const { redo, undo } = initRedoUndo (props)
 </script>
 
 <template>
@@ -63,13 +54,14 @@ const { redo, undo } = initRedoUndo (props)
       @contextmenu="handleContextMenu"
     />
 
-    <PathCanvasContextMenu
+    <ContextMenu
       v-model:showDropdownRef="showDropdownRef"
       :x="xRef"
       :y="yRef"
     />
 
-    <div
+    <ToolBar />
+    <!-- <div
       class=" absolute top-20px right-20px w-130px h-35px rounded-md grid grid-cols-2 bg-[var(--tool-button-color)]"
     >
       <div
@@ -94,6 +86,6 @@ const { redo, undo } = initRedoUndo (props)
           />
         </svg>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>

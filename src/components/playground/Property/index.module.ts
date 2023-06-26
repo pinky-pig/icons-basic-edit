@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import type { StoredPath } from '~/Storage'
+import type { StoredPath } from '~/controls/Storage'
 
 export function initMatrix(props: any, _context?: any) {
   const { parsedPath } = toRefs(props)

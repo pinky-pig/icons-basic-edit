@@ -7,11 +7,11 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AllPathData: typeof import('./components/playground/ToolsPanel/AllPathData.vue')['default']
+    AllPathData: typeof import('./components/playground/SidePanel/AllPathData.vue')['default']
     Canvas: typeof import('./components/playground/PathCanvas/Canvas.vue')['default']
     CCollapse: typeof import('./components/ui/CCollapse.vue')['default']
     Collapse: typeof import('./components/ui/Collapse.vue')['default']
-    Command: typeof import('./components/playground/ToolsPanel/Command.vue')['default']
+    Command: typeof import('./components/playground/SidePanel/Command.vue')['default']
     ContentDropMenu: typeof import('./components/ui/ContentDropMenu.vue')['default']
     ContextMenu: typeof import('./components/playground/PathCanvas/ContextMenu.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
@@ -27,8 +27,10 @@ declare module 'vue' {
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SidePanel: typeof import('./components/playground/SidePanel/index.vue')['default']
     Slide: typeof import('./components/Slide.vue')['default']
     SvgBox: typeof import('./components/SvgBox.vue')['default']
+    ToolBar: typeof import('./components/playground/ToolBar/index.vue')['default']
     ToolButton: typeof import('./components/ToolButton.vue')['default']
     ToolsPanel: typeof import('./components/playground/ToolsPanel/index.vue')['default']
   }
