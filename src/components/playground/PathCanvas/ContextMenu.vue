@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { initContextMenuCommand } from './PathCanvasContextMenu.module'
+
 defineProps({
   x: {
     type: Number,
@@ -30,11 +31,11 @@ type insertType = 'D' | 'M' | 'L' | 'V' | 'H' | 'C' | 'S' | 'Q' | 'T' | 'A' | 'Z
 
 const { deleteFn, insert, canDelete } = initContextMenuCommand(props)
 
-const canDeleteType = computed(() => canDelete(props.focusedItem))
-const handleSelect = (key: insertType) => {
+const canDeleteType = computed(() => canDelete(props.focusedItem as any))
+function handleSelect(key: insertType) {
   switch (key) {
     case 'D':
-      deleteFn(props.focusedItem)
+      deleteFn(props.focusedItem as any)
       emit('update:showDropdownRef', false)
       break
 
@@ -45,7 +46,7 @@ const handleSelect = (key: insertType) => {
   }
 }
 
-const onClickoutside = () => {
+function onClickoutside() {
   emit('update:showDropdownRef', false)
 }
 
@@ -94,4 +95,3 @@ const options = ref(
     @select="handleSelect"
   />
 </template>
-
