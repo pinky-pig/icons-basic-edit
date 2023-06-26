@@ -1,8 +1,12 @@
 <!-- eslint-disable no-useless-return -->
 <script setup lang="ts">
 import type { SvgControlPoint, SvgPoint } from '~/Svg'
-import { stepsType } from '~/store/svg-animate'
+import type { StoredPath } from '~/Storage'
 
+interface stepsType {
+  animate_key: number
+  values: StoredPath
+}
 const props = defineProps({
   viewPortX: {
     type: Number,
@@ -98,7 +102,7 @@ const parsedPath = computed(() => {
     return
 })
 
-const startDrag = (item: SvgPoint, evt?: MouseEvent) => {
+function startDrag(item: SvgPoint, evt?: MouseEvent) {
   // 鼠标左键
   if (evt?.buttons === 1) {
     emit('update:draggedPoint', item)
@@ -106,7 +110,7 @@ const startDrag = (item: SvgPoint, evt?: MouseEvent) => {
     stopHover()
   }
 }
-const startHover = (item: SvgPoint) => {
+function startHover(item: SvgPoint) {
   if (!props.focusedItem)
     emit('update:hoveredItem', item.itemReference)
 }

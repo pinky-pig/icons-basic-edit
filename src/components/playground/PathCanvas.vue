@@ -24,7 +24,7 @@ watch([width, height], () => {
 const showDropdownRef = ref(false)
 const xRef = ref(0)
 const yRef = ref(0)
-const handleContextMenu = (e: MouseEvent) => {
+function handleContextMenu(e: MouseEvent) {
   e.preventDefault()
   showDropdownRef.value = false
 
@@ -39,8 +39,6 @@ const handleContextMenu = (e: MouseEvent) => {
     })
   }
 }
-
-const store = useSvgAnimate()
 
 const { redo, undo } = initRedoUndo (props)
 </script>
@@ -62,8 +60,6 @@ const { redo, undo } = initRedoUndo (props)
       :parsed-path="props.parsedPath"
       :target-points="props.targetPoints"
       :control-points="props.controlPoints"
-      :is-play="store.isPlay"
-      :steps-data="store.stepsData"
       @contextmenu="handleContextMenu"
     />
 

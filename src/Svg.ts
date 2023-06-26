@@ -177,18 +177,28 @@ export abstract class SvgItem {
   public static Make(rawItem: string[]): SvgItem {
     let result: SvgItem | undefined
     const relative = rawItem[0].toUpperCase() !== rawItem[0]
-    const values = rawItem.slice(1).map(it => parseFloat(it))
+    const values = rawItem.slice(1).map(it => Number.parseFloat(it))
     switch (rawItem[0].toUpperCase()) {
-      case MoveTo.key: result = new MoveTo(values, relative); break
-      case LineTo.key: result = new LineTo(values, relative); break
-      case HorizontalLineTo.key: result = new HorizontalLineTo(values, relative); break
-      case VerticalLineTo.key: result = new VerticalLineTo(values, relative); break
-      case ClosePath.key: result = new ClosePath(values, relative); break
-      case CurveTo.key: result = new CurveTo(values, relative); break
-      case SmoothCurveTo.key: result = new SmoothCurveTo(values, relative); break
-      case QuadraticBezierCurveTo.key: result = new QuadraticBezierCurveTo(values, relative); break
-      case SmoothQuadraticBezierCurveTo.key: result = new SmoothQuadraticBezierCurveTo(values, relative); break
-      case EllipticalArcTo.key: result = new EllipticalArcTo(values, relative); break
+      case MoveTo.key: result = new MoveTo(values, relative)
+        break
+      case LineTo.key: result = new LineTo(values, relative)
+        break
+      case HorizontalLineTo.key: result = new HorizontalLineTo(values, relative)
+        break
+      case VerticalLineTo.key: result = new VerticalLineTo(values, relative)
+        break
+      case ClosePath.key: result = new ClosePath(values, relative)
+        break
+      case CurveTo.key: result = new CurveTo(values, relative)
+        break
+      case SmoothCurveTo.key: result = new SmoothCurveTo(values, relative)
+        break
+      case QuadraticBezierCurveTo.key: result = new QuadraticBezierCurveTo(values, relative)
+        break
+      case SmoothQuadraticBezierCurveTo.key: result = new SmoothQuadraticBezierCurveTo(values, relative)
+        break
+      case EllipticalArcTo.key: result = new EllipticalArcTo(values, relative)
+        break
     }
     if (!result)
       // eslint-disable-next-line no-throw-literal
@@ -204,16 +214,26 @@ export abstract class SvgItem {
     let values: string[] = []
     const absoluteType = newType.toUpperCase()
     switch (absoluteType) {
-      case MoveTo.key: values = [MoveTo.key, x, y]; break
-      case LineTo.key: values = [LineTo.key, x, y]; break
-      case HorizontalLineTo.key: values = [HorizontalLineTo.key, x]; break
-      case VerticalLineTo.key: values = [VerticalLineTo.key, y]; break
-      case ClosePath.key: values = [ClosePath.key]; break
-      case CurveTo.key: values = [CurveTo.key, '0', '0', '0', '0', x, y]; break
-      case SmoothCurveTo.key: values = [SmoothCurveTo.key, '0', '0', x, y]; break
-      case QuadraticBezierCurveTo.key: values = [QuadraticBezierCurveTo.key, '0', '0', x, y]; break
-      case SmoothQuadraticBezierCurveTo.key: values = [SmoothQuadraticBezierCurveTo.key, x, y]; break
-      case EllipticalArcTo.key: values = [EllipticalArcTo.key, '1', '1', '0', '0', '0', x, y]; break
+      case MoveTo.key: values = [MoveTo.key, x, y]
+        break
+      case LineTo.key: values = [LineTo.key, x, y]
+        break
+      case HorizontalLineTo.key: values = [HorizontalLineTo.key, x]
+        break
+      case VerticalLineTo.key: values = [VerticalLineTo.key, y]
+        break
+      case ClosePath.key: values = [ClosePath.key]
+        break
+      case CurveTo.key: values = [CurveTo.key, '0', '0', '0', '0', x, y]
+        break
+      case SmoothCurveTo.key: values = [SmoothCurveTo.key, '0', '0', x, y]
+        break
+      case QuadraticBezierCurveTo.key: values = [QuadraticBezierCurveTo.key, '0', '0', x, y]
+        break
+      case SmoothQuadraticBezierCurveTo.key: values = [SmoothQuadraticBezierCurveTo.key, x, y]
+        break
+      case EllipticalArcTo.key: values = [EllipticalArcTo.key, '1', '1', '0', '0', '0', x, y]
+        break
     }
     const result = SvgItem.Make(values)
 

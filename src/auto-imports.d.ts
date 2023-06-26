@@ -568,9 +568,7 @@ declare module 'vue' {
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>
     readonly useStyleTag: UnwrapRef<typeof import('@vueuse/core')['useStyleTag']>
     readonly useSupported: UnwrapRef<typeof import('@vueuse/core')['useSupported']>
-    readonly useSvgAnimate: UnwrapRef<typeof import('./store/svg-animate')['useSvgAnimate']>
     readonly useSvgPathStore: UnwrapRef<typeof import('./store/svg-path')['useSvgPathStore']>
-    readonly useSvgStore: UnwrapRef<typeof import('./store/icons-property')['useSvgStore']>
     readonly useSwipe: UnwrapRef<typeof import('@vueuse/core')['useSwipe']>
     readonly useTemplateRefsList: UnwrapRef<typeof import('@vueuse/core')['useTemplateRefsList']>
     readonly useTextDirection: UnwrapRef<typeof import('@vueuse/core')['useTextDirection']>
@@ -871,9 +869,7 @@ declare module '@vue/runtime-core' {
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>
     readonly useStyleTag: UnwrapRef<typeof import('@vueuse/core')['useStyleTag']>
     readonly useSupported: UnwrapRef<typeof import('@vueuse/core')['useSupported']>
-    readonly useSvgAnimate: UnwrapRef<typeof import('./store/svg-animate')['useSvgAnimate']>
     readonly useSvgPathStore: UnwrapRef<typeof import('./store/svg-path')['useSvgPathStore']>
-    readonly useSvgStore: UnwrapRef<typeof import('./store/icons-property')['useSvgStore']>
     readonly useSwipe: UnwrapRef<typeof import('@vueuse/core')['useSwipe']>
     readonly useTemplateRefsList: UnwrapRef<typeof import('@vueuse/core')['useTemplateRefsList']>
     readonly useTextDirection: UnwrapRef<typeof import('@vueuse/core')['useTextDirection']>

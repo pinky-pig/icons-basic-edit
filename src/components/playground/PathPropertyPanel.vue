@@ -9,22 +9,40 @@ const transformType = reactive([
   {
     label: 'Scale',
     value: [
-      computed({ set(v) { props.scaleX = Number(v) }, get() { return props.scaleX } }),
-      computed({ set(v) { props.scaleY = Number(v) }, get() { return props.scaleY } }),
+      computed({
+        set(v) { props.scaleX = Number(v) },
+        get() {
+          return props.scaleX
+        },
+      }),
+      computed({
+        set(v) { props.scaleY = Number(v) },
+        get() {
+          return props.scaleY
+        },
+      }),
     ],
   },
   {
     label: 'Translate',
     value: [
-      computed({ set(v) { props.scaleX = Number(v) }, get() { return props.translateX } }),
-      computed({ set(v) { props.scaleX = Number(v) }, get() { return props.translateY } }),
+      computed({
+        set(v) { props.scaleX = Number(v) },
+        get() {
+          return props.translateX
+        },
+      }),
+      computed({
+        set(v) { props.scaleX = Number(v) },
+        get() {
+          return props.translateY
+        },
+      }),
     ],
   },
 ])
 
 // 初始化拖拽
-const store = useSvgAnimate()
-const { dragStartKeyframe } = useDragKeyframeToAnimate(store)
 
 // 初始化右键菜单删除
 const showDropdownRef = ref(false)
@@ -32,7 +50,7 @@ const xRef = ref(0)
 const yRef = ref(0)
 const { handleGalleryContextMenu, handleDeleteGallery } = initContentDropMenu(props, { showDropdownRef, xRef, yRef })
 
-const updateKeySvgViewBox = (path: string) => {
+function updateKeySvgViewBox(path: string) {
   // 1.计算 svg 包含所有元素后的坐标
   const bbox = browserComputePathBoundingBox(path)
   const w = bbox.width + 2
@@ -92,10 +110,8 @@ const updateKeySvgViewBox = (path: string) => {
         <div
           v-for="item in props.gallery"
           :key="symbolFn(item)"
-          :draggable="store.isPlay === 'stop'"
           class="p-2 w-60px h-60px rounded-md bg-[var(--input-bg-color)] text-[var(--input-text-color)]"
           @contextmenu="v => handleGalleryContextMenu(v, item)"
-          @dragstart="v => dragStartKeyframe(v, item)"
         >
           <svg
             :viewBox="updateKeySvgViewBox(item.path)"
