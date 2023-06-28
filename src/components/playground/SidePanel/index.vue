@@ -18,7 +18,9 @@ import PathOperations from './PathOperations.vue'
         <ToolsPanelCommand />
       </template>
       <template #footer>
-        https://yqnn.github.io/svg-path-editor/
+        <a href="https://yqnn.github.io/svg-path-editor/" target="_blank">
+          https://yqnn.github.io/svg-path-editor/
+        </a>
       </template>
     </CSidebar>
   </div>
