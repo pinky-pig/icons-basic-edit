@@ -16,7 +16,7 @@ const { setFocusedItemFromInput, deleteFn, canDelete, insert, setHistoryDisabled
       <div
         v-for="item in store.commandList"
         :key="symbolFn(item)"
-        class=" flex-center gap-2 my-2 py-2 pl-2 rounded-md hover:bg-[var(--panel-hover-bg-color)] select-none"
+        class=" flex-center gap-2 my-2 pl-2 rounded-md hover:bg-[var(--panel-hover-bg-color)] select-none"
         :style="{ background: store.focusedItem === item ? 'var(--panel-button-active-bg-color)' : '' }"
         @click="setFocusedItemFromInput(item)"
       >

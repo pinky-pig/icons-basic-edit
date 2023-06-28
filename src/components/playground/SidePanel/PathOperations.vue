@@ -49,7 +49,7 @@ const transformType = reactive([
         <!-- command -->
         <div class=" flex flex-col gap-3 flex-grow-0 flex-shrink-0">
           <div v-for="(item, index) in transformType" :key="index" class="h-34px overflow-auto cursor-default px-3 mx-2 flex flex-row items-center gap-2">
-            <div class="text-lg flex justify-center items-center rounded-lg w-1/3 h-full bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
+            <div class=" flex justify-center items-center rounded-lg w-1/3 h-full bg-[var(--input-bg-color)] text-[var(--input-text-color)] overflow-hidden">
               {{ item.label }}
             </div>
 
