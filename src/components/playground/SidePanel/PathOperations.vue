@@ -42,7 +42,7 @@ const transformType = reactive([
 <template>
   <CCollapse>
     <template #title>
-      PATH OPERATIONS
+      Operation
     </template>
     <template #default>
       <div class=" flex flex-col select-none">

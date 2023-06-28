@@ -17,6 +17,7 @@ declare module 'vue' {
     ContextMenu: typeof import('./components/playground/PathCanvas/ContextMenu.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
     CPopselect: typeof import('./components/ui/CPopselect.vue')['default']
+    CSidebar: typeof import('./components/ui/CSidebar.vue')['default']
     Footer: typeof import('./components/ui/Footer.vue')['default']
     NotOptimized: typeof import('./components/NotOptimized.vue')['default']
     PathCanvas: typeof import('./components/playground/PathCanvas/index.vue')['default']

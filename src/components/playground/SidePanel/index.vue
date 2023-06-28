@@ -5,12 +5,21 @@ import PathOperations from './PathOperations.vue'
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col">
-    <div class="w-full h-full overflow-y-auto p-5">
-      <AllPathData />
-      <PathOperations />
+  <div class="w-full h-full text-start">
+    <CSidebar class="h-full ">
+      <template #title>
+        Settings
+      </template>
 
-      <ToolsPanelCommand />
-    </div>
+      <template #content>
+        <AllPathData />
+        <PathOperations />
+
+        <ToolsPanelCommand />
+      </template>
+      <template #footer>
+        https://yqnn.github.io/svg-path-editor/
+      </template>
+    </CSidebar>
   </div>
 </template>

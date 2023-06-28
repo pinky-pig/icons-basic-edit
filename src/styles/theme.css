@@ -42,7 +42,7 @@ html.dark{
   /* 输入框的背景颜色 */
   --input-bg-color                   :#2a2e31;
   /* 输入框的文字颜色 */
-  --input-text-color                 :#a4a8ab;
+  --input-text-color                 :#ffffff;
   --input-hover-color                :#a4a8ab30;
 
 }
@@ -55,7 +55,7 @@ html{
   --canvas-text                      :#FFF;
   /* --canvas-bg-imgae                  :url(~/assets/img/default-bg.png); */
   --canvas-bg-imgae                  :url(/default-bg.png);
-  --canvas-bg                        :#f7f7f7;
+  --canvas-bg                        :#0C0C15;
 
   /* 工具条 */
   --tool-bg-color                    :#141629;

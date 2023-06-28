@@ -4,6 +4,7 @@ const { t } = useI18n()
 
 <template>
   <div>
+    <CSidebar />
     {{ t('not-found') }}
   </div>
 </template>

@@ -8,7 +8,7 @@
           <SidePanel />
         </div>
 
-        <div class="flex-1 h-full rounded-3xl bg-[var(--canvas-bg)] text-[var(--canvas-text)] overflow-hidden">
+        <div class="flex-1 h-full rounded-10px bg-[var(--canvas-bg)] text-[var(--canvas-text)] overflow-hidden">
           <PathCanvas
             style="background-image: var(--canvas-bg-imgae);"
           />
